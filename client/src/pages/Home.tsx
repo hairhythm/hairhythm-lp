@@ -1,25 +1,33 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+/*
+ * Home — 育毛の学校 LP
+ * Design Philosophy: 「深夜の書斎」— Dark Luxury Minimalism
+ * Color: Deep Charcoal (#0F0F0F) × Champagne Gold (#C9A84C)
+ * Typography: Cormorant Garamond (display) + Noto Serif JP (body)
+ * Sections: Hero → Stats → About → Curriculum → Testimonials → FAQ → Contact
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
 
+import Navigation from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
+import StatsSection from "@/components/StatsSection";
+import AboutSection from "@/components/AboutSection";
+import CurriculumSection from "@/components/CurriculumSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FaqSection from "@/components/FaqSection";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+    <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
+      <HeroSection />
+      <StatsSection />
+      <AboutSection />
+      <CurriculumSection />
+      <TestimonialsSection />
+      <FaqSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 }
