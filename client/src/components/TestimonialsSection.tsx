@@ -167,11 +167,12 @@ export default function TestimonialsSection() {
               className="card-natural overflow-hidden"
             >
               {/* Image */}
-              <div className="relative overflow-hidden h-44">
+              <div className="relative overflow-hidden h-56">
                 <img
                   src={t.image}
                   alt={t.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                  style={{ objectPosition: t.name.includes('庄子') ? 'center 20%' : 'center top' }}
                 />
                 {/* Result badge */}
                 <div

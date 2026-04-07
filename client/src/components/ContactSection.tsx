@@ -1,10 +1,9 @@
 /*
  * ContactSection — 育毛の学校 LP
- * Design: Natural Elegant Green — Sage bg with white form card
- * Layout: 2-column — left copy, right form
+ * Design: Natural Elegant Green — Sage bg with formzu iframe
+ * Layout: 2-column — left copy + LINE CTA, right formzu iframe
  */
 
-import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
@@ -13,32 +12,13 @@ export default function ContactSection() {
   const { ref: leftRef } = useScrollAnimation();
   const { ref: rightRef } = useScrollAnimation();
 
-  const [form, setForm] = useState({
-    name: "",
-    salon: "",
-    email: "",
-    phone: "",
-    inquiry: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   return (
     <section
       id="contact"
-      className="py-20 md:py-28 overflow-hidden"
+      className="py-20 md:py-28 overflow-hidden relative"
       style={{ background: "oklch(0.48 0.10 148)" }}
     >
-      {/* Subtle pattern */}
+      {/* Subtle dot pattern */}
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
@@ -132,9 +112,7 @@ export default function ContactSection() {
               </svg>
             </a>
 
-            <div
-              className="flex items-center gap-4 mb-8"
-            >
+            <div className="flex items-center gap-4 mb-8">
               <div className="flex-1 h-px" style={{ background: "oklch(0.60 0.08 148)" }} />
               <span className="text-xs" style={{ color: "oklch(0.80 0.04 148)", fontFamily: "'Noto Sans JP', sans-serif" }}>またはフォームから</span>
               <div className="flex-1 h-px" style={{ background: "oklch(0.60 0.08 148)" }} />
@@ -160,210 +138,38 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right — Form */}
+          {/* Right — Formzu iframe */}
           <div ref={rightRef} className="fade-up">
             <div
-              className="rounded-sm p-7 md:p-9"
-              style={{ background: "white", boxShadow: "0 20px 60px oklch(0.38 0.09 148 / 0.25)" }}
+              className="overflow-hidden"
+              style={{
+                borderRadius: "4px",
+                boxShadow: "0 20px 60px oklch(0.38 0.09 148 / 0.25)",
+                background: "white",
+              }}
             >
-              {submitted ? (
-                <div className="text-center py-12">
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-                    style={{ background: "oklch(0.92 0.04 148)" }}
-                  >
-                    <span className="text-2xl" style={{ color: "oklch(0.48 0.10 148)" }}>✓</span>
-                  </div>
-                  <h3
-                    className="text-xl font-semibold mb-3"
-                    style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
-                  >
-                    送信が完了しました
-                  </h3>
-                  <p
-                    className="text-sm"
-                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
-                  >
-                    48時間以内にご連絡いたします。
-                    <br />
-                    しばらくお待ちください。
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <h3
-                    className="text-lg font-semibold mb-5"
-                    style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
-                  >
-                    お問い合わせフォーム
-                  </h3>
-
-                  {/* Name */}
-                  <div>
-                    <label className="block text-xs mb-1.5" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                      お名前 <span style={{ color: "oklch(0.52 0.09 148)" }}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="山田 花子"
-                      className="w-full text-sm px-4 py-2.5 focus:outline-none transition-colors duration-200"
-                      style={{
-                        fontFamily: "'Noto Sans JP', sans-serif",
-                        border: "1px solid oklch(0.88 0.04 148)",
-                        borderRadius: "2px",
-                        color: "oklch(0.30 0.02 60)",
-                        background: "oklch(0.99 0.005 90)"
-                      }}
-                    />
-                  </div>
-
-                  {/* Salon */}
-                  <div>
-                    <label className="block text-xs mb-1.5" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                      サロン名
-                    </label>
-                    <input
-                      type="text"
-                      name="salon"
-                      value={form.salon}
-                      onChange={handleChange}
-                      placeholder="〇〇ヘアサロン"
-                      className="w-full text-sm px-4 py-2.5 focus:outline-none transition-colors duration-200"
-                      style={{
-                        fontFamily: "'Noto Sans JP', sans-serif",
-                        border: "1px solid oklch(0.88 0.04 148)",
-                        borderRadius: "2px",
-                        color: "oklch(0.30 0.02 60)",
-                        background: "oklch(0.99 0.005 90)"
-                      }}
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="block text-xs mb-1.5" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                      メールアドレス <span style={{ color: "oklch(0.52 0.09 148)" }}>*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="example@salon.jp"
-                      className="w-full text-sm px-4 py-2.5 focus:outline-none transition-colors duration-200"
-                      style={{
-                        fontFamily: "'Noto Sans JP', sans-serif",
-                        border: "1px solid oklch(0.88 0.04 148)",
-                        borderRadius: "2px",
-                        color: "oklch(0.30 0.02 60)",
-                        background: "oklch(0.99 0.005 90)"
-                      }}
-                    />
-                  </div>
-
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-xs mb-1.5" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                      電話番号
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="090-0000-0000"
-                      className="w-full text-sm px-4 py-2.5 focus:outline-none transition-colors duration-200"
-                      style={{
-                        fontFamily: "'Noto Sans JP', sans-serif",
-                        border: "1px solid oklch(0.88 0.04 148)",
-                        borderRadius: "2px",
-                        color: "oklch(0.30 0.02 60)",
-                        background: "oklch(0.99 0.005 90)"
-                      }}
-                    />
-                  </div>
-
-                  {/* Inquiry type */}
-                  <div>
-                    <label className="block text-xs mb-1.5" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                      お問い合わせ種別
-                    </label>
-                    <select
-                      name="inquiry"
-                      value={form.inquiry}
-                      onChange={handleChange}
-                      className="w-full text-sm px-4 py-2.5 focus:outline-none transition-colors duration-200"
-                      style={{
-                        fontFamily: "'Noto Sans JP', sans-serif",
-                        border: "1px solid oklch(0.88 0.04 148)",
-                        borderRadius: "2px",
-                        color: form.inquiry ? "oklch(0.30 0.02 60)" : "oklch(0.65 0.03 60)",
-                        background: "oklch(0.99 0.005 90)"
-                      }}
-                    >
-                      <option value="">選択してください</option>
-                      <option value="curriculum">カリキュラムについて</option>
-                      <option value="price">料金について</option>
-                      <option value="schedule">開催日程について</option>
-                      <option value="material">商材のみの利用</option>
-                      <option value="other">その他</option>
-                    </select>
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label className="block text-xs mb-1.5" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                      お問い合わせ内容
-                    </label>
-                    <textarea
-                      name="message"
-                      rows={3}
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="ご質問・ご要望をご記入ください"
-                      className="w-full text-sm px-4 py-2.5 focus:outline-none transition-colors duration-200 resize-none"
-                      style={{
-                        fontFamily: "'Noto Sans JP', sans-serif",
-                        border: "1px solid oklch(0.88 0.04 148)",
-                        borderRadius: "2px",
-                        color: "oklch(0.30 0.02 60)",
-                        background: "oklch(0.99 0.005 90)"
-                      }}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 text-sm font-medium text-white flex items-center justify-center gap-2 transition-all duration-300 hover:opacity-90"
-                    style={{
-                      background: "oklch(0.48 0.10 148)",
-                      fontFamily: "'Noto Sans JP', sans-serif",
-                      borderRadius: "2px"
-                    }}
-                  >
-                    無料相談を申し込む
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-
-                  <p
-                    className="text-[10px] text-center leading-relaxed"
-                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.03 60)" }}
-                  >
-                    送信いただいた個人情報は、お問い合わせへの返信のみに使用し、
-                    <br />
-                    第三者への提供は一切行いません。
-                  </p>
-                </form>
-              )}
+              <div
+                className="px-6 py-4"
+                style={{ background: "oklch(0.96 0.02 148)", borderBottom: "1px solid oklch(0.90 0.04 148)" }}
+              >
+                <p
+                  className="text-sm font-semibold"
+                  style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
+                >
+                  お問い合わせフォーム
+                </p>
+              </div>
+              <iframe
+                src="https://ws.formzu.net/dist/S97178066/"
+                title="お問い合わせフォーム"
+                width="100%"
+                height="700"
+                style={{ border: "none", display: "block" }}
+                loading="lazy"
+              />
             </div>
           </div>
+
         </div>
       </div>
     </section>
