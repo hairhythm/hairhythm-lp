@@ -10,7 +10,7 @@ const YORIKANE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/H
 const NAKAO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakao_d80f0105.webp";
 const LAMPSI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-lampsi_601f41a8.webp";
 const SHOJI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-shoji-dl_2376b9c8.jpg";
-const NAKAJIMA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakajima-dl_2c2f1810.jpg";
+const NAKAJIMA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakajima-new_ee2cdc89.jpg";
 const SALON_COLLAGE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/salon-collage_f528377b.webp";
 
 const testimonials = [
@@ -49,7 +49,7 @@ const extraTestimonials = [
     image: NAKAJIMA_URL,
     name: "中島 和晃 オーナー",
     salon: "しゅくるithnani（東京・長野）",
-    result: "月商1,600万円・2店舗目も月商650万円",
+    result: "売上アップ事例200%以上多数・月商1,600万円達成",
     quote: "一人サロンで月商1,600万円を達成し、2店舗目を出店。2店舗目でも月商650万円を達成しています。育毛の学校で学んだノウハウが、サロン拡大の大きな原動力になっています。",
   },
 ];
