@@ -82,7 +82,7 @@ export default function HeroSection() {
               style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)", fontWeight: 300 }}
             >
               育毛メニュー導入でお悩みのサロン様へ。<br />
-              全国50店舗以上が実証した
+              全国70店舗以上が実証した
               <strong style={{ fontWeight: 600, color: "oklch(0.38 0.09 148)" }}>橋本式育毛プログラム</strong>で、
               あなたのサロンに新たな収益の柱を作りましょう。
             </p>
@@ -90,8 +90,8 @@ export default function HeroSection() {
             {/* Quick stats */}
             <div className="flex flex-wrap gap-3">
               {[
-                { num: "2ヶ月", label: "で売上170万円達成" },
-                { num: "50+", label: "店舗が導入済み" },
+                { num: "月商1,600万円", label: "一人サロン最高実績" },
+                { num: "70+", label: "店舗が導入済み" },
                 { num: "2日間", label: "集中講座" },
               ].map((item) => (
                 <div
@@ -210,10 +210,10 @@ export default function HeroSection() {
                 className="text-2xl font-bold mt-0.5"
                 style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.48 0.10 148)" }}
               >
-                月商 <span className="text-3xl">270</span>万円
+                月商 <span className="text-3xl">1,600</span>万円
               </p>
               <p className="text-[11px] mt-0.5" style={{ color: "oklch(0.55 0.03 60)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-                一人サロン・育毛導入後達成
+                一人サロン・育毛導入後最高実績
               </p>
             </div>
           </div>

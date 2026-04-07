@@ -57,10 +57,10 @@ export default function StatsSection() {
       />
       <div className="container relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[oklch(0.60_0.08_148)]">
-          <StatItem value={50} suffix="+" label="導入サロン数" sublabel="全国各地で活躍中" />
-          <StatItem value={270} suffix="万円" label="月商達成実績" sublabel="一人サロンの事例" />
-          <StatItem value={100} suffix="%" label="受講者満足度" sublabel="アンケート調査より" />
-          <StatItem value={6} suffix="ヶ月" label="継続サポート" sublabel="修了後も安心" />
+          <StatItem value={70} suffix="+" label="導入サロン数" sublabel="全国各地で活躍中" />
+          <StatItem value={1600} suffix="万円" label="月商達成実績" sublabel="一人サロンの最高実績" />
+          <StatItem value={500} suffix="万円" label="一人サロン2月売上" sublabel="月商達成事例" />
+          <StatItem value={40} suffix="%" label="売上アップ事例" sublabel="導入3ヶ月での実績" />
         </div>
       </div>
     </section>

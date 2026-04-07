@@ -1,7 +1,7 @@
 /*
  * TestimonialsSection — 育毛の学校 LP
  * Design: Natural Elegant Green — White cards on sage bg
- * Content: 参考サイトの実際の受講者の声（頼兼・中尾・Lampsi）
+ * Content: 参考サイトの実際の受講者の声（頼兼・中尾・Lampsi・庄子・中島）
  */
 
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -16,28 +16,44 @@ const testimonials = [
     image: YORIKANE_URL,
     name: "頼兼 未笑 オーナー",
     salon: "一人サロン",
-    result: "育毛導入に2ヶ月で売上170万円達成",
-    quote: "育毛の学校で学んでから、お客様への提案が自信を持ってできるようになりました。売り込みなしで高額商品が自然に売れるようになり、2ヶ月で売上170万円を達成できました。",
+    result: "月商270万円達成",
+    quote: "育毛の学校で学んでから、お客様への提案が自信を持ってできるようになりました。売り込みなしで高額商品が自然に売れるようになり、月商270万円を達成。おひとりのお客様から100万円以上のご契約をいただいたこともあります。",
   },
   {
     image: NAKAO_URL,
     name: "中尾 沙織 オーナー",
     salon: "美容室オーナー",
-    result: "1人のお客様から育毛6ヶ月契約55万円達成",
-    quote: "以前は育毛メニューを導入しても売れるか不安でした。でも橋本先生のクロージング方法を実践したら、1人のお客様から55万円の契約をいただけました。本当に驚きました！",
+    result: "月商240万円達成",
+    quote: "以前は育毛メニューを導入しても売れるか不安でした。でも橋本先生のクロージング方法を実践したら、月商240万円を達成できました。おひとりのお客様から100万円以上のご契約もいただいています！",
   },
   {
     image: LAMPSI_URL,
     name: "Lampsiヘアー",
     salon: "グループサロン",
-    result: "育毛メニュー導入後、売り上げが100万円継続中",
-    quote: "スタッフ全員で受講し、チーム全体で育毛メニューに取り組めるようになりました。今では毎月安定して育毛メニューの売上が100万円を超えています。",
+    result: "月商300万円アップ",
+    quote: "スタッフ全員で受講し、チーム全体で育毛メニューに取り組めるようになりました。導入後は月商300万円アップを達成し、今では毎月安定して高い売上を維持しています。",
+  },
+];
+
+const extraTestimonials = [
+  {
+    name: "庄子さん夫妻",
+    salon: "サロンオーナー",
+    result: "導入3ヶ月で売上40％アップ",
+    quote: "導入からわずか3ヶ月で売上が40％アップしました。夫婦で一緒に受講したことで、サロン全体として育毛に取り組む体制が整い、お客様からの信頼も大きく高まりました。",
+  },
+  {
+    name: "中島さん",
+    salon: "一人サロン・2店舗目オーナー",
+    result: "月商1,600万円・2店舗目も月商650万円",
+    quote: "一人サロンで月商1,600万円を達成し、2店舗目を出店。2店舗目でも月商650万円を達成しています。育毛の学校で学んだノウハウが、サロン拡大の大きな原動力になっています。",
   },
 ];
 
 export default function TestimonialsSection() {
   const { ref: headerRef } = useScrollAnimation();
   const { ref: cardsRef } = useScrollAnimation();
+  const { ref: extraRef } = useScrollAnimation();
 
   return (
     <section
@@ -67,10 +83,10 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Cards */}
+        {/* Main 3 cards */}
         <div
           ref={cardsRef}
-          className="stagger-children grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          className="stagger-children grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
         >
           {testimonials.map((t) => (
             <div
@@ -100,7 +116,6 @@ export default function TestimonialsSection() {
 
               {/* Content */}
               <div className="p-6">
-                {/* Quote mark */}
                 <span
                   className="block text-5xl leading-none mb-3"
                   style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.80 0.06 148)" }}
@@ -117,6 +132,63 @@ export default function TestimonialsSection() {
 
                 <div
                   className="pt-4"
+                  style={{ borderTop: "1px solid oklch(0.90 0.03 148)" }}
+                >
+                  <p
+                    className="text-sm font-semibold"
+                    style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
+                  >
+                    {t.name}
+                  </p>
+                  <p
+                    className="text-xs mt-0.5"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 60)" }}
+                  >
+                    {t.salon}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Extra 2 testimonials — horizontal cards */}
+        <div
+          ref={extraRef}
+          className="stagger-children grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+        >
+          {extraTestimonials.map((t) => (
+            <div
+              key={t.name}
+              className="card-natural p-6 flex gap-5 items-start"
+            >
+              {/* Avatar placeholder */}
+              <div
+                className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-xl"
+                style={{ background: "oklch(0.92 0.04 148)" }}
+              >
+                🌿
+              </div>
+              <div>
+                {/* Result badge */}
+                <span
+                  className="inline-block text-xs font-medium px-2.5 py-1 rounded-full mb-3"
+                  style={{
+                    background: "oklch(0.92 0.04 148)",
+                    color: "oklch(0.38 0.09 148)",
+                    fontFamily: "'Noto Sans JP', sans-serif"
+                  }}
+                >
+                  ✓ {t.result}
+                </span>
+                <p
+                  className="text-sm leading-[1.9] mb-4"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.42 0.02 60)", fontWeight: 300 }}
+                >
+                  {t.quote}
+                </p>
+                <div
+                  className="pt-3"
                   style={{ borderTop: "1px solid oklch(0.90 0.03 148)" }}
                 >
                   <p
@@ -155,7 +227,7 @@ export default function TestimonialsSection() {
               className="text-sm font-medium"
               style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
             >
-              全国50店舗以上のサロンが育毛の学校を導入
+              全国70店舗以上のサロンが育毛の学校を導入
             </p>
             <p
               className="text-xs mt-1"
