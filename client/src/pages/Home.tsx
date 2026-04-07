@@ -15,6 +15,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import FloatingLineButton from "@/components/FloatingLineButton";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       <FaqSection />
       <ContactSection />
       <Footer />
+      <FloatingLineButton />
     </div>
   );
 }
