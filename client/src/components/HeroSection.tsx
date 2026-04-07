@@ -90,7 +90,7 @@ export default function HeroSection() {
             {/* Quick stats */}
             <div className="flex flex-wrap gap-3">
               {[
-                { num: "月商1,600万円", label: "一人サロン最高実績" },
+                { num: "月商1,600万円", label: "4人サロン最高実績" },
                 { num: "70+", label: "店舗が導入済み" },
                 { num: "2日間", label: "集中講座" },
               ].map((item) => (
