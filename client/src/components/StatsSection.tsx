@@ -1,58 +1,66 @@
 /*
  * StatsSection — 育毛の学校 LP
- * Design: Dark luxury — large gold numbers with count-up animation
- * Layout: 4-column horizontal stats bar
+ * Design: Natural Elegant Green — Sage green bg with white numbers
+ * Layout: 4-column horizontal stats bar with count-up animation
  */
 
-import { useCountUp, useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useCountUp } from "@/hooks/useScrollAnimation";
 
-function StatItem({ value, unit, label, delay }: { value: number; unit: string; label: string; delay: string }) {
+function StatItem({ value, suffix, label, sublabel }: { value: number; suffix: string; label: string; sublabel: string }) {
   const numRef = useCountUp(value);
 
   return (
-    <div
-      className="flex flex-col items-center text-center px-6 py-8 border-r border-[oklch(0.22_0.008_60)] last:border-r-0"
-      style={{ transitionDelay: delay }}
-    >
-      <div className="flex items-end gap-1 mb-2">
+    <div className="flex flex-col items-center text-center px-6 py-8">
+      <div className="flex items-baseline gap-1">
         <span
           ref={numRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-light text-gradient-gold"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          className="text-5xl md:text-6xl font-bold"
+          style={{ fontFamily: "'Shippori Mincho', serif", color: "white" }}
         >
           0
         </span>
         <span
-          className="text-xl md:text-2xl text-gold mb-1"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          className="text-xl font-medium"
+          style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.90 0.04 148)" }}
         >
-          {unit}
+          {suffix}
         </span>
       </div>
       <p
-        className="text-xs tracking-[0.2em] text-muted-foreground"
-        style={{ fontFamily: "'Noto Serif JP', serif" }}
+        className="text-sm font-medium mt-2"
+        style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "white" }}
       >
         {label}
+      </p>
+      <p
+        className="text-xs mt-1"
+        style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.85 0.04 148)" }}
+      >
+        {sublabel}
       </p>
     </div>
   );
 }
 
 export default function StatsSection() {
-  const sectionRef = useScrollAnimation();
-
   return (
-    <section className="bg-[oklch(0.12_0.005_60)] border-y border-[oklch(0.22_0.008_60)]">
-      <div className="container">
-        <div
-          ref={sectionRef}
-          className="fade-up grid grid-cols-2 md:grid-cols-4 divide-x-0 md:divide-x divide-[oklch(0.22_0.008_60)]"
-        >
-          <StatItem value={500} unit="+" label="受講サロンオーナー数" delay="0s" />
-          <StatItem value={95} unit="%" label="受講後の顧客満足度" delay="0.1s" />
-          <StatItem value={12} unit="年" label="育毛専門教育の実績" delay="0.2s" />
-          <StatItem value={3} unit="倍" label="平均売上向上率" delay="0.3s" />
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "oklch(0.48 0.10 148)" }}
+    >
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px)",
+          backgroundSize: "60px 60px"
+        }}
+      />
+      <div className="container relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[oklch(0.60_0.08_148)]">
+          <StatItem value={50} suffix="+" label="導入サロン数" sublabel="全国各地で活躍中" />
+          <StatItem value={270} suffix="万円" label="月商達成実績" sublabel="一人サロンの事例" />
+          <StatItem value={100} suffix="%" label="受講者満足度" sublabel="アンケート調査より" />
+          <StatItem value={6} suffix="ヶ月" label="継続サポート" sublabel="修了後も安心" />
         </div>
       </div>
     </section>

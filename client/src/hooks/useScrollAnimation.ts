@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function useScrollAnimation() {
   const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -12,6 +13,7 @@ export function useScrollAnimation() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            setIsVisible(true);
           }
         });
       },
@@ -22,7 +24,11 @@ export function useScrollAnimation() {
     return () => observer.disconnect();
   }, []);
 
-  return ref;
+  // Return both ref and isVisible for components that need both
+  const result = ref as typeof ref & { isVisible: boolean };
+  (result as any).isVisible = isVisible;
+
+  return { ref, isVisible };
 }
 
 export function useCountUp(target: number, duration: number = 2000) {

@@ -1,99 +1,131 @@
 /*
  * AboutSection — 育毛の学校 LP
- * Design: Asymmetric 2-column — large image left, text right
- * Background: About section image with gold accent details
+ * Design: Natural Elegant Green — Asymmetric 2-column
+ * Content: 育毛の学校の特徴・橋本式プログラムの説明
  */
 
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/about-section-ZjmoTmucFCam2mzXqdbnbp.webp";
+const HAIR_THEORY_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/curriculum-hair-theory_fa9fa4c8.webp";
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
+
+const features = [
+  { icon: "🌿", title: "正しい毛髪理論", desc: "科学的根拠に基づいた毛髪知識で、お客様に正しい指導ができる専門家になります。" },
+  { icon: "💆", title: "育毛ヘッドスパ技術", desc: "健康・育毛・体調を整えることに特化した独自技術。スタッフにも落とし込みやすい。" },
+  { icon: "🔬", title: "マイクロスコープ実習", desc: "250倍に拡大できるマイクロスコープで頭皮・抜け毛の状態を確認する実習。" },
+  { icon: "💰", title: "高額商品の販売ノウハウ", desc: "売り込みなしで高額商品が売れる心理学とクロージング技術を伝授します。" },
+];
 
 export default function AboutSection() {
-  const leftRef = useScrollAnimation();
-  const rightRef = useScrollAnimation();
+  const { ref: leftRef, isVisible } = useScrollAnimation();
+  const { ref: rightRef } = useScrollAnimation();
 
   return (
-    <section id="about" className="py-24 md:py-36 bg-background overflow-hidden">
+    <section id="about" className="py-20 md:py-28 overflow-hidden" style={{ background: "oklch(0.99 0.005 90)" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image — left */}
-          <div ref={leftRef} className="fade-up relative">
-            <div className="relative overflow-hidden">
+
+          {/* Left: Image */}
+          <div
+            ref={leftRef}
+            className="fade-up relative"
+          >
+            <div
+              className="relative overflow-hidden"
+              style={{ borderRadius: "80px 8px 8px 8px", boxShadow: "0 20px 60px oklch(0.52 0.09 148 / 0.15)" }}
+            >
               <img
-                src={ABOUT_IMG}
-                alt="育毛の専門的な研究・施術"
-                className="w-full h-[400px] md:h-[520px] object-cover"
+                src={HAIR_THEORY_URL}
+                alt="育毛の学校 施術風景"
+                className="w-full h-[420px] md:h-[520px] object-cover"
               />
-              {/* Gold corner accent */}
-              <div className="absolute top-4 left-4 w-16 h-16 border-t border-l border-gold" />
-              <div className="absolute bottom-4 right-4 w-16 h-16 border-b border-r border-gold" />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.10_0.005_60/0.4)] to-transparent" />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, oklch(0.48 0.10 148 / 0.3) 0%, transparent 50%)" }}
+              />
             </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-6 -right-6 bg-[oklch(0.13_0.005_60)] border border-gold/30 p-6 hidden md:block">
-              <p className="text-xs tracking-[0.3em] text-gold uppercase mb-1">Since</p>
-              <p
-                className="text-4xl font-light text-white"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                2012
-              </p>
+
+            {/* Logo badge */}
+            <div
+              className="absolute -bottom-6 -right-4 flex items-center justify-center"
+              style={{
+                background: "white",
+                borderRadius: "50%",
+                width: "96px",
+                height: "96px",
+                boxShadow: "0 8px 24px oklch(0.52 0.09 148 / 0.2)",
+                border: "2px solid oklch(0.88 0.04 148)"
+              }}
+            >
+              <img src={LOGO_URL} alt="育毛の学校" className="w-14 h-14 object-contain" />
             </div>
+
+            {/* Decorative circle */}
+            <div
+              className="absolute -top-4 -left-4 w-24 h-24 rounded-full"
+              style={{ background: "oklch(0.92 0.04 148)", zIndex: -1 }}
+            />
           </div>
 
-          {/* Text — right */}
+          {/* Right: Text */}
           <div ref={rightRef} className="fade-up">
-            <p className="text-xs tracking-[0.4em] text-gold uppercase mb-4"
-              style={{ fontFamily: "'Noto Serif JP', serif" }}>
-              About
-            </p>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="sage-line" />
+              <span className="section-label">About</span>
+            </div>
+
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-6"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              className="text-3xl md:text-4xl font-semibold mb-5"
+              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
             >
               育毛の学校とは
             </h2>
-            <div className="gold-line w-16 mb-8" />
 
-            <div
-              className="space-y-5 text-[oklch(0.70_0.008_60)] leading-relaxed"
-              style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: "0.9rem" }}
+            <p
+              className="text-sm leading-[2] mb-4"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)", fontWeight: 300 }}
             >
-              <p>
-                「育毛の学校」は、サロンオーナーが本物の育毛技術を習得するための専門教育機関です。単なるテクニックの伝授ではなく、毛髪科学・頭皮生理学・栄養学を体系的に学ぶことで、顧客に対して真の価値を提供できる専門家を育成します。
-              </p>
-              <p>
-                2012年の創設以来、500名を超えるサロンオーナーが受講し、育毛専門メニューを導入することで平均3倍の売上向上を実現してきました。
-              </p>
-              <p>
-                私たちが目指すのは、「育毛」を単なるサービスではなく、サロンの核となる専門性として確立することです。科学的根拠に基づいた施術と、顧客に寄り添うカウンセリング技術を両立させた、唯一無二の教育プログラムをご提供します。
-              </p>
-            </div>
+              「育毛の学校」は、サロンオーナーが育毛メニューを導入し、
+              <strong style={{ fontWeight: 600, color: "oklch(0.38 0.09 148)" }}>売り込みなしで高額商品を販売できる</strong>
+              ようになるための専門プログラムです。
+            </p>
 
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { title: "毛髪科学に基づく", desc: "最新の毛髪・頭皮研究を反映したカリキュラム" },
-                { title: "即実践可能", desc: "翌日からサロンで活用できる実践的な技術" },
-                { title: "継続サポート", desc: "受講後も専門家によるフォローアップ体制" },
-                { title: "少人数制", desc: "一人ひとりに丁寧に対応する少人数クラス" },
-              ].map((item) => (
-                <div key={item.title} className="flex gap-3 items-start">
-                  <div className="w-1 h-full min-h-[2rem] bg-gold mt-1 flex-shrink-0" />
-                  <div>
-                    <p
-                      className="text-sm text-white mb-1"
-                      style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 500 }}
+            <p
+              className="text-sm leading-[2] mb-8"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)", fontWeight: 300 }}
+            >
+              年間100万人も人口が減少する日本では、サロンのお客様もどんどん減っています。
+              パーマ・カラー・縮毛矯正に並んで、
+              <strong style={{ fontWeight: 600, color: "oklch(0.38 0.09 148)" }}>育毛が美容室のメニューとして定着する時代</strong>
+              が来ています。今こそ、あなたのサロンに育毛という新たな柱を作りましょう。
+            </p>
+
+            {/* Features grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  className="p-4 rounded-sm"
+                  style={{
+                    background: "oklch(0.97 0.02 148)",
+                    border: "1px solid oklch(0.90 0.03 148)"
+                  }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-base">{f.icon}</span>
+                    <h3
+                      className="text-sm font-semibold"
+                      style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
                     >
-                      {item.title}
-                    </p>
-                    <p
-                      className="text-xs text-muted-foreground leading-relaxed"
-                      style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300 }}
-                    >
-                      {item.desc}
-                    </p>
+                      {f.title}
+                    </h3>
                   </div>
+                  <p
+                    className="text-xs leading-relaxed"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
+                  >
+                    {f.desc}
+                  </p>
                 </div>
               ))}
             </div>

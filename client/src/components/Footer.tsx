@@ -1,7 +1,9 @@
 /*
  * Footer — 育毛の学校 LP
- * Design: Minimal dark footer with gold logo and links
+ * Design: Natural Elegant Green — Dark sage footer
  */
+
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
 
 export default function Footer() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -10,25 +12,34 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[oklch(0.08_0.005_60)] border-t border-[oklch(0.18_0.008_60)]">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+    <footer style={{ background: "oklch(0.28 0.06 148)" }}>
+      <div className="container py-12 md:py-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>
-            <h3
-              className="text-xl font-light tracking-widest text-gold-light mb-2"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            >
-              育毛の学校
-            </h3>
-            <p className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase mb-4">
-              Hair Growth Academy
-            </p>
+            <div className="flex items-center gap-3 mb-3">
+              <img src={LOGO_URL} alt="育毛の学校" className="w-10 h-10 object-contain" />
+              <div>
+                <h3
+                  className="text-base font-semibold text-white"
+                  style={{ fontFamily: "'Shippori Mincho', serif" }}
+                >
+                  育毛の学校
+                </h3>
+                <p
+                  className="text-[10px] tracking-widest"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.72 0.06 148)" }}
+                >
+                  Hair Growth Academy
+                </p>
+              </div>
+            </div>
             <p
-              className="text-xs text-muted-foreground leading-relaxed"
-              style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300 }}
+              className="text-xs leading-relaxed"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.05 148)", fontWeight: 300 }}
             >
-              サロンオーナーのための<br />
+              サロンオーナーのための
+              <br />
               育毛専門教育プログラム
             </p>
           </div>
@@ -36,12 +47,12 @@ export default function Footer() {
           {/* Links */}
           <div>
             <p
-              className="text-xs tracking-[0.3em] text-gold uppercase mb-4"
-              style={{ fontFamily: "'Noto Serif JP', serif" }}
+              className="text-xs tracking-widest uppercase mb-4"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.80 0.05 148)" }}
             >
               Menu
             </p>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-2.5">
               {[
                 { label: "育毛の学校とは", href: "#about" },
                 { label: "カリキュラム", href: "#curriculum" },
@@ -53,8 +64,8 @@ export default function Footer() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-xs text-muted-foreground hover:text-gold transition-colors duration-300"
-                  style={{ fontFamily: "'Noto Serif JP', serif" }}
+                  className="text-xs transition-colors duration-200 hover:text-white"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.72 0.05 148)" }}
                 >
                   {link.label}
                 </a>
@@ -65,49 +76,51 @@ export default function Footer() {
           {/* Contact info */}
           <div>
             <p
-              className="text-xs tracking-[0.3em] text-gold uppercase mb-4"
-              style={{ fontFamily: "'Noto Serif JP', serif" }}
+              className="text-xs tracking-widest uppercase mb-4"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.80 0.05 148)" }}
             >
               Contact
             </p>
             <div
-              className="space-y-3 text-xs text-muted-foreground"
-              style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300 }}
+              className="space-y-2 text-xs"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.72 0.05 148)", fontWeight: 300 }}
             >
               <p>受付時間: 平日 10:00 〜 18:00</p>
               <p>土日祝: お問い合わせフォームのみ</p>
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "#contact")}
-                className="inline-flex items-center gap-2 text-gold hover:text-gold-light transition-colors duration-300 mt-2"
+                className="inline-flex items-center gap-1.5 mt-3 text-white hover:opacity-80 transition-opacity duration-200"
               >
                 <span>お問い合わせはこちら</span>
-                <span>→</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </a>
             </div>
           </div>
         </div>
 
-        <div className="gold-line mb-6" />
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p
-            className="text-[10px] text-muted-foreground"
-            style={{ fontFamily: "'Noto Serif JP', serif" }}
-          >
-            © 2024 育毛の学校. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            {["プライバシーポリシー", "特定商取引法に基づく表記"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-[10px] text-muted-foreground hover:text-gold transition-colors duration-300"
-                style={{ fontFamily: "'Noto Serif JP', serif" }}
-              >
-                {item}
-              </a>
-            ))}
+        <div style={{ borderTop: "1px solid oklch(0.40 0.07 148)" }} className="pt-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p
+              className="text-[10px]"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
+            >
+              © 2024 育毛の学校. All rights reserved.
+            </p>
+            <div className="flex gap-5">
+              {["プライバシーポリシー", "特定商取引法に基づく表記"].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-[10px] transition-colors duration-200 hover:text-white"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -1,135 +1,169 @@
 /*
  * TestimonialsSection — 育毛の学校 LP
- * Design: Dark luxury testimonial cards with salon owner image background
- * Layout: 3-column testimonial cards with gold quote marks
+ * Design: Natural Elegant Green — White cards on sage bg
+ * Content: 参考サイトの実際の受講者の声（頼兼・中尾・Lampsi）
  */
 
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const TESTIMONIAL_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-bg-SfPrDdLoCPKNLegnewdgoN.webp";
+const YORIKANE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-yorikane_d3a7db12.webp";
+const NAKAO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakao_d80f0105.webp";
+const LAMPSI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-lampsi_601f41a8.webp";
+const SALON_COLLAGE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/salon-collage_f528377b.webp";
 
 const testimonials = [
   {
-    name: "田中 美咲",
-    role: "ヘアサロン オーナー",
-    location: "東京都・渋谷区",
-    years: "受講歴 2年",
-    quote: "受講前は「育毛メニュー」を導入しても売上に繋がるか不安でした。しかし、科学的な知識を身につけたことで自信を持って顧客に提案できるようになり、育毛コースの売上が受講前の3.2倍になりました。",
-    result: "売上 3.2倍",
+    image: YORIKANE_URL,
+    name: "頼兼 未笑 オーナー",
+    salon: "一人サロン",
+    result: "育毛導入に2ヶ月で売上170万円達成",
+    quote: "育毛の学校で学んでから、お客様への提案が自信を持ってできるようになりました。売り込みなしで高額商品が自然に売れるようになり、2ヶ月で売上170万円を達成できました。",
   },
   {
-    name: "山本 健太",
-    role: "理容サロン オーナー",
-    location: "大阪府・梅田",
-    years: "受講歴 1年半",
-    quote: "男性の薄毛に悩む顧客が多く、何か力になりたいと思っていました。育毛の学校で学んだカウンセリング技術と施術法を組み合わせることで、リピート率が大幅に向上。今では育毛専門サロンとして認知されています。",
-    result: "リピート率 +45%",
+    image: NAKAO_URL,
+    name: "中尾 沙織 オーナー",
+    salon: "美容室オーナー",
+    result: "1人のお客様から育毛6ヶ月契約55万円達成",
+    quote: "以前は育毛メニューを導入しても売れるか不安でした。でも橋本先生のクロージング方法を実践したら、1人のお客様から55万円の契約をいただけました。本当に驚きました！",
   },
   {
-    name: "佐藤 由香里",
-    role: "ヘッドスパ専門店 オーナー",
-    location: "愛知県・名古屋",
-    years: "受講歴 3年",
-    quote: "育毛の学校での学びは、私のサロンの方向性を根本から変えました。単なるリラクゼーションから、科学的根拠に基づく育毛専門店へ。客単価が2倍以上になり、遠方からのご来店も増えています。",
-    result: "客単価 2.1倍",
+    image: LAMPSI_URL,
+    name: "Lampsiヘアー",
+    salon: "グループサロン",
+    result: "育毛メニュー導入後、売り上げが100万円継続中",
+    quote: "スタッフ全員で受講し、チーム全体で育毛メニューに取り組めるようになりました。今では毎月安定して育毛メニューの売上が100万円を超えています。",
   },
 ];
 
 export default function TestimonialsSection() {
-  const headerRef = useScrollAnimation();
-  const cardsRef = useScrollAnimation();
+  const { ref: headerRef } = useScrollAnimation();
+  const { ref: cardsRef } = useScrollAnimation();
 
   return (
-    <section id="testimonials" className="relative py-24 md:py-36 overflow-hidden">
-      {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${TESTIMONIAL_BG})` }}
-      />
-      <div className="absolute inset-0 bg-[oklch(0.08_0.005_60/0.90)]" />
-
-      <div className="relative z-10 container">
+    <section
+      id="testimonials"
+      className="py-20 md:py-28 overflow-hidden"
+      style={{ background: "oklch(0.99 0.005 90)" }}
+    >
+      <div className="container">
         {/* Header */}
-        <div ref={headerRef} className="fade-up text-center mb-16">
-          <p className="text-xs tracking-[0.4em] text-gold uppercase mb-4"
-            style={{ fontFamily: "'Noto Serif JP', serif" }}>
-            Testimonials
-          </p>
+        <div ref={headerRef} className="fade-up text-center mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="sage-line" />
+            <span className="section-label">Testimonials</span>
+            <div className="sage-line" />
+          </div>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            className="text-3xl md:text-4xl font-semibold mb-4"
+            style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
           >
             受講者の声
           </h2>
-          <div className="gold-line w-16 mx-auto mb-6" />
           <p
-            className="text-sm text-muted-foreground max-w-xl mx-auto"
-            style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300 }}
+            className="text-sm max-w-xl mx-auto leading-relaxed"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
           >
-            全国500名以上のサロンオーナーが、育毛の学校で学び、サロンを変革しました。
+            全国のサロンオーナーが育毛の学校で学び、サロンを変革しました。
           </p>
         </div>
 
         {/* Cards */}
         <div
           ref={cardsRef}
-          className="stagger-children grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="stagger-children grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
         >
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="relative bg-[oklch(0.12_0.005_60/0.85)] border border-[oklch(0.22_0.008_60)] p-8 hover:border-gold/40 transition-all duration-500"
+              className="card-natural overflow-hidden"
             >
-              {/* Quote mark */}
-              <span
-                className="block text-7xl text-gold/20 leading-none mb-4 -mt-2"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                "
-              </span>
-
-              {/* Quote */}
-              <p
-                className="text-sm text-[oklch(0.72_0.008_60)] leading-relaxed mb-6"
-                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300 }}
-              >
-                {t.quote}
-              </p>
-
-              {/* Result badge */}
-              <div className="inline-flex items-center gap-2 bg-[oklch(0.18_0.008_60)] border border-gold/30 px-4 py-2 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                <span
-                  className="text-xs text-gold tracking-wider"
-                  style={{ fontFamily: "'Noto Serif JP', serif" }}
+              {/* Image */}
+              <div className="relative overflow-hidden h-52">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                {/* Result badge */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 px-4 py-3"
+                  style={{ background: "linear-gradient(to top, oklch(0.48 0.10 148 / 0.9) 0%, transparent 100%)" }}
                 >
-                  {t.result}
-                </span>
+                  <p
+                    className="text-xs font-medium text-white"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                  >
+                    ✓ {t.result}
+                  </p>
+                </div>
               </div>
 
-              {/* Author */}
-              <div className="border-t border-[oklch(0.22_0.008_60)] pt-5">
-                <p
-                  className="text-sm text-white font-medium mb-1"
-                  style={{ fontFamily: "'Noto Serif JP', serif" }}
+              {/* Content */}
+              <div className="p-6">
+                {/* Quote mark */}
+                <span
+                  className="block text-5xl leading-none mb-3"
+                  style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.80 0.06 148)" }}
                 >
-                  {t.name}
-                </p>
+                  "
+                </span>
+
                 <p
-                  className="text-xs text-muted-foreground"
-                  style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300 }}
+                  className="text-sm leading-[1.9] mb-5"
+                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.42 0.02 60)", fontWeight: 300 }}
                 >
-                  {t.role} / {t.location}
+                  {t.quote}
                 </p>
-                <p
-                  className="text-xs text-gold/60 mt-1"
-                  style={{ fontFamily: "'Noto Serif JP', serif" }}
+
+                <div
+                  className="pt-4"
+                  style={{ borderTop: "1px solid oklch(0.90 0.03 148)" }}
                 >
-                  {t.years}
-                </p>
+                  <p
+                    className="text-sm font-semibold"
+                    style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
+                  >
+                    {t.name}
+                  </p>
+                  <p
+                    className="text-xs mt-0.5"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 60)" }}
+                  >
+                    {t.salon}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Salon collage */}
+        <div
+          className="overflow-hidden"
+          style={{ borderRadius: "8px", boxShadow: "0 8px 32px oklch(0.52 0.09 148 / 0.12)" }}
+        >
+          <img
+            src={SALON_COLLAGE_URL}
+            alt="全国導入サロン"
+            className="w-full h-48 md:h-64 object-cover"
+          />
+          <div
+            className="px-6 py-4 text-center"
+            style={{ background: "oklch(0.97 0.02 148)" }}
+          >
+            <p
+              className="text-sm font-medium"
+              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
+            >
+              全国50店舗以上のサロンが育毛の学校を導入
+            </p>
+            <p
+              className="text-xs mt-1"
+              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 60)" }}
+            >
+              北海道から沖縄まで、全国各地のサロンオーナーが活躍中
+            </p>
+          </div>
         </div>
       </div>
     </section>

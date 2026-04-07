@@ -1,8 +1,8 @@
 /*
  * Home — 育毛の学校 LP
- * Design Philosophy: 「深夜の書斎」— Dark Luxury Minimalism
- * Color: Deep Charcoal (#0F0F0F) × Champagne Gold (#C9A84C)
- * Typography: Cormorant Garamond (display) + Noto Serif JP (body)
+ * Design Philosophy: 「森の癒し」— Natural Elegant Green
+ * Color: Sage Green × Cream White × Warm Taupe
+ * Typography: Shippori Mincho (display) + Noto Sans JP (body)
  * Sections: Hero → Stats → About → Curriculum → Testimonials → FAQ → Contact
  */
 
