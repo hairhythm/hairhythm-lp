@@ -93,6 +93,23 @@ export default function Navigation() {
             >
               無料相談する
             </a>
+            <a
+              href="https://lin.ee/SxOndg6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs py-2.5 px-4 font-medium transition-all duration-200 hover:opacity-90"
+              style={{
+                background: "#06C755",
+                color: "white",
+                borderRadius: "2px",
+                fontFamily: "'Noto Sans JP', sans-serif"
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.61 5.77 4.08 7.45L5 21l2.8-1.4C9.1 20.18 10.52 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-1.5h6V15zm2-3H7v-1.5h8V12zm0-3H7V7.5h8V9z"/>
+              </svg>
+              LINEで相談
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -146,6 +163,23 @@ export default function Navigation() {
             className="btn-sage text-sm text-center mt-2"
           >
             無料相談する
+          </a>
+          <a
+            href="https://lin.ee/SxOndg6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 text-sm py-3 font-medium transition-all duration-200"
+            style={{
+              background: "#06C755",
+              color: "white",
+              borderRadius: "2px",
+              fontFamily: "'Noto Sans JP', sans-serif"
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.61 5.77 4.08 7.45L5 21l2.8-1.4C9.1 20.18 10.52 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-1.5h6V15zm2-3H7v-1.5h8V12zm0-3H7V7.5h8V9z"/>
+            </svg>
+            LINEで相談する
           </a>
         </div>
       </div>

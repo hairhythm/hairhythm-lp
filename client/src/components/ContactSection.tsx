@@ -109,6 +109,37 @@ export default function ContactSection() {
               ))}
             </div>
 
+            {/* LINE CTA */}
+            <a
+              href="https://lin.ee/SxOndg6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 w-full py-4 text-sm font-medium transition-all duration-200 hover:opacity-90 mb-8"
+              style={{
+                background: "#06C755",
+                color: "white",
+                borderRadius: "4px",
+                fontFamily: "'Noto Sans JP', sans-serif",
+                boxShadow: "0 4px 20px rgba(6, 199, 85, 0.35)"
+              }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.61 5.77 4.08 7.45L5 21l2.8-1.4C9.1 20.18 10.52 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-1.5h6V15zm2-3H7v-1.5h8V12zm0-3H7V7.5h8V9z"/>
+              </svg>
+              <span>まずはLINEで気軽に相談する</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+
+            <div
+              className="flex items-center gap-4 mb-8"
+            >
+              <div className="flex-1 h-px" style={{ background: "oklch(0.60 0.08 148)" }} />
+              <span className="text-xs" style={{ color: "oklch(0.80 0.04 148)", fontFamily: "'Noto Sans JP', sans-serif" }}>またはフォームから</span>
+              <div className="flex-1 h-px" style={{ background: "oklch(0.60 0.08 148)" }} />
+            </div>
+
             {/* Logo */}
             <div className="flex items-center gap-3">
               <img src={LOGO_URL} alt="育毛の学校" className="w-12 h-12 object-contain" />
