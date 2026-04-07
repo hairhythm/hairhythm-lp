@@ -83,7 +83,7 @@ export default function HeroSection() {
             >
               育毛メニュー導入でお悩みのサロン様へ。<br />
               全国70店舗以上が実証した
-              <strong style={{ fontWeight: 600, color: "oklch(0.38 0.09 148)" }}>橋本式育毛プログラム</strong>で、
+              <strong style={{ fontWeight: 600, color: "oklch(0.38 0.09 148)" }}>育毛の学校</strong>で、
               あなたのサロンに新たな収益の柱を作りましょう。
             </p>
 
