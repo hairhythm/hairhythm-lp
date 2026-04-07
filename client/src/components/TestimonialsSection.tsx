@@ -9,6 +9,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const YORIKANE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-yorikane_d3a7db12.webp";
 const NAKAO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakao_d80f0105.webp";
 const LAMPSI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-lampsi_601f41a8.webp";
+const SHOJI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-shoji-dl_2376b9c8.jpg";
+const NAKAJIMA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakajima-dl_2c2f1810.jpg";
 const SALON_COLLAGE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/salon-collage_f528377b.webp";
 
 const testimonials = [
@@ -37,14 +39,16 @@ const testimonials = [
 
 const extraTestimonials = [
   {
-    name: "庄子さん夫妻",
-    salon: "サロンオーナー",
+    image: SHOJI_URL,
+    name: "庄子 堅哉さん・麻佑子さん ご夫妻",
+    salon: "ご夫婦サロンオーナー",
     result: "導入3ヶ月で売上40％アップ",
     quote: "導入からわずか3ヶ月で売上が40％アップしました。夫婦で一緒に受講したことで、サロン全体として育毛に取り組む体制が整い、お客様からの信頼も大きく高まりました。",
   },
   {
-    name: "中島さん",
-    salon: "一人サロン・2店舗目オーナー",
+    image: NAKAJIMA_URL,
+    name: "中島 和晃 オーナー",
+    salon: "しゅくるithnani（東京・長野）",
     result: "月商1,600万円・2店舗目も月商650万円",
     quote: "一人サロンで月商1,600万円を達成し、2店舗目を出店。2店舗目でも月商650万円を達成しています。育毛の学校で学んだノウハウが、サロン拡大の大きな原動力になっています。",
   },
@@ -152,7 +156,7 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Extra 2 testimonials — horizontal cards */}
+        {/* Extra 2 testimonials — horizontal cards with real photos */}
         <div
           ref={extraRef}
           className="stagger-children grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
@@ -160,26 +164,36 @@ export default function TestimonialsSection() {
           {extraTestimonials.map((t) => (
             <div
               key={t.name}
-              className="card-natural p-6 flex gap-5 items-start"
+              className="card-natural overflow-hidden"
             >
-              {/* Avatar placeholder */}
-              <div
-                className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-xl"
-                style={{ background: "oklch(0.92 0.04 148)" }}
-              >
-                🌿
-              </div>
-              <div>
+              {/* Image */}
+              <div className="relative overflow-hidden h-44">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                />
                 {/* Result badge */}
-                <span
-                  className="inline-block text-xs font-medium px-2.5 py-1 rounded-full mb-3"
-                  style={{
-                    background: "oklch(0.92 0.04 148)",
-                    color: "oklch(0.38 0.09 148)",
-                    fontFamily: "'Noto Sans JP', sans-serif"
-                  }}
+                <div
+                  className="absolute bottom-0 left-0 right-0 px-4 py-3"
+                  style={{ background: "linear-gradient(to top, oklch(0.48 0.10 148 / 0.9) 0%, transparent 100%)" }}
                 >
-                  ✓ {t.result}
+                  <p
+                    className="text-xs font-medium text-white"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                  >
+                    ✓ {t.result}
+                  </p>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <span
+                  className="block text-5xl leading-none mb-3"
+                  style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.80 0.06 148)" }}
+                >
+                  "
                 </span>
                 <p
                   className="text-sm leading-[1.9] mb-4"
