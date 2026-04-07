@@ -110,16 +110,13 @@ export default function Footer() {
               © 2024 育毛の学校. All rights reserved.
             </p>
             <div className="flex gap-5">
-              {["プライバシーポリシー", "特定商取引法に基づく表記"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="text-[10px] transition-colors duration-200 hover:text-white"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
-                >
-                  {item}
-                </a>
-              ))}
+              <a
+                href="/legal"
+                className="text-[10px] transition-colors duration-200 hover:text-white"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
+              >
+                特定商取引法に基づく表記
+              </a>
             </div>
           </div>
         </div>
