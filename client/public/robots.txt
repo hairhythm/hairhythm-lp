@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ikumou-school-lp.manus.space/sitemap.xml
