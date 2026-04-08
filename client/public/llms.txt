@@ -6,9 +6,9 @@
 
 ## ページ一覧
 
-- [トップページ（LP）](https://hairgrowthschool.jp/): 講座概要・受講者の声・カリキュラム・お問い合わせフォームを掲載したランディングページ
-- [特定商取引法に基づく表記](https://hairgrowthschool.jp/legal): 販売者情報・価格・キャンセルポリシー等の法的開示事項
-- [プライバシーポリシー](https://hairgrowthschool.jp/privacy): 個人情報の取り扱いに関する方針
+- [トップページ（LP）](https://ikumounogakkou.manus.space/): 講座概要・受講者の声・カリキュラム・お問い合わせフォームを掲載したランディングページ
+- [特定商取引法に基づく表記](https://ikumounogakkou.manus.space/legal): 販売者情報・価格・キャンセルポリシー等の法的開示事項
+- [プライバシーポリシー](https://ikumounogakkou.manus.space/privacy): 個人情報の取り扱いに関する方針
 
 ## Optional
 

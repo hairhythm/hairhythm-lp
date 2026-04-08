@@ -4,29 +4,29 @@
 
   <!-- トップページ（LP） -->
   <url>
-    <loc>https://hairgrowthschool.jp/</loc>
+    <loc>https://ikumounogakkou.manus.space/</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://hairgrowthschool.jp/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.manus.space/"/>
   </url>
 
   <!-- 特定商取引法に基づく表記 -->
   <url>
-    <loc>https://hairgrowthschool.jp/legal</loc>
+    <loc>https://ikumounogakkou.manus.space/legal</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://hairgrowthschool.jp/legal"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.manus.space/legal"/>
   </url>
 
   <!-- プライバシーポリシー -->
   <url>
-    <loc>https://hairgrowthschool.jp/privacy</loc>
+    <loc>https://ikumounogakkou.manus.space/privacy</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://hairgrowthschool.jp/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.manus.space/privacy"/>
   </url>
 
 </urlset>
