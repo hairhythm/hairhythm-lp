@@ -111,6 +111,13 @@ export default function Footer() {
             </p>
             <div className="flex gap-5">
               <a
+                href="/privacy"
+                className="text-[10px] transition-colors duration-200 hover:text-white"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
+              >
+                プライバシーポリシー
+              </a>
+              <a
                 href="/legal"
                 className="text-[10px] transition-colors duration-200 hover:text-white"
                 style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}

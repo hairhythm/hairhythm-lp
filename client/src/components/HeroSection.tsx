@@ -6,6 +6,13 @@
 
 import { useEffect, useState } from "react";
 
+// 現在の月の末日を「M月末日」形式で返す関数
+function getMonthEnd(): string {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  return `${month}月末日`;
+}
+
 const HEADSPA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/headspa-main_6cf84ce3.webp";
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
 
@@ -44,6 +51,49 @@ export default function HeroSection() {
           transform: "translate(-35%, 35%)"
         }}
       />
+
+      {/* 期間限定バナー */}
+      <div
+        className="absolute top-16 md:top-20 left-0 right-0 z-20"
+        style={{
+          background: "linear-gradient(90deg, oklch(0.42 0.10 148) 0%, oklch(0.50 0.12 148) 100%)",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.6s ease 0.3s"
+        }}
+      >
+        <div className="container py-2.5 flex items-center justify-center gap-3 flex-wrap">
+          <span
+            className="text-[10px] tracking-widest uppercase font-medium"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.88 0.06 148)" }}
+          >
+            Limited Offer
+          </span>
+          <div
+            className="w-px h-3 hidden sm:block"
+            style={{ background: "oklch(0.75 0.06 148 / 0.5)" }}
+          />
+          <p
+            className="text-xs font-medium text-white text-center"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            <span
+              className="inline-block px-2 py-0.5 mr-2 text-[10px] font-bold rounded-sm"
+              style={{ background: "oklch(0.88 0.08 80)", color: "oklch(0.25 0.05 60)" }}
+            >
+              期間限定
+            </span>
+            {getMonthEnd()}までのお申し込みに限り、割引価格で受講可能です
+          </p>
+          <a
+            href="#faq"
+            onClick={(e) => { e.preventDefault(); document.querySelector('#faq')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="text-[10px] underline underline-offset-2 transition-opacity hover:opacity-75"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.90 0.06 148)" }}
+          >
+            詳細を見る
+          </a>
+        </div>
+      </div>
 
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 lg:py-24">
