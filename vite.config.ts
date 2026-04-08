@@ -98,6 +98,16 @@ function vitePluginManusDebugCollector(): Plugin {
     },
 
     configureServer(server: ViteDevServer) {
+      // Serve llms.txt with correct UTF-8 charset
+      server.middlewares.use("/llms.txt", (req, res, next) => {
+        if (req.method !== "GET" && req.method !== "HEAD") return next();
+        const filePath = path.join(PROJECT_ROOT, "client", "public", "llms.txt");
+        if (!fs.existsSync(filePath)) return next();
+        const content = fs.readFileSync(filePath, "utf-8");
+        res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+        res.end(content);
+      });
+
       // POST /__manus__/logs: Browser sends logs (written directly to files)
       server.middlewares.use("/__manus__/logs", (req, res, next) => {
         if (req.method !== "POST") {
