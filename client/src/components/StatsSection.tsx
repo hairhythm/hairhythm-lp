@@ -107,7 +107,7 @@ export default function StatsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[oklch(0.60_0.08_148)]">
           <StatItem value={70} suffix="+" label="導入サロン数" sublabel="全国各地で活躍中" />
           <StatItem value={1600} suffix="万円" label="月商達成実績" sublabel="4人サロンの最高実績" />
-          <StatItem value={500} suffix="万円" label="一人サロン2月売上" sublabel="月商達成事例" note="2月・8月はサロンの閑散期。でも抜け毛が増えるこの時期こそ、育毛メニューの需要が急増します。" />
+          <StatItem value={500} suffix="万円" label="1人サロン 2月の売上" sublabel="月商達成事例" />
           <StatItemText main="200%" suffix="以上多数" label="売上アップ事例" sublabel="導入後の達成実績" />
         </div>
       </div>
