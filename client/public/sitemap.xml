@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- トップページ（LP） -->
+  <url>
+    <loc>https://ikumou-school-lp.manus.space/</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumou-school-lp.manus.space/"/>
+  </url>
+
+  <!-- 特定商取引法に基づく表記 -->
+  <url>
+    <loc>https://ikumou-school-lp.manus.space/legal</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumou-school-lp.manus.space/legal"/>
+  </url>
+
+  <!-- プライバシーポリシー -->
+  <url>
+    <loc>https://ikumou-school-lp.manus.space/privacy</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumou-school-lp.manus.space/privacy"/>
+  </url>
+
+</urlset>
