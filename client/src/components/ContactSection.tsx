@@ -4,13 +4,33 @@
  * Layout: 2-column — left copy + LINE CTA, right formzu iframe
  */
 
+import { useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { trackLineClick, trackFormSubmit } from "@/lib/analytics";
 
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
 
 export default function ContactSection() {
   const { ref: leftRef } = useScrollAnimation();
   const { ref: rightRef } = useScrollAnimation();
+
+  // FormzuのpostMessageでフォーム送信を検知しGA4に送信
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Formzuは送信完了時に"complete"や"thanks"を含むメッセージを送る
+      if (
+        event.origin.includes("formzu.net") &&
+        (
+          (typeof event.data === "string" && /(complete|thanks|submit|sent)/i.test(event.data)) ||
+          (typeof event.data === "object" && event.data !== null && /(complete|thanks|submit|sent)/i.test(JSON.stringify(event.data)))
+        )
+      ) {
+        trackFormSubmit();
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
     <section
@@ -94,6 +114,7 @@ export default function ContactSection() {
               href="https://lin.ee/SxOndg6"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackLineClick("contact_section")}
               className="flex items-center justify-center gap-3 w-full py-4 text-sm font-medium transition-all duration-200 hover:opacity-90 mb-8"
               style={{
                 background: "#06C755",

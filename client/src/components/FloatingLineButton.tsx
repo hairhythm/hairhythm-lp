@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
+import { trackLineClick } from "@/lib/analytics";
 
 export default function FloatingLineButton() {
   const [visible, setVisible] = useState(false);
@@ -45,6 +46,7 @@ export default function FloatingLineButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LINEで相談する"
+        onClick={() => trackLineClick("floating_button")}
         className="relative flex items-center justify-center rounded-full transition-transform duration-200 hover:scale-110 active:scale-95"
         style={{
           width: "60px",

@@ -5,6 +5,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { trackLineClick } from "@/lib/analytics";
 
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
 
@@ -97,6 +98,7 @@ export default function Navigation() {
               href="https://lin.ee/SxOndg6"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackLineClick("nav_pc")}
               className="flex items-center gap-1.5 text-xs py-2.5 px-4 font-medium transition-all duration-200 hover:opacity-90"
               style={{
                 background: "#06C755",
@@ -168,6 +170,7 @@ export default function Navigation() {
             href="https://lin.ee/SxOndg6"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackLineClick("nav_mobile")}
             className="flex items-center justify-center gap-2 text-sm py-3 font-medium transition-all duration-200"
             style={{
               background: "#06C755",
