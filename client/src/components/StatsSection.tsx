@@ -6,7 +6,7 @@
 
 import { useCountUp } from "@/hooks/useScrollAnimation";
 
-function StatItem({ value, suffix, label, sublabel }: { value: number; suffix: string; label: string; sublabel: string }) {
+function StatItem({ value, suffix, label, sublabel, note }: { value: number; suffix: string; label: string; sublabel: string; note?: string }) {
   const numRef = useCountUp(value);
 
   return (
@@ -38,6 +38,19 @@ function StatItem({ value, suffix, label, sublabel }: { value: number; suffix: s
       >
         {sublabel}
       </p>
+      {note && (
+        <p
+          className="text-xs mt-2 px-2 py-1 rounded"
+          style={{
+            fontFamily: "'Noto Sans JP', sans-serif",
+            color: "oklch(0.98 0.02 90)",
+            background: "oklch(0.38 0.09 148 / 0.5)",
+            lineHeight: "1.6",
+          }}
+        >
+          {note}
+        </p>
+      )}
     </div>
   );
 }
@@ -94,7 +107,7 @@ export default function StatsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[oklch(0.60_0.08_148)]">
           <StatItem value={70} suffix="+" label="導入サロン数" sublabel="全国各地で活躍中" />
           <StatItem value={1600} suffix="万円" label="月商達成実績" sublabel="4人サロンの最高実績" />
-          <StatItem value={500} suffix="万円" label="一人サロン2月売上" sublabel="月商達成事例" />
+          <StatItem value={500} suffix="万円" label="一人サロン2月売上" sublabel="月商達成事例" note="2月・8月はサロンの閑散期。でも抜け毛が増えるこの時期こそ、育毛メニューの需要が急増します。" />
           <StatItemText main="200%" suffix="以上多数" label="売上アップ事例" sublabel="導入後の達成実績" />
         </div>
       </div>
