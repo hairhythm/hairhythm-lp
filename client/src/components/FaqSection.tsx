@@ -7,6 +7,16 @@
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
+// 現在の月の末日を「YYYY年M月末日」形式で返す関数
+function getMonthEndLabel(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1; // 1-indexed
+  return `${year}年${month}月末日`;
+}
+
+const monthEnd = getMonthEndLabel();
+
 const faqs = [
   {
     q: "受講形式はどのようになっていますか？",
@@ -18,7 +28,7 @@ const faqs = [
   },
   {
     q: "参加費用はいくらですか？",
-    a: "ノーマルプランは698,000円（税抜）です。2026年5月末日までのお申し込みに限り割引価格659,800円（税抜）で受講可能です（ZOOMのみの受講、動画での受講も可能）。マスタープランは1,219,800円税抜（上記講座＋機材）。2026年5月末日までのお申し込みに限り1,119,800円（税抜）で受講可能です。",
+    a: `ノーマルプランは698,000円（税抜）です。${monthEnd}までのお申し込みに限り割引価格659,800円（税抜）で受講可能です（ZOOMのみの受講、動画での受講も可能）。マスタープランは1,219,800円税抜（上記講座＋機材）。${monthEnd}までのお申し込みに限り1,119,800円（税抜）で受講可能です。`,
   },
   {
     q: "商材のみの利用は可能ですか？",
