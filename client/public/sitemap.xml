@@ -4,29 +4,29 @@
 
   <!-- トップページ（LP） -->
   <url>
-    <loc>https://ikumounogakkou.manus.space/</loc>
+    <loc>https://ikumounogakkou.com/</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.manus.space/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.com/"/>
   </url>
 
   <!-- 特定商取引法に基づく表記 -->
   <url>
-    <loc>https://ikumounogakkou.manus.space/legal</loc>
+    <loc>https://ikumounogakkou.com/legal</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.manus.space/legal"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.com/legal"/>
   </url>
 
   <!-- プライバシーポリシー -->
   <url>
-    <loc>https://ikumounogakkou.manus.space/privacy</loc>
+    <loc>https://ikumounogakkou.com/privacy</loc>
     <lastmod>2026-04-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.manus.space/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ikumounogakkou.com/privacy"/>
   </url>
 
 </urlset>
