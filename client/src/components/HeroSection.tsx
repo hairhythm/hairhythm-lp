@@ -263,7 +263,7 @@ export default function HeroSection() {
                 月商 <span className="text-3xl">1,600</span>万円
               </p>
               <p className="text-[11px] mt-0.5" style={{ color: "oklch(0.55 0.03 60)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-                一人サロン・育毛導入後最高実績
+                4人サロン・育毛導入後最高実績
               </p>
             </div>
           </div>
