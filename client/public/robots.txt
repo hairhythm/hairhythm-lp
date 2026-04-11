@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ikumounogakkou.com/sitemap.xml
+Sitemap: https://hairhythm.github.io/hairhythm-lp/sitemap.xml
