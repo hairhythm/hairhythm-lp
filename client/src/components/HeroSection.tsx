@@ -4,12 +4,33 @@
  */
 import { useEffect, useRef, useState } from "react";
 
-const HERO_IMAGE_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/rbscufLHeibbVSph.jpg";
+// 森の背景画像
+const HERO_IMAGE_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/pIjdufqETvfXRAmu.png";
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
 
+// 月初から経過日数に基づいて残り枠を計算（10名→自然に減少）
+function calcRemainingSlots(): number {
+  const day = new Date().getDate();
+  if (day <= 3) return 10;   // 1〜3日：10名（チラシ配布直後）
+  if (day <= 6) return 6;    // 4〜6日：6名（チラシ効果で早期に減少）
+  if (day <= 9) return 5;    // 7〜9日：5名
+  if (day <= 12) return 4;   // 10〜12日：4名
+  if (day <= 16) return 3;   // 13〜16日：3名
+  if (day <= 20) return 2;   // 17〜20日：2名
+  return 1;                  // 21日以降：1名（残りわずか）
+}
+
+// 当月末の日付を「○月末まで」形式で返す
+function getMonthEndLabel(): string {
+  const month = new Date().getMonth() + 1;
+  return `${month}月末まで`;
+}
+
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);
+  const [remainingSlots] = useState(calcRemainingSlots);
+  const [monthEndLabel] = useState(getMonthEndLabel);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -29,12 +50,12 @@ export default function HeroSection() {
           src={HERO_IMAGE_URL}
           alt="育毛専門美容室ヘアリズム"
           className="w-full h-full object-cover object-center"
-          style={{ opacity: 0.45 }}
+          style={{ opacity: 0.90 }}
         />
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(135deg, oklch(0.12 0.08 148 / 0.90) 0%, oklch(0.18 0.07 148 / 0.65) 50%, oklch(0.15 0.06 148 / 0.80) 100%)"
+            background: "linear-gradient(135deg, oklch(0.12 0.08 148 / 0.35) 0%, oklch(0.18 0.07 148 / 0.15) 50%, oklch(0.15 0.06 148 / 0.45) 100%)"
           }}
         />
         <div
@@ -65,7 +86,7 @@ export default function HeroSection() {
             ⚠️ 残り枠
           </span>
           <p className="text-xs font-medium text-white" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>
-            今月の残り枠：<strong style={{ color: "oklch(0.88 0.12 80)" }}>あと5名様</strong>　毎月10名様限定・定員に達し次第終了
+            今月の残り枠：<strong style={{ color: "oklch(0.88 0.12 80)" }}>あと{remainingSlots}名様</strong>　毎月10名様限定・定員に達し次第終了
           </p>
         </div>
       </div>
@@ -169,7 +190,7 @@ export default function HeroSection() {
             <div className="flex flex-col gap-1.5 mb-3">
               {[
                 { label: "初回カウンセリング・診断料", price: "10,780円" },
-                { label: "育毛ヘッドスパ（90分）", price: "16,500円" },
+                { label: "育毛ヘッドスパ（60分）", price: "16,500円" },
                 { label: "ホームケア用頭皮化粧水", price: "4,180円" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center justify-between">
@@ -208,7 +229,7 @@ export default function HeroSection() {
               </span>
             </div>
             <p className="text-[10px] mt-2" style={{ color: "oklch(0.58 0.02 60)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-              ※2026年3月末まで・定員に達し次第終了
+              ※{monthEndLabel}・定員に達し次第終了
             </p>
           </div>
 

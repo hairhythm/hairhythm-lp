@@ -7,7 +7,7 @@ const statsData = [
   { value: "96.8%", label: "変化を実感した割合", sub: "施術後アンケートより" },
   { value: "2,847名", label: "累計施術実績", sub: "2026年1月時点" },
   { value: "98.3%", label: "リピート率", sub: "継続ケアの証" },
-  { value: "4.9", label: "Googleレビュー評価", sub: "153件の評価" },
+  { value: "4.8", label: "Googleレビュー評価", sub: "" },
 ];
 
 export default function StatsSection() {
@@ -17,7 +17,7 @@ export default function StatsSection() {
     <section
       id="stats"
       className="py-16 px-4"
-      style={{ background: "oklch(0.22 0.08 148)" }}
+      style={{ background: "oklch(0.28 0.08 148)" }}
     >
       <div className="container max-w-4xl mx-auto">
         <div ref={ref} className="fade-up">

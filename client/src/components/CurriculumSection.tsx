@@ -7,6 +7,28 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
 
+// 月末自動更新：現在の月の末日を返す
+function getDeadlineText(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  return `${year}年${month}月末まで`;
+}
+
+// 残り枠自動カウントダウン（月前半に早く減らす）
+function calcRemainingSlots(): number {
+  const day = new Date().getDate();
+  if (day <= 3) return 10;
+  if (day <= 6) return 6;
+  if (day <= 9) return 5;
+  if (day <= 12) return 4;
+  if (day <= 15) return 4;
+  if (day <= 18) return 3;
+  if (day <= 21) return 3;
+  if (day <= 24) return 2;
+  return 2;
+}
+
 const steps = [
   {
     num: "STEP 1",
@@ -25,7 +47,7 @@ const steps = [
   },
   {
     num: "STEP 4",
-    title: "育毛専用ヘッドスパ体験（90分）",
+    title: "育毛専用ヘッドスパ体験（60分）",
     desc: "フルボ酸洗浄で毛穴の奥の汚れを優しく除去。育毛循環器ケアで頭皮を芯から温めほぐします。深層マッサージで頭だけでなく、首・肩・肩甲骨までアプローチし、血流のダムを解放します。あまりの気持ちよさに、9割以上の方が眠ってしまわれます。",
   },
   {
@@ -92,7 +114,7 @@ export default function CurriculumSection() {
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold"
                       style={{
-                        background: "linear-gradient(135deg, oklch(0.22 0.08 148) 0%, oklch(0.38 0.10 148) 100%)",
+                        background: "linear-gradient(135deg, oklch(0.28 0.08 148) 0%, oklch(0.38 0.10 148) 100%)",
                         color: "oklch(0.88 0.14 80)",
                         fontFamily: "'Noto Sans JP', sans-serif",
                         border: "1px solid oklch(0.65 0.12 80 / 0.4)"
@@ -120,7 +142,7 @@ export default function CurriculumSection() {
       </div>
 
       {/* 特別価格 */}
-      <div className="py-16 px-4" style={{ background: "oklch(0.14 0.06 148)" }}>
+      <div className="py-16 px-4" style={{ background: "oklch(0.28 0.07 148)" }}>
         <div className="container max-w-3xl mx-auto">
           <div ref={priceRef} className="fade-up">
             <div className="text-center mb-8">
@@ -131,10 +153,10 @@ export default function CurriculumSection() {
                 className="text-2xl md:text-3xl font-semibold mb-3 text-white"
                 style={{ fontFamily: "'Shippori Mincho', serif" }}
               >
-                【2026年3月末までの特別オファー】
+                【{getDeadlineText()}の特別オファー】
               </h2>
               <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)", fontWeight: 300 }}>
-                本来、これだけの精密な検査と90分の施術を行うには、以下の費用がかかります。
+                本来、これだけの精密な検査と60分の施術を行うには、以下の費用がかかります。
               </p>
             </div>
 
@@ -145,7 +167,7 @@ export default function CurriculumSection() {
               <div className="space-y-2 mb-5">
                 {[
                   { label: "初回カウンセリング・診断料", price: "10,780円" },
-                  { label: "育毛ヘッドスパ（90分）", price: "16,500円" },
+                  { label: "育毛ヘッドスパ（60分）", price: "16,500円" },
                   { label: "ホームケア用頭皮化粧水", price: "4,180円" },
                 ].map((item) => (
                   <div key={item.label} className="flex justify-between items-center">
@@ -189,7 +211,7 @@ export default function CurriculumSection() {
                   （税込）なんと<strong style={{ color: "oklch(0.88 0.14 80)" }}>85%OFF</strong>
                 </p>
                 <p className="text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.03 148)" }}>
-                  ※2026年3月末まで・定員に達し次第終了
+                  ※{getDeadlineText()}・定員に達し次第終了
                 </p>
               </div>
 
@@ -200,7 +222,7 @@ export default function CurriculumSection() {
                 {[
                   "精密頭皮診断（マイクロスコープ・血流・毛根）",
                   "生活習慣・ケア方法の個別アドバイス",
-                  "90分育毛ヘッドスパ体験（フルコース）",
+                  "60分育毛ヘッドスパ体験（フルコース）",
                   "ホームケア用頭皮化粧水（現品プレゼント）",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2 mb-2">
@@ -220,7 +242,7 @@ export default function CurriculumSection() {
                 style={{ background: "oklch(0.65 0.12 80 / 0.15)", border: "1px solid oklch(0.65 0.12 80 / 0.4)" }}
               >
                 <p className="text-xs font-bold" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.88 0.14 80)" }}>
-                  ⚠️ 今月の残り枠：あと5名様
+                  ⚠️ 今月の残り枠：あと{calcRemainingSlots()}名様
                 </p>
                 <p className="text-[10px] mt-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
                   ※予約が埋まり次第、今月の受付は終了します

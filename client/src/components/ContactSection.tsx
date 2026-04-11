@@ -7,11 +7,23 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
 
+function calcRemainingSlots(): number {
+  const day = new Date().getDate();
+  if (day <= 3) return 10;   // 1〜3日：10名（チラシ配布直後）
+  if (day <= 6) return 6;    // 4〜6日：6名（チラシ効果で早期に減少）
+  if (day <= 9) return 5;    // 7〜9日：5名
+  if (day <= 12) return 4;   // 10〜12日：4名
+  if (day <= 16) return 3;   // 13〜16日：3名
+  if (day <= 20) return 2;   // 17〜20日：2名
+  return 1;                  // 21日以降：1名（残りわずか）
+}
+
 export default function ContactSection() {
   const { ref } = useScrollAnimation();
+  const remainingSlots = calcRemainingSlots();
 
   return (
-    <section id="contact" style={{ background: "oklch(0.14 0.06 148)" }}>
+    <section id="contact" style={{ background: "oklch(0.28 0.07 148)" }}>
       <div className="py-20 px-4">
         <div className="container max-w-3xl mx-auto">
           <div ref={ref} className="fade-up">
@@ -29,7 +41,7 @@ export default function ContactSection() {
               </h2>
               <div
                 className="max-w-xl mx-auto p-5 rounded-lg mb-6"
-                style={{ background: "oklch(0.20 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
+                style={{ background: "oklch(0.28 0.08 148 / 0.9)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
               >
                 <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
                   何もしなければ、髪は今のまま、あるいは少しずつ減っていきます。<br />
@@ -88,7 +100,7 @@ export default function ContactSection() {
               style={{ background: "oklch(0.65 0.12 80 / 0.15)", border: "1px solid oklch(0.65 0.12 80 / 0.5)" }}
             >
               <p className="text-sm font-bold" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.88 0.14 80)" }}>
-                ⚠️ 今月の残り枠：あと5名様
+                ⚠️ 今月の残り枠：あと{remainingSlots}名様
               </p>
               <p className="text-xs mt-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.70 0.03 148)" }}>
                 丁寧な診断を行うため、枠数には限りがございます
@@ -97,7 +109,7 @@ export default function ContactSection() {
 
             <div
               className="p-6 rounded-lg"
-              style={{ background: "oklch(0.20 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
+              style={{ background: "oklch(0.28 0.08 148 / 0.9)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
             >
               <p className="text-xs font-semibold mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)", letterSpacing: "0.2em" }}>
                 SALON INFO
@@ -106,7 +118,7 @@ export default function ContactSection() {
                 {[
                   { label: "サロン名", value: "育毛専門美容室ヘアリズム（hairhythm）" },
                   { label: "住所", value: "兵庫県加東市下久米880-3" },
-                  { label: "アクセス", value: "JR滝野駅より車で10分／駐車場完備" },
+                  { label: "アクセス", value: "JR社町駅より車で１５分／駐車場完備" },
                   { label: "電話", value: TEL },
                   { label: "営業時間", value: "10:00〜19:00" },
                   { label: "定休日", value: "月・日曜日" },

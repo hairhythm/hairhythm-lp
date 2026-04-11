@@ -11,7 +11,7 @@ export default function Footer() {
     <footer
       className="py-12"
       style={{
-        background: "oklch(0.12 0.05 148)",
+        background: "oklch(0.26 0.07 148)",
         borderTop: "1px solid oklch(0.65 0.12 80 / 0.2)"
       }}
     >

@@ -9,7 +9,7 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const LINE_URL = "https://lin.ee/oV9r3at";
-const OWNER_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/VeOOkMMDtVCoALXV.jpg";
+const OWNER_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/kejSQYpwGySSBYgn.png";
 
 const worries = [
   "シャンプーのたび、指に絡まる髪を見て胸がざわつく",
@@ -78,7 +78,7 @@ const methods = [
     title: "深層浄化（サロンケア）",
     sub: "毛穴の奥の大掃除",
     icon: "💧",
-    desc: "普段のシャンプーでは落ちない毛穴の奥の汚れを、育毛専用の循環器と高濃度フルボ酸温水で洗い流します。血流を促す90分の極上ヘッドスパは、施術中に寝落ちしなかった人はいないほどの心地よさ。ストレスも、薄毛の大敵です。",
+    desc: "普段のシャンプーでは落ちない毛穴の奥の汚れを、育毛専用の循環器と高濃度フルボ酸温水で洗い流します。血流を促す60分の極上ヘッドスパは、施術中に寝落ちしなかった人はいないほどの心地よさ。ストレスも、薄毛の大敵です。",
   },
   {
     num: "第3層",
@@ -154,7 +154,7 @@ export default function AboutSection() {
             <div
               className="p-6 rounded-lg text-center"
               style={{
-                background: "linear-gradient(135deg, oklch(0.22 0.08 148) 0%, oklch(0.28 0.09 148) 100%)",
+                background: "linear-gradient(135deg, oklch(0.28 0.08 148) 0%, oklch(0.28 0.09 148) 100%)",
                 border: "1px solid oklch(0.65 0.12 80 / 0.4)"
               }}
             >
@@ -175,7 +175,7 @@ export default function AboutSection() {
       </div>
 
       {/* ② 3ヶ月後のビジョン */}
-      <div className="py-16 px-4" style={{ background: "oklch(0.14 0.06 148)" }}>
+      <div className="py-16 px-4" style={{ background: "oklch(0.28 0.07 148)" }}>
         <div className="container max-w-3xl mx-auto">
           <div ref={visionRef} className="fade-up text-center">
             <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
@@ -193,7 +193,7 @@ export default function AboutSection() {
                 <div
                   key={i}
                   className="p-4 rounded-lg flex items-start gap-3"
-                  style={{ background: "oklch(0.20 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
+                  style={{ background: "oklch(0.28 0.08 148 / 0.9)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
                 >
                   <span style={{ color: "oklch(0.88 0.14 80)", fontSize: "1.2rem" }}>✦</span>
                   <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.88 0.03 148)", fontWeight: 300 }}>
@@ -277,7 +277,7 @@ export default function AboutSection() {
                 </p>
                 <div
                   className="p-4 rounded-lg"
-                  style={{ background: "linear-gradient(135deg, oklch(0.22 0.08 148) 0%, oklch(0.28 0.09 148) 100%)", border: "1px solid oklch(0.65 0.12 80 / 0.4)" }}
+                  style={{ background: "linear-gradient(135deg, oklch(0.28 0.08 148) 0%, oklch(0.28 0.09 148) 100%)", border: "1px solid oklch(0.65 0.12 80 / 0.4)" }}
                 >
                   <p className="text-sm font-medium text-white" style={{ fontFamily: "'Shippori Mincho', serif" }}>
                     「隠すのはやめましょう。一緒に、髪を育てましょう」
@@ -334,7 +334,7 @@ export default function AboutSection() {
       </div>
 
       {/* ⑤ 3層育毛メソッド */}
-      <div className="py-20 px-4" style={{ background: "oklch(0.14 0.06 148)" }}>
+      <div className="py-20 px-4" style={{ background: "oklch(0.28 0.07 148)" }}>
         <div className="container max-w-4xl mx-auto">
           <div ref={methodRef} className="fade-up">
             <div className="text-center mb-10">
@@ -359,7 +359,7 @@ export default function AboutSection() {
                   key={m.num}
                   className="p-6 rounded-lg flex gap-5"
                   style={{
-                    background: "oklch(0.20 0.08 148 / 0.8)",
+                    background: "oklch(0.28 0.08 148 / 0.9)",
                     border: "1px solid oklch(0.65 0.12 80 / 0.3)"
                   }}
                 >
