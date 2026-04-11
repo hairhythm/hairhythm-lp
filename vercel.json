@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm install && npx vite build --config vite.config.prod.ts",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
