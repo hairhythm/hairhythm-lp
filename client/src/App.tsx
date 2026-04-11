@@ -23,7 +23,7 @@ function Router() {
 function App() {
   // SEO: document.titleをReact側でも設定（SEOパネル対応）
   if (typeof document !== "undefined") {
-    document.title = "育毛の学校｜抜け毛・薄毛メニューでサロン売上アップ専門スクール";
+    document.title = "育毛専門美容室ヘアリズム｜40代からの薄毛・抜け毛専門サロン｜兵庫県加東市";
   }
 
   return (

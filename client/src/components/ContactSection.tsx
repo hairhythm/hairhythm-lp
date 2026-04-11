@@ -1,146 +1,152 @@
 /*
- * ContactSection — 育毛の学校 LP
- * Design: Natural Elegant Green — Sage bg, LINE CTA only (no form)
- * Layout: Centered single-column with LINE CTA prominent
+ * ContactSection — 育毛専門美容室ヘアリズム LP
+ * Design: Deep Forest Green x Gold — お問い合わせ・予約
  */
-
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { trackLineClick } from "@/lib/analytics";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
+const LINE_URL = "https://lin.ee/oV9r3at";
+
+function getMonthEnd(): string {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  return `${month}月末`;
+}
 
 export default function ContactSection() {
-  const { ref: sectionRef } = useScrollAnimation();
+  const { ref } = useScrollAnimation();
 
   return (
     <section
       id="contact"
-      className="py-20 md:py-28 overflow-hidden relative"
-      style={{ background: "oklch(0.48 0.10 148)" }}
+      className="py-20 md:py-28"
+      style={{
+        background: "linear-gradient(135deg, oklch(0.18 0.08 148) 0%, oklch(0.24 0.09 148) 100%)"
+      }}
     >
-      {/* Subtle dot pattern */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle at 15% 50%, white 1px, transparent 1px), radial-gradient(circle at 85% 50%, white 1px, transparent 1px)",
-          backgroundSize: "50px 50px"
-        }}
-      />
-
-      <div className="container relative z-10">
-        <div ref={sectionRef} className="fade-up max-w-2xl mx-auto text-center">
-
-          {/* Eyebrow */}
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px" style={{ background: "oklch(0.85 0.04 148)" }} />
+      <div className="container">
+        <div ref={ref} className="fade-up max-w-2xl mx-auto text-center">
+          {/* Label */}
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px" style={{ background: "oklch(0.65 0.12 80 / 0.6)" }} />
             <span
-              className="text-xs tracking-[0.3em] uppercase"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.85 0.04 148)" }}
+              className="text-[11px] tracking-[0.3em] uppercase"
+              style={{ color: "oklch(0.72 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
             >
-              Contact
+              Reservation
             </span>
-            <div className="w-8 h-px" style={{ background: "oklch(0.85 0.04 148)" }} />
+            <div className="w-12 h-px" style={{ background: "oklch(0.65 0.12 80 / 0.6)" }} />
           </div>
 
-          {/* Heading */}
           <h2
-            className="text-3xl md:text-4xl font-semibold text-white mb-5 leading-tight"
+            className="text-3xl md:text-4xl font-semibold mb-4 text-white"
             style={{ fontFamily: "'Shippori Mincho', serif" }}
           >
-            まずは
-            <br />
-            無料相談から
+            まずは気軽に<br />ご相談ください
           </h2>
 
           <p
-            className="text-sm leading-[2] mb-10"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.90 0.04 148)", fontWeight: 300 }}
+            className="text-sm leading-relaxed mb-8"
+            style={{ color: "oklch(0.82 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
           >
-            育毛の学校への入学に関するご質問、カリキュラムの詳細、料金のご相談など、<br className="hidden md:block" />
-            どんな小さなことでもお気軽にお問い合わせください。<br className="hidden md:block" />
-            専門のスタッフが丁寧にご対応いたします。
+            {getMonthEnd()}まで限定の初回体験4,980円をぜひご活用ください。<br />
+            LINEでのご予約・お問い合わせを受け付けています。
           </p>
 
-          {/* Benefits */}
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-10">
+          {/* Price reminder */}
+          <div
+            className="inline-block px-6 py-4 mb-8"
+            style={{
+              background: "oklch(0.28 0.09 148 / 0.6)",
+              border: "1px solid oklch(0.65 0.12 80 / 0.5)",
+              borderRadius: "2px",
+              backdropFilter: "blur(8px)"
+            }}
+          >
+            <p
+              className="text-xs mb-1"
+              style={{ color: "oklch(0.72 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              初回体験コース（{getMonthEnd()}まで）
+            </p>
+            <p
+              className="text-2xl font-bold"
+              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.88 0.12 80)" }}
+            >
+              4,980円（税込）
+            </p>
+            <p
+              className="text-xs mt-1"
+              style={{ color: "oklch(0.70 0.06 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              カウンセリング＋ヘッドスパ＋化粧水 すべて込み
+            </p>
+          </div>
+
+          {/* LINE CTA */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={LINE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+              style={{
+                background: "white",
+                color: "oklch(0.28 0.09 148)",
+                border: "1px solid oklch(0.65 0.12 80)",
+                fontFamily: "'Noto Sans JP', sans-serif",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.3)"
+              }}
+            >
+              <svg width="22" height="22" viewBox="0 0 48 48" fill="oklch(0.28 0.09 148)">
+                <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
+              </svg>
+              <span style={{ color: "oklch(0.28 0.09 148)" }}>LINEで予約する（無料）</span>
+            </a>
+            <a
+              href="tel:0795441099"
+              className="flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-sm transition-all duration-200 hover:opacity-90"
+              style={{
+                background: "oklch(0.28 0.09 148 / 0.5)",
+                color: "white",
+                border: "1px solid oklch(0.65 0.12 80 / 0.5)",
+                fontFamily: "'Noto Sans JP', sans-serif",
+                backdropFilter: "blur(4px)"
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
+              </svg>
+              0795-44-1099
+            </a>
+          </div>
+
+          {/* Business info */}
+          <div
+            className="mt-10 pt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
+            style={{ borderTop: "1px solid oklch(0.65 0.12 80 / 0.2)" }}
+          >
             {[
-              { icon: "✓", title: "無料相談実施中", desc: "入学前の疑問・不安を解消" },
-              { icon: "✓", title: "48時間以内に返信", desc: "翌営業日以内にご連絡" },
-              { icon: "✓", title: "しつこい営業なし", desc: "過度な営業は一切なし" },
-            ].map((item) => (
-              <div key={item.title} className="flex flex-col items-center gap-1.5">
-                <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ background: "oklch(0.60 0.08 148)", color: "white" }}
-                >
-                  {item.icon}
-                </span>
+              { label: "住所", value: "兵庫県加東市下久米880-3" },
+              { label: "電話", value: "0795-44-1099" },
+              { label: "営業時間", value: "火〜土 10:00〜19:00" },
+              { label: "定休日", value: "日・月曜日" },
+            ].map((info) => (
+              <div key={info.label}>
                 <p
-                  className="text-sm font-medium text-white"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
+                  className="text-[10px] tracking-widest mb-1"
+                  style={{ color: "oklch(0.65 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
                 >
-                  {item.title}
+                  {info.label}
                 </p>
                 <p
                   className="text-xs"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.85 0.04 148)", fontWeight: 300 }}
+                  style={{ color: "oklch(0.82 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
                 >
-                  {item.desc}
+                  {info.value}
                 </p>
               </div>
             ))}
           </div>
-
-          {/* LINE CTA — large & prominent */}
-          <a
-            href="https://lin.ee/SxOndg6"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackLineClick("contact_section")}
-            className="inline-flex items-center justify-center gap-3 w-full max-w-md mx-auto py-5 text-base font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
-            style={{
-              background: "#06C755",
-              color: "white",
-              borderRadius: "4px",
-              fontFamily: "'Noto Sans JP', sans-serif",
-              boxShadow: "0 6px 28px rgba(6, 199, 85, 0.45)"
-            }}
-          >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.61 5.77 4.08 7.45L5 21l2.8-1.4C9.1 20.18 10.52 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2zm1 13H7v-1.5h6V15zm2-3H7v-1.5h8V12zm0-3H7V7.5h8V9z"/>
-            </svg>
-            <span>LINEで無料相談する</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-
-          <p
-            className="text-xs mt-4"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.04 148)" }}
-          >
-            LINEアプリが開きます。友だち追加後にメッセージをお送りください。
-          </p>
-
-          {/* Logo */}
-          <div className="flex items-center justify-center gap-3 mt-12 pt-8" style={{ borderTop: "1px solid oklch(0.58 0.09 148)" }}>
-            <img src={LOGO_URL} alt="育毛の学校" className="w-10 h-10 object-contain" />
-            <div className="text-left">
-              <p
-                className="text-sm font-semibold text-white"
-                style={{ fontFamily: "'Shippori Mincho', serif" }}
-              >
-                育毛の学校
-              </p>
-              <p
-                className="text-xs"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.85 0.04 148)" }}
-              >
-                Ikumou no Gakkou
-              </p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>

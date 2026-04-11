@@ -1,69 +1,63 @@
 /*
- * TestimonialsSection — 育毛の学校 LP
- * Design: Natural Elegant Green — White cards on sage bg
- * Content: 参考サイトの実際の受講者の声（頼兼・中尾・Lampsi・庄子・中島）
+ * TestimonialsSection — 育毛専門美容室ヘアリズム LP
+ * Design: Deep Forest Green x Gold — お客様の声
  */
-
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const YORIKANE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-yorikane_d3a7db12.webp";
-const NAKAO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakao_d80f0105.webp";
-const LAMPSI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-lampsi_601f41a8.webp";
-const SHOJI_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-shoji-dl_2376b9c8.jpg";
-const NAKAJIMA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/testimonial-nakajima-new_ee2cdc89.jpg";
-const SALON_COLLAGE_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/salon-collage_f528377b.webp";
+const LINE_URL = "https://lin.ee/oV9r3at";
 
 const testimonials = [
   {
-    image: YORIKANE_URL,
-    name: "頼兼 未笑 オーナー",
-    salon: "一人サロン",
-    result: "月商270万円達成",
-    quote: "育毛の学校で学んでから、お客様への提案が自信を持ってできるようになりました。売り込みなしで高額商品が自然に売れるようになり、月商270万円を達成。おひとりのお客様から100万円以上のご契約をいただいたこともあります。",
+    name: "K.M様",
+    age: "46歳",
+    result: "3ヶ月で分け目が目立たなくなった",
+    quote: "40代に入ってから急に分け目が気になり始め、市販の育毛剤を試しても効果がなく悩んでいました。ヘアリズムでマイクロスコープ診断を受けたところ、頭皮の状態が原因だとわかり、ヘッドスパを続けたところ3ヶ月で分け目が目立たなくなりました。",
+    stars: 5,
   },
   {
-    image: NAKAO_URL,
-    name: "中尾 沙織 オーナー",
-    salon: "美容室オーナー",
-    result: "月商240万円達成",
-    quote: "以前は育毛メニューを導入しても売れるか不安でした。でも橋本先生のクロージング方法を実践したら、月商240万円を達成できました。おひとりのお客様から100万円以上のご契約もいただいています！",
+    name: "T.Y様",
+    age: "52歳",
+    result: "抜け毛が明らかに減った",
+    quote: "更年期の影響で抜け毛がひどく、毎朝の洗髪が怖かったです。橋本先生のカウンセリングで原因を丁寧に説明していただき、ホームケアも続けた結果、2ヶ月後には抜け毛が明らかに減りました。先生の親身な対応に感謝しています。",
+    stars: 5,
   },
   {
-    image: LAMPSI_URL,
-    name: "Lampsiヘアー",
-    salon: "グループサロン",
-    result: "月商300万円アップ",
-    quote: "スタッフ全員で受講し、チーム全体で育毛メニューに取り組めるようになりました。導入後は月商300万円アップを達成し、今では毎月安定して高い売上を維持しています。",
+    name: "A.N様",
+    age: "44歳",
+    result: "髪にハリとコシが戻ってきた",
+    quote: "産後から髪が細くなり、ボリュームが出なくて悩んでいました。初回体験の4,980円で試してみたところ、ヘッドスパ後すぐに頭皮がすっきりして、翌朝から髪のハリが違うと感じました。今では毎月通っています。",
+    stars: 5,
+  },
+  {
+    name: "M.O様",
+    age: "49歳",
+    result: "頭皮のかゆみが解消された",
+    quote: "長年頭皮のかゆみとフケに悩んでいました。皮膚科に行っても改善せず、ヘアリズムに相談したところ、頭皮環境の改善から取り組んでいただきました。今ではかゆみもなく、髪も以前より元気になった気がします。",
+    stars: 5,
   },
 ];
 
-const extraTestimonials = [
-  {
-    image: SHOJI_URL,
-    name: "庄子 堅哉さん・麻佑子さん ご夫妻",
-    salon: "ご夫婦サロンオーナー",
-    result: "導入3ヶ月で売上40％アップ",
-    quote: "導入からわずか3ヶ月で売上が40％アップしました。夫婦で一緒に受講したことで、サロン全体として育毛に取り組む体制が整い、お客様からの信頼も大きく高まりました。",
-  },
-  {
-    image: NAKAJIMA_URL,
-    name: "中島 和晃 オーナー",
-    salon: "しゅくるithnani（東京・長野）",
-    result: "月商1,600万円達成",
-    quote: "4人サロンで月商1,600万円を達成し、2店舗目（一人サロン）でも月商650万円を達成。育毛の学校で学んだノウハウが、サロン拡大の大きな原動力になっています。",
-  },
-];
+function StarRating({ count }: { count: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: count }).map((_, i) => (
+        <svg key={i} width="14" height="14" viewBox="0 0 14 14" fill="oklch(0.72 0.12 80)">
+          <path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5L7 1z"/>
+        </svg>
+      ))}
+    </div>
+  );
+}
 
 export default function TestimonialsSection() {
   const { ref: headerRef } = useScrollAnimation();
   const { ref: cardsRef } = useScrollAnimation();
-  const { ref: extraRef } = useScrollAnimation();
 
   return (
     <section
       id="testimonials"
       className="py-20 md:py-28 overflow-hidden"
-      style={{ background: "oklch(0.99 0.005 90)" }}
+      style={{ background: "oklch(0.97 0.02 148)" }}
     >
       <div className="container">
         {/* Header */}
@@ -77,78 +71,76 @@ export default function TestimonialsSection() {
             className="text-3xl md:text-4xl font-semibold mb-4"
             style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
           >
-            受講者の声
+            お客様の声
           </h2>
           <p
             className="text-sm max-w-xl mx-auto leading-relaxed"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
           >
-            全国のサロンオーナーが育毛の学校で学び、サロンを変革しました。
+            ヘアリズムで薄毛・抜け毛の悩みを解決されたお客様の声をご紹介します。
           </p>
         </div>
 
-        {/* Main 3 cards */}
+        {/* Cards */}
         <div
           ref={cardsRef}
-          className="stagger-children grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+          className="stagger-children grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
         >
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="card-natural overflow-hidden"
+              className="card-natural p-6"
+              style={{
+                background: "white",
+                border: "1px solid oklch(0.88 0.04 148)",
+                borderRadius: "4px",
+                boxShadow: "0 4px 20px oklch(0.38 0.09 148 / 0.08)"
+              }}
             >
-              {/* Image */}
-              <div className="relative overflow-hidden h-52">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-                {/* Result badge */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 px-4 py-3"
-                  style={{ background: "linear-gradient(to top, oklch(0.48 0.10 148 / 0.9) 0%, transparent 100%)" }}
-                >
-                  <p
-                    className="text-xs font-medium text-white"
-                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-                  >
-                    ✓ {t.result}
-                  </p>
-                </div>
+              {/* Stars */}
+              <StarRating count={t.stars} />
+              {/* Result badge */}
+              <div
+                className="inline-block mt-3 mb-3 px-3 py-1 text-xs font-medium rounded-sm"
+                style={{
+                  background: "oklch(0.38 0.09 148 / 0.10)",
+                  color: "oklch(0.38 0.09 148)",
+                  border: "1px solid oklch(0.38 0.09 148 / 0.2)",
+                  fontFamily: "'Noto Sans JP', sans-serif"
+                }}
+              >
+                ✓ {t.result}
               </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <span
-                  className="block text-5xl leading-none mb-3"
-                  style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.80 0.06 148)" }}
-                >
-                  "
-                </span>
-
-                <p
-                  className="text-sm leading-[1.9] mb-5"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.42 0.02 60)", fontWeight: 300 }}
-                >
-                  {t.quote}
-                </p>
-
+              {/* Quote */}
+              <p
+                className="text-sm leading-[2] mb-4"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.42 0.03 60)", fontWeight: 300 }}
+              >
+                「{t.quote}」
+              </p>
+              {/* Author */}
+              <div
+                className="flex items-center gap-3 pt-4"
+                style={{ borderTop: "1px solid oklch(0.92 0.02 148)" }}
+              >
                 <div
-                  className="pt-4"
-                  style={{ borderTop: "1px solid oklch(0.90 0.03 148)" }}
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{ background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)" }}
                 >
+                  <span style={{ color: "oklch(0.88 0.12 80)", fontSize: "16px" }}>👩</span>
+                </div>
+                <div>
                   <p
-                    className="text-sm font-semibold"
-                    style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
+                    className="text-sm font-medium"
+                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.35 0.03 60)" }}
                   >
                     {t.name}
                   </p>
                   <p
-                    className="text-xs mt-0.5"
+                    className="text-xs"
                     style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 60)" }}
                   >
-                    {t.salon}
+                    {t.age}
                   </p>
                 </div>
               </div>
@@ -156,101 +148,33 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Extra 2 testimonials — horizontal cards with real photos */}
-        <div
-          ref={extraRef}
-          className="stagger-children grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+        {/* Note */}
+        <p
+          className="text-center text-xs mb-10"
+          style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.03 60)" }}
         >
-          {extraTestimonials.map((t) => (
-            <div
-              key={t.name}
-              className="card-natural overflow-hidden"
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden h-56">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
-                  style={{ objectPosition: t.name.includes('庄子') ? 'center 20%' : 'center top' }}
-                />
-                {/* Result badge */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 px-4 py-3"
-                  style={{ background: "linear-gradient(to top, oklch(0.48 0.10 148 / 0.9) 0%, transparent 100%)" }}
-                >
-                  <p
-                    className="text-xs font-medium text-white"
-                    style={{ fontFamily: "'Noto Sans JP', sans-serif" }}
-                  >
-                    ✓ {t.result}
-                  </p>
-                </div>
-              </div>
+          ※ お客様個人の感想です。効果には個人差があります。
+        </p>
 
-              {/* Content */}
-              <div className="p-6">
-                <span
-                  className="block text-5xl leading-none mb-3"
-                  style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.80 0.06 148)" }}
-                >
-                  "
-                </span>
-                <p
-                  className="text-sm leading-[1.9] mb-4"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.42 0.02 60)", fontWeight: 300 }}
-                >
-                  {t.quote}
-                </p>
-                <div
-                  className="pt-3"
-                  style={{ borderTop: "1px solid oklch(0.90 0.03 148)" }}
-                >
-                  <p
-                    className="text-sm font-semibold"
-                    style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
-                  >
-                    {t.name}
-                  </p>
-                  <p
-                    className="text-xs mt-0.5"
-                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 60)" }}
-                  >
-                    {t.salon}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Salon collage */}
-        <div
-          className="overflow-hidden"
-          style={{ borderRadius: "8px", boxShadow: "0 8px 32px oklch(0.52 0.09 148 / 0.12)" }}
-        >
-          <img
-            src={SALON_COLLAGE_URL}
-            alt="全国導入サロン"
-            className="w-full h-48 md:h-64 object-cover"
-          />
-          <div
-            className="px-6 py-4 text-center"
-            style={{ background: "oklch(0.97 0.02 148)" }}
+        {/* CTA */}
+        <div className="text-center">
+          <a
+            href={LINE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+              border: "1px solid oklch(0.65 0.12 80)",
+              fontFamily: "'Noto Sans JP', sans-serif",
+              boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.3)"
+            }}
           >
-            <p
-              className="text-sm font-medium"
-              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
-            >
-              全国70店舗以上のサロンが育毛の学校を導入
-            </p>
-            <p
-              className="text-xs mt-1"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 60)" }}
-            >
-              北海道から沖縄まで、全国各地のサロンオーナーが活躍中
-            </p>
-          </div>
+            <svg width="18" height="18" viewBox="0 0 48 48" fill="white">
+              <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
+            </svg>
+            あなたも体験してみませんか？
+          </a>
         </div>
       </div>
     </section>

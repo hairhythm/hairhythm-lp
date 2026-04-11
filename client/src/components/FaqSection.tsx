@@ -1,56 +1,55 @@
 /*
- * FaqSection — 育毛の学校 LP
- * Design: Natural Elegant Green — Light bg accordion FAQ
- * Content: 参考サイトの内容ベース
+ * FaqSection — 育毛専門美容室ヘアリズム LP
+ * Design: Deep Forest Green x Gold — よくある質問
  */
-
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-// 現在の月の末日を「YYYY年M月末日」形式で返す関数
-function getMonthEndLabel(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1; // 1-indexed
-  return `${year}年${month}月末日`;
-}
+const LINE_URL = "https://lin.ee/oV9r3at";
 
-const monthEnd = getMonthEndLabel();
+function getMonthEnd(): string {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  return `${month}月末`;
+}
 
 const faqs = [
   {
-    q: "受講形式はどのようになっていますか？",
-    a: "2日間（計2日間、10:00〜17:00、昼食時間込み）の集中講座です。ご希望の日時に開催し、ご家族の都合など時間の調整も可能です。ZOOM受講・動画での受講も選択できます。",
+    q: "初回体験の4,980円には何が含まれますか？",
+    a: `初回カウンセリング（通常10,780円）、潤うヘッドスパ（通常18,150円）、ホームケア頭皮用化粧水（通常4,180円）の3つがすべて含まれています。通常合計33,110円の内容が4,980円でご体験いただけます。この価格は${getMonthEnd()}までの期間限定です。`,
   },
   {
-    q: "開催場所はどこですか？",
-    a: "兵庫県です。伊丹空港、神戸空港、新神戸駅まで送迎いたします。また、全国どこへでも出張対応しております。",
+    q: "男性でも利用できますか？",
+    a: "ヘアリズムは女性専門のサロンです。40代以上の女性の薄毛・抜け毛に特化したサービスをご提供しています。",
   },
   {
-    q: "参加費用はいくらですか？",
-    a: `ノーマルプランは698,000円（税抜）です。${monthEnd}までのお申し込みに限り割引価格659,800円（税抜）で受講可能です（ZOOMのみの受講、動画での受講も可能）。マスタープランは1,219,800円税抜（上記講座＋機材）。${monthEnd}までのお申し込みに限り1,119,800円（税抜）で受講可能です。クレジットカードでの分割払いは24回まで対応可能です。`,
+    q: "どのくらいで効果が出ますか？",
+    a: "個人差がありますが、多くのお客様は2〜3ヶ月で変化を実感されています。頭皮の状態や薄毛の原因によって異なりますので、まずはカウンセリングでご自身の状態を把握することをお勧めします。",
   },
   {
-    q: "商材のみの利用は可能ですか？",
-    a: "はい、商材のみの利用（無料）も可能です。サロン登録後、【育毛の学校】よりお得に発注可能。ご登録の前に商品の使い方をZOOMで説明させていただきます。",
+    q: "予約はどうすればいいですか？",
+    a: "LINEまたはお電話（0795-44-1099）でご予約ください。完全予約制のため、ゆったりとした空間でご対応できます。",
   },
   {
-    q: "受講後のサポートはありますか？",
-    a: "講座終了後も継続サポート。電話・LINE・FBなどを通じて一生「無料」でサポートいたします。集客方法指導（チラシ・ポップなど）、カウンセリング指導（随時）、抜け毛診断の指導、取扱い商品の知識・効果効能指導など幅広くサポートします。※修得講習後の訪問指導のみ、有料となります。",
+    q: "サロンはどこにありますか？",
+    a: "兵庫県加東市下久米880-3にございます。お車でお越しの方は駐車場もご利用いただけます。詳しいアクセス方法はLINEにてお問い合わせください。",
   },
   {
-    q: "修了証・ディプロマはもらえますか？",
-    a: "はい、全カリキュラムを修了された方には終了証・ディプロマを発行いたします。サロンのウェブサイトや名刺に掲載でき、専門性のアピールに活用いただけます。",
+    q: "営業時間を教えてください。",
+    a: "火曜日〜土曜日の10:00〜19:00です。日曜日・月曜日は定休日となっております。",
   },
   {
-    q: "潤うヘッドスパ習得コースとは何ですか？",
-    a: "実際に育毛コースで行っているヘッドスパを習得していただくコースです。19,800円（税込）。潤うヘッドスパ手順動画のみ（19,800円税込）のご購入も可能です。",
+    q: "初回体験後、無理に契約を勧められますか？",
+    a: "一切ありません。初回体験はあなたの髪と頭皮の状態を知っていただくためのものです。その後のケアプランはご提案しますが、ご契約はお客様のご意思に完全にお任せしています。",
+  },
+  {
+    q: "どんな薄毛に対応していますか？",
+    a: "女性の薄毛全般に対応しています。特に40代以降のホルモンバランスの変化による薄毛、産後の抜け毛、ストレスによる抜け毛、頭皮環境の悪化による薄毛などに実績があります。",
   },
 ];
 
 function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
-
   return (
     <div
       className="border-b last:border-b-0"
@@ -59,98 +58,119 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
       <button
         className="w-full flex items-start justify-between gap-4 py-5 text-left group"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
       >
-        <div className="flex gap-3 items-start">
+        <div className="flex items-start gap-3">
           <span
-            className="text-sm font-bold flex-shrink-0 mt-0.5"
-            style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.48 0.10 148)" }}
+            className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+              color: "oklch(0.88 0.12 80)",
+              fontFamily: "'Shippori Mincho', serif"
+            }}
           >
-            Q.
+            Q
           </span>
           <span
-            className="text-sm leading-relaxed transition-colors duration-200"
-            style={{
-              fontFamily: "'Noto Sans JP', sans-serif",
-              color: open ? "oklch(0.38 0.09 148)" : "oklch(0.30 0.02 60)",
-              fontWeight: 400
-            }}
+            className="text-sm font-medium leading-relaxed"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.28 0.09 148)" }}
           >
             {q}
           </span>
         </div>
-        <span
-          className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-lg font-light transition-all duration-300 mt-0.5"
-          style={{
-            color: "oklch(0.52 0.09 148)",
-            transform: open ? "rotate(45deg)" : "rotate(0deg)"
-          }}
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          className="flex-shrink-0 mt-1 transition-transform duration-300"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         >
-          +
-        </span>
+          <path d="M3 6l5 5 5-5" stroke="oklch(0.38 0.09 148)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </button>
-      <div
-        className="overflow-hidden transition-all duration-400"
-        style={{ maxHeight: open ? "400px" : "0px", opacity: open ? 1 : 0 }}
-      >
-        <div className="flex gap-3 pb-5 pl-0">
-          <span
-            className="text-sm font-bold flex-shrink-0"
-            style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.65 0.07 148)" }}
-          >
-            A.
-          </span>
+      {open && (
+        <div className="pb-5 pl-9">
           <p
-            className="text-sm leading-[1.9]"
+            className="text-sm leading-[2]"
             style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
           >
             {a}
           </p>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export default function FaqSection() {
   const { ref: headerRef } = useScrollAnimation();
-  const { ref: listRef } = useScrollAnimation();
+  const { ref: faqRef } = useScrollAnimation();
 
   return (
-    <section id="faq" className="py-20 md:py-28" style={{ background: "oklch(0.97 0.02 148)" }}>
+    <section
+      id="faq"
+      className="py-20 md:py-28"
+      style={{ background: "oklch(0.99 0.005 90)" }}
+    >
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left header */}
-          <div ref={headerRef} className="fade-up lg:col-span-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="sage-line" />
-              <span className="section-label">FAQ</span>
-            </div>
-            <h2
-              className="text-3xl md:text-4xl font-semibold mb-4 leading-tight"
-              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
-            >
-              よくある
-              <br />
-              ご質問
-            </h2>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
-            >
-              ご不明な点がございましたら、お気軽にお問い合わせください。
-            </p>
+        {/* Header */}
+        <div ref={headerRef} className="fade-up text-center mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="sage-line" />
+            <span className="section-label">FAQ</span>
+            <div className="sage-line" />
           </div>
+          <h2
+            className="text-3xl md:text-4xl font-semibold mb-4"
+            style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
+          >
+            よくあるご質問
+          </h2>
+        </div>
 
-          {/* Right FAQ list */}
+        {/* FAQ list */}
+        <div ref={faqRef} className="fade-up max-w-2xl mx-auto mb-14">
           <div
-            ref={listRef}
-            className="fade-up lg:col-span-8 bg-white rounded-sm p-6 md:p-8"
-            style={{ border: "1px solid oklch(0.88 0.04 148)", boxShadow: "0 4px 20px oklch(0.52 0.09 148 / 0.07)" }}
+            className="p-6 md:p-8"
+            style={{
+              background: "white",
+              border: "1px solid oklch(0.88 0.04 148)",
+              borderRadius: "4px",
+              boxShadow: "0 4px 20px oklch(0.38 0.09 148 / 0.06)"
+            }}
           >
             {faqs.map((faq, i) => (
-              <FaqItem key={i} q={faq.q} a={faq.a} index={i} />
+              <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} />
             ))}
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <p
+            className="text-sm mb-5"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)" }}
+          >
+            その他のご質問はLINEからお気軽にどうぞ
+          </p>
+          <a
+            href={LINE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+              border: "1px solid oklch(0.65 0.12 80)",
+              fontFamily: "'Noto Sans JP', sans-serif",
+              boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.3)"
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 48 48" fill="white">
+              <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
+            </svg>
+            LINEで質問する
+          </a>
         </div>
       </div>
     </section>

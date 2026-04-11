@@ -1,131 +1,107 @@
 /*
- * Footer — 育毛の学校 LP
- * Design: Natural Elegant Green — Dark sage footer
+ * Footer — 育毛専門美容室ヘアリズム LP
+ * Design: Deep Forest Green x Gold
  */
+import { Link } from "wouter";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663498872949/HZXqpWWosYX3kh9VGf9bpq/ikumou-logo_193d602f.webp";
+const LINE_URL = "https://lin.ee/oV9r3at";
 
 export default function Footer() {
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <footer style={{ background: "oklch(0.28 0.06 148)" }}>
-      <div className="container py-12 md:py-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+    <footer
+      className="py-12"
+      style={{
+        background: "oklch(0.12 0.05 148)",
+        borderTop: "1px solid oklch(0.65 0.12 80 / 0.2)"
+      }}
+    >
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <img src={LOGO_URL} alt="育毛の学校" className="w-10 h-10 object-contain" />
+            <div className="flex items-center gap-2 mb-4">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)", border: "1px solid oklch(0.72 0.10 80)" }}
+              >
+                <span style={{ color: "oklch(0.88 0.10 80)", fontSize: "14px", fontFamily: "'Shippori Mincho', serif", fontWeight: 600 }}>H</span>
+              </div>
               <div>
-                <h3
-                  className="text-base font-semibold text-white"
-                  style={{ fontFamily: "'Shippori Mincho', serif" }}
-                >
-                  育毛の学校
-                </h3>
-                <p
-                  className="text-[10px] tracking-widest"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.72 0.06 148)" }}
-                >
-                  Hair Growth Academy
-                </p>
+                <p style={{ color: "white", fontFamily: "'Shippori Mincho', serif", fontSize: "14px", fontWeight: 600 }}>ヘアリズム</p>
+                <p style={{ color: "oklch(0.65 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif", fontSize: "10px" }}>育毛専門美容室</p>
               </div>
             </div>
             <p
               className="text-xs leading-relaxed"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.05 148)", fontWeight: 300 }}
+              style={{ color: "oklch(0.65 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
             >
-              サロンオーナーのための
-              <br />
-              育毛専門教育プログラム
+              40代からの薄毛・抜け毛に特化した<br />
+              育毛専門美容室。兵庫県加東市。
             </p>
+          </div>
+
+          {/* Info */}
+          <div>
+            <h4
+              className="text-xs tracking-widest mb-4"
+              style={{ color: "oklch(0.65 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              サロン情報
+            </h4>
+            <div className="flex flex-col gap-2 text-xs" style={{ color: "oklch(0.65 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              <p>兵庫県加東市下久米880-3</p>
+              <p>TEL: 0795-44-1099</p>
+              <p>火〜土 10:00〜19:00</p>
+              <p>定休日: 日・月曜日</p>
+            </div>
           </div>
 
           {/* Links */}
           <div>
-            <p
-              className="text-xs tracking-widest uppercase mb-4"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.80 0.05 148)" }}
+            <h4
+              className="text-xs tracking-widest mb-4"
+              style={{ color: "oklch(0.65 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
             >
-              Menu
-            </p>
-            <nav className="flex flex-col gap-2.5">
-              {[
-                { label: "育毛の学校とは", href: "#about" },
-                { label: "カリキュラム", href: "#curriculum" },
-                { label: "受講者の声", href: "#testimonials" },
-                { label: "よくある質問", href: "#faq" },
-                { label: "お問い合わせ", href: "#contact" },
-              ].map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-xs transition-colors duration-200 hover:text-white"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.72 0.05 148)" }}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Contact info */}
-          <div>
-            <p
-              className="text-xs tracking-widest uppercase mb-4"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.80 0.05 148)" }}
-            >
-              Contact
-            </p>
-            <div
-              className="space-y-2 text-xs"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.72 0.05 148)", fontWeight: 300 }}
-            >
-              <p>受付時間: 平日 10:00 〜 18:00</p>
-              <p>土日祝: お問い合わせフォームのみ</p>
+              リンク
+            </h4>
+            <div className="flex flex-col gap-2">
               <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, "#contact")}
-                className="inline-flex items-center gap-1.5 mt-3 text-white hover:opacity-80 transition-opacity duration-200"
+                href={LINE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs transition-opacity hover:opacity-75"
+                style={{ color: "oklch(0.65 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
               >
-                <span>お問い合わせはこちら</span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                LINEで予約・相談
               </a>
+              <Link
+                href="/privacy"
+                className="text-xs transition-opacity hover:opacity-75"
+                style={{ color: "oklch(0.65 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                プライバシーポリシー
+              </Link>
+              <Link
+                href="/legal"
+                className="text-xs transition-opacity hover:opacity-75"
+                style={{ color: "oklch(0.65 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
+              >
+                特定商取引法に基づく表記
+              </Link>
             </div>
           </div>
         </div>
 
-        <div style={{ borderTop: "1px solid oklch(0.40 0.07 148)" }} className="pt-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p
-              className="text-[10px]"
-              style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
-            >
-              © 2024 育毛の学校. All rights reserved.
-            </p>
-            <div className="flex gap-5">
-              <a
-                href="/privacy"
-                className="text-[10px] transition-colors duration-200 hover:text-white"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
-              >
-                プライバシーポリシー
-              </a>
-              <a
-                href="/legal"
-                className="text-[10px] transition-colors duration-200 hover:text-white"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.05 148)" }}
-              >
-                特定商取引法に基づく表記
-              </a>
-            </div>
-          </div>
+        <div
+          className="pt-6 text-center"
+          style={{ borderTop: "1px solid oklch(0.65 0.12 80 / 0.15)" }}
+        >
+          <p
+            className="text-xs"
+            style={{ color: "oklch(0.50 0.04 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            © {new Date().getFullYear()} 育毛専門美容室ヘアリズム. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

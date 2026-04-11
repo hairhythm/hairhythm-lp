@@ -1,10 +1,10 @@
 /*
- * FloatingLineButton — 育毛の学校 LP
+ * FloatingLineButton — 育毛専門美容室ヘアリズム LP
  * Design: Fixed bottom-right LINE CTA button with pulse animation
  */
-
 import { useState, useEffect } from "react";
-import { trackLineClick } from "@/lib/analytics";
+
+const LINE_URL = "https://lin.ee/oV9r3at";
 
 export default function FloatingLineButton() {
   const [visible, setVisible] = useState(false);
@@ -27,46 +27,42 @@ export default function FloatingLineButton() {
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      {/* Tooltip label */}
       <span
         className="text-xs font-medium px-2.5 py-1 rounded-full shadow-md whitespace-nowrap"
         style={{
           background: "white",
-          color: "oklch(0.38 0.09 148)",
+          color: "oklch(0.28 0.09 148)",
           fontFamily: "'Noto Sans JP', sans-serif",
           boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
+          border: "1px solid oklch(0.65 0.12 80 / 0.4)"
         }}
       >
-        LINEで相談する
+        LINEで予約する
       </span>
-
-      {/* LINE button */}
       <a
-        href="https://lin.ee/SxOndg6"
+        href={LINE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="LINEで相談する"
-        onClick={() => trackLineClick("floating_button")}
+        aria-label="LINEで予約する"
         className="relative flex items-center justify-center rounded-full transition-transform duration-200 hover:scale-110 active:scale-95"
         style={{
           width: "60px",
           height: "60px",
-          background: "#06C755",
-          boxShadow: "0 4px 20px rgba(6, 199, 85, 0.50)",
+          background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+          boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.5)",
+          border: "2px solid oklch(0.65 0.12 80 / 0.6)"
         }}
       >
-        {/* Pulse ring */}
         <span
           className="absolute inset-0 rounded-full animate-ping"
           style={{
-            background: "rgba(6, 199, 85, 0.30)",
+            background: "oklch(0.38 0.10 148 / 0.30)",
             animationDuration: "2s",
           }}
         />
-        {/* LINE icon */}
         <svg
-          width="32"
-          height="32"
+          width="28"
+          height="28"
           viewBox="0 0 48 48"
           fill="white"
           xmlns="http://www.w3.org/2000/svg"
