@@ -37,7 +37,16 @@ function ReservationForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.open(LINE_URL, "_blank");
+    // 入力内容をLINEメッセージに包めて送信
+    const lines = [
+      "【初回カウンセリング予約】",
+      `お名前：${name}`,
+      `お電話番号：${phone}`,
+    ];
+    if (date) lines.push(`ご希望日時：${date}`);
+    if (concern) lines.push(`現在のお悩み：${concern}`);
+    const message = encodeURIComponent(lines.join("\n"));
+    window.open(`https://line.me/R/oaMessage/oV9r3at/?${message}`, "_blank");
     setSubmitted(true);
   };
 
