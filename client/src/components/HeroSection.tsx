@@ -4,8 +4,8 @@
  */
 import { useEffect, useRef, useState } from "react";
 
-// 森の背景画像
-const HERO_IMAGE_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/pIjdufqETvfXRAmu.png";
+// 背景画像
+const HERO_IMAGE_URL = "/hero-top.png";
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
 
