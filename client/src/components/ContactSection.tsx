@@ -46,7 +46,8 @@ function ReservationForm() {
     if (date) lines.push(`ご希望日時：${date}`);
     if (concern) lines.push(`現在のお悩み：${concern}`);
     const message = encodeURIComponent(lines.join("\n"));
-    window.open(`https://line.me/R/oaMessage/oV9r3at/?${message}`, "_blank");
+    // LINE公式アカウントID: hrc7378e（%40hrc7378eは@hrc7378eのエンコード）
+    window.open(`https://line.me/R/oaMessage/%40hrc7378e/?${message}`, "_blank");
     setSubmitted(true);
   };
 
