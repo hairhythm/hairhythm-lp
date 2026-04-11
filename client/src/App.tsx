@@ -21,6 +21,11 @@ function Router() {
 }
 
 function App() {
+  // SEO: document.titleをReact側でも設定（SEOパネル対応）
+  if (typeof document !== "undefined") {
+    document.title = "育毛の学校｜サロンオーナーのための育毛メニュー導入・売上アップ専門スクール";
+  }
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
