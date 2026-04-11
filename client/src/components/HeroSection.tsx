@@ -4,8 +4,9 @@
  */
 import { useEffect, useRef, useState } from "react";
 
-// 背景画像
-const HERO_IMAGE_URL = "/hero-top.png";
+// 背景画像（GitHub Pagesのbaseパスに対応）
+const BASE = import.meta.env.BASE_URL || '/';
+const HERO_IMAGE_URL = `${BASE}hero-top.png`;
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
 
