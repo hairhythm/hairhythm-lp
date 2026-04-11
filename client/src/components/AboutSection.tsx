@@ -1,268 +1,414 @@
 /*
- * AboutSection — 育毛専門美容室ヘアリズム LP
- * Design: Deep Forest Green x Gold — サロン紹介・院長プロフィール
+ * AboutSection — LP最終確定版
+ * ① 見えない不安チェックリスト
+ * ② 3ヶ月後のビジョン
+ * ③ オーナーストーリー（橋本光弘）
+ * ④ 競合比較（大手 vs クリニック vs 自己流 vs ヘアリズム）
+ * ⑤ 3層育毛メソッド
  */
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const PROFILE_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/iIMxzTEWmJmVKXYP.png";
 const LINE_URL = "https://lin.ee/oV9r3at";
+const OWNER_IMAGE = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663498872949/VeOOkMMDtVCoALXV.jpg";
 
-const concerns = [
-  "最近、髪のボリュームが減ってきた気がする",
-  "分け目が目立つようになってきた",
-  "抜け毛が多くて不安",
-  "頭皮がかゆい・べたつく",
-  "市販の育毛剤を試したが効果を感じない",
-  "40代になってから急に髪が細くなった",
+const worries = [
+  "シャンプーのたび、指に絡まる髪を見て胸がざわつく",
+  "排水溝に溜まった髪を、見なかったことにして捨てている",
+  "視線が気になって、エレベーターや電車で座るのが怖い",
+  "隠すための髪型ばかり探して、本当はしたい髪型ができない",
+  "美容師さんの「少し透けますね」という言葉に傷ついたことがある",
+  "高級な育毛剤を試したけれど、効果がわからずやめてしまった",
+  "「もう歳だし…」と自分に言い聞かせているけれど、本当は諦めたくない",
 ];
 
-const features = [
+const visionItems = [
+  "朝、鏡の前でセットが決まり、「よし！」と思える自分",
+  "風が吹いても、手で押さえずに堂々と歩ける清々しさ",
+  "「あれ？最近なんか雰囲気変わった？」「若々しくなったね」と言われる瞬間",
+  "「自信」という、かけがえのない宝物を取り戻す物語",
+];
+
+const competitors = [
   {
-    icon: "🔬",
-    title: "マイクロスコープ頭皮診断",
-    desc: "高精度のマイクロスコープで頭皮と毛根の状態を詳しく診断。あなたの薄毛の原因を正確に把握します。",
+    label: "❌ 大手育毛サロン",
+    isGood: false,
+    points: [
+      "莫大な広告費のため料金が非常に高額（数百万円単位も）",
+      "「絶対に生えます」といった強引な営業への不安",
+    ],
   },
   {
-    icon: "💆",
-    title: "潤うヘッドスパ",
-    desc: "頭皮の血流を促進し、毛根に栄養を届ける専門的なヘッドスパ。施術後は頭皮がすっきり、髪にハリが出ます。",
+    label: "❌ 医療機関（クリニック）",
+    isGood: false,
+    points: [
+      "飲み薬が中心で、副作用（多毛症や肝機能負担）のリスクがある",
+      "薬をやめると元に戻るため、一生飲み続ける必要がある",
+      "頭皮のケアまではしてくれない",
+    ],
   },
   {
-    icon: "🌿",
-    title: "ホームケア指導",
-    desc: "サロンケアだけでなく、ご自宅でのケア方法も丁寧にご指導。毎日のケアで効果を持続させます。",
+    label: "❌ 自己流ケア（市販品）",
+    isGood: false,
+    points: [
+      "自分の薄毛の原因に合っていないものを使い続けてしまう",
+      "効果が出る前に挫折してしまう",
+    ],
   },
   {
-    icon: "👩",
-    title: "女性専門・完全予約制",
-    desc: "女性の薄毛に特化した専門サロン。完全予約制でプライバシーを守りながら、ゆったりとした空間でケアを受けられます。",
+    label: "⭕ ヘアリズムが選ばれる理由",
+    isGood: true,
+    points: [
+      "副作用ゼロ。薬ではなく自身の「育つ力」を引き出すアプローチ",
+      "再生医療分野の成分（ヒト幹細胞培養上清液）を適正価格で提供",
+      "最短3ヶ月。終わりが見える明確なプログラム",
+    ],
+  },
+];
+
+const methods = [
+  {
+    num: "第1層",
+    title: "土壌改良（ホームケア）",
+    sub: "まずは、髪が育つ「土」を作る",
+    icon: "🌱",
+    desc: "どれだけ良い栄養を入れても、頭皮（土壌）が汚れていては意味がありません。「フルボ酸」配合の特殊シャンプーと独自の頭皮用化粧水で、酸化した皮脂を取り除き、潤いで満たされた頭皮を作ります。初回に「抜け毛が劇的に減るシャンプー法」を実演指導します。",
+  },
+  {
+    num: "第2層",
+    title: "深層浄化（サロンケア）",
+    sub: "毛穴の奥の大掃除",
+    icon: "💧",
+    desc: "普段のシャンプーでは落ちない毛穴の奥の汚れを、育毛専用の循環器と高濃度フルボ酸温水で洗い流します。血流を促す90分の極上ヘッドスパは、施術中に寝落ちしなかった人はいないほどの心地よさ。ストレスも、薄毛の大敵です。",
+  },
+  {
+    num: "第3層",
+    title: "細胞活性（スペシャル導入）",
+    sub: "眠っている力を呼び覚ます",
+    icon: "✨",
+    desc: "キレイになった毛穴の奥へ、「ヒト幹細胞培養上清液」をダイレクトに導入。成長因子（サイトカイン）が、休止している毛母細胞に「起きろ！」と指令を出します。血流スコープを使えば、毛細血管が元気に活動し始める様子を目で見て確認できます。",
   },
 ];
 
 export default function AboutSection() {
-  const { ref: headerRef } = useScrollAnimation();
-  const { ref: concernsRef } = useScrollAnimation();
-  const { ref: profileRef } = useScrollAnimation();
-  const { ref: featuresRef } = useScrollAnimation();
+  const { ref: worriesRef } = useScrollAnimation();
+  const { ref: visionRef } = useScrollAnimation();
+  const { ref: ownerRef } = useScrollAnimation();
+  const { ref: compRef } = useScrollAnimation();
+  const { ref: methodRef } = useScrollAnimation();
 
   return (
-    <section
-      id="about"
-      className="py-20 md:py-28 overflow-hidden"
-      style={{ background: "oklch(0.97 0.02 148)" }}
-    >
-      <div className="container">
-        {/* Section header */}
-        <div ref={headerRef} className="fade-up text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="sage-line" />
-            <span className="section-label">About</span>
-            <div className="sage-line" />
-          </div>
-          <h2
-            className="text-3xl md:text-4xl font-semibold mb-4"
-            style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
-          >
-            こんなお悩みはありませんか？
-          </h2>
-          <p
-            className="text-sm leading-relaxed max-w-xl mx-auto"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
-          >
-            40代以降、女性ホルモンの変化とともに髪のお悩みが増えてきます。<br />
-            ヘアリズムでは、そんなあなたの悩みに真剣に向き合います。
-          </p>
-        </div>
+    <section id="about">
 
-        {/* Concerns list */}
-        <div ref={concernsRef} className="fade-up mb-16">
-          <div
-            className="max-w-2xl mx-auto p-8"
-            style={{
-              background: "white",
-              border: "1px solid oklch(0.88 0.04 148)",
-              borderRadius: "4px",
-              boxShadow: "0 4px 24px oklch(0.38 0.09 148 / 0.08)"
-            }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {concerns.map((concern) => (
-                <div key={concern} className="flex items-start gap-3">
-                  <div
-                    className="mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center"
-                    style={{ background: "oklch(0.38 0.09 148 / 0.12)", border: "1px solid oklch(0.38 0.09 148 / 0.3)" }}
-                  >
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path d="M2 5l2.5 2.5 3.5-4" stroke="oklch(0.38 0.09 148)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+      {/* ① 見えない不安チェックリスト */}
+      <div className="py-20 px-4" style={{ background: "oklch(0.97 0.01 148)" }}>
+        <div className="container max-w-3xl mx-auto">
+          <div ref={worriesRef} className="fade-up">
+            <div className="text-center mb-10">
+              <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                ── ABOUT ──
+              </p>
+              <h2
+                className="text-2xl md:text-3xl font-semibold mb-4"
+                style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
+              >
+                あなたは今、こんな「見えない不安」を<br className="hidden sm:block" />抱えていませんか？
+              </h2>
+            </div>
+
+            <div
+              className="p-6 md:p-8 rounded-lg mb-8"
+              style={{ background: "#fff", border: "1px solid oklch(0.88 0.03 148)", boxShadow: "0 2px 20px oklch(0.88 0.03 148 / 0.5)" }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {worries.map((w) => (
+                  <div key={w} className="flex items-start gap-3">
+                    <div
+                      className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ background: "oklch(0.38 0.10 148 / 0.12)", border: "1px solid oklch(0.38 0.10 148 / 0.4)" }}
+                    >
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2.5 2.5 3.5-4" stroke="oklch(0.38 0.10 148)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.35 0.02 60)", fontWeight: 400 }}>
+                      {w}
+                    </p>
                   </div>
-                  <span
-                    className="text-sm leading-relaxed"
-                    style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.35 0.03 60)" }}
-                  >
-                    {concern}
-                  </span>
+                ))}
+              </div>
+              <div
+                className="mt-6 pt-5 text-center"
+                style={{ borderTop: "1px solid oklch(0.88 0.03 148)" }}
+              >
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.38 0.10 148)", fontWeight: 500 }}>
+                  そのお気持ち、痛いほどよくわかります。
+                </p>
+                <p className="text-sm leading-relaxed mt-2" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.02 60)", fontWeight: 300 }}>
+                  なぜなら、当サロン『ヘアリズム』を訪れるお客様の多くが、<br />
+                  最初は深く帽子を被り、伏し目がちに同じ悩みを打ち明けられるからです。
+                </p>
+              </div>
+            </div>
+
+            {/* 真実のメッセージ */}
+            <div
+              className="p-6 rounded-lg text-center"
+              style={{
+                background: "linear-gradient(135deg, oklch(0.22 0.08 148) 0%, oklch(0.28 0.09 148) 100%)",
+                border: "1px solid oklch(0.65 0.12 80 / 0.4)"
+              }}
+            >
+              <p className="text-base md:text-lg font-medium mb-3 text-white" style={{ fontFamily: "'Shippori Mincho', serif" }}>
+                髪が痩せていくのは、単なる老化現象ではありません。
+              </p>
+              <p className="text-sm leading-relaxed mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.85 0.03 148)", fontWeight: 300 }}>
+                頭皮が「栄養を受け取れない状態」になっているだけなのです。<br />
+                畑に例えるなら、土がカチカチに固まり、肥料を撒いても浸透しない状態。<br />
+                <strong style={{ color: "oklch(0.88 0.12 80)" }}>逆に言えば、土壌さえ整えれば、髪は何歳からでも応えてくれます。</strong>
+              </p>
+              <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.78 0.08 80)" }}>
+                実際に、当サロンでは80代のお客様でも、わずか3ヶ月で髪のハリと笑顔を取り戻されています。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ② 3ヶ月後のビジョン */}
+      <div className="py-16 px-4" style={{ background: "oklch(0.14 0.06 148)" }}>
+        <div className="container max-w-3xl mx-auto">
+          <div ref={visionRef} className="fade-up text-center">
+            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+              ── VISION ──
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-semibold mb-6 text-white"
+              style={{ fontFamily: "'Shippori Mincho', serif" }}
+            >
+              想像してみてください。<br />
+              <span style={{ color: "oklch(0.88 0.14 80)" }}>3ヶ月後のあなたの姿</span>を。
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-8">
+              {visionItems.map((item, i) => (
+                <div
+                  key={i}
+                  className="p-4 rounded-lg flex items-start gap-3"
+                  style={{ background: "oklch(0.20 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
+                >
+                  <span style={{ color: "oklch(0.88 0.14 80)", fontSize: "1.2rem" }}>✦</span>
+                  <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.88 0.03 148)", fontWeight: 300 }}>
+                    {item}
+                  </p>
                 </div>
               ))}
             </div>
-            <div
-              className="mt-6 pt-5 text-center"
-              style={{ borderTop: "1px solid oklch(0.90 0.03 148)" }}
+            <p
+              className="text-base md:text-lg font-medium"
+              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.88 0.14 80)" }}
             >
-              <p
-                className="text-sm font-medium"
-                style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.38 0.09 148)" }}
-              >
-                ひとつでも当てはまる方は、ぜひヘアリズムにご相談ください。
-              </p>
-            </div>
+              ただ髪が増えるだけではありません。<br />
+              「自信」という、かけがえのない宝物を取り戻す物語。<br />
+              それは決して夢物語ではなく、<br />
+              当サロンのお客様が体験されている「現実」です。
+            </p>
           </div>
         </div>
+      </div>
 
-        {/* Profile section */}
-        <div ref={profileRef} className="fade-up mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* Profile image */}
-            <div className="relative">
-              <div
-                className="relative overflow-hidden"
-                style={{
-                  borderRadius: "4px",
-                  boxShadow: "0 16px 48px oklch(0.28 0.09 148 / 0.20)"
-                }}
-              >
-                <img
-                  src={PROFILE_URL}
-                  alt="ヘアリズム オーナー 橋本"
-                  className="w-full max-w-sm mx-auto block object-cover"
-                  style={{ aspectRatio: "3/4", objectPosition: "top" }}
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to bottom, transparent 70%, oklch(0.22 0.06 148 / 0.5) 100%)" }}
-                />
-              </div>
-              {/* Gold accent border */}
-              <div
-                className="absolute -bottom-3 -right-3 w-full h-full -z-10"
-                style={{
-                  border: "2px solid oklch(0.72 0.12 80 / 0.4)",
-                  borderRadius: "4px",
-                  maxWidth: "384px",
-                  marginLeft: "auto",
-                  marginRight: "auto"
-                }}
-              />
-            </div>
-
-            {/* Profile text */}
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-3">
-                <div className="sage-line" />
-                <span className="section-label">Owner Profile</span>
-              </div>
-              <h3
+      {/* ③ オーナーストーリー */}
+      <div className="py-20 px-4" style={{ background: "oklch(0.97 0.01 148)" }}>
+        <div className="container max-w-4xl mx-auto">
+          <div ref={ownerRef} className="fade-up">
+            <div className="text-center mb-10">
+              <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                ── OWNER STORY ──
+              </p>
+              <h2
                 className="text-2xl md:text-3xl font-semibold"
                 style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
               >
-                育毛専門美容室<br />
-                <span style={{ color: "oklch(0.38 0.09 148)" }}>ヘアリズム</span>
-              </h3>
-              <p
-                className="text-sm leading-[2] max-w-md"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)", fontWeight: 300 }}
-              >
-                兵庫県加東市で育毛専門美容室を営んでいます。<br /><br />
-                「髪が変わると、人は10歳若く見える」という信念のもと、
-                40代以上の女性の薄毛・抜け毛のお悩みに真剣に向き合ってきました。<br /><br />
-                マイクロスコープによる頭皮診断から、育毛ヘッドスパ、ホームケア指導まで、
-                あなたの髪と頭皮の状態に合わせたオーダーメイドのケアをご提供します。<br /><br />
-                まずはカウンセリングで、あなたの髪と頭皮の本当の状態を知ることから始めましょう。
-              </p>
-              <div
-                className="flex flex-col gap-2 p-4"
-                style={{
-                  background: "oklch(0.95 0.03 148)",
-                  borderRadius: "2px",
-                  borderLeft: "3px solid oklch(0.72 0.12 80)"
-                }}
-              >
-                <p className="text-xs font-medium" style={{ color: "oklch(0.38 0.09 148)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-                  サロン情報
+                なぜ、一介の美容師である私が、<br />
+                これほどまでに「育毛」に執着するのか。
+              </h2>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="flex-shrink-0 w-full md:w-64">
+                <img
+                  src={OWNER_IMAGE}
+                  alt="オーナー 橋本光弘"
+                  className="w-full md:w-64 h-64 md:h-80 object-cover rounded-lg"
+                  style={{ border: "2px solid oklch(0.65 0.12 80 / 0.4)" }}
+                />
+                <div
+                  className="mt-3 p-3 rounded text-center"
+                  style={{ background: "#fff", border: "1px solid oklch(0.88 0.03 148)" }}
+                >
+                  <p className="text-xs font-semibold" style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.28 0.09 148)" }}>
+                    育毛専門美容室ヘアリズム
+                  </p>
+                  <p className="text-sm font-bold mt-1" style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}>
+                    オーナー　橋本 光弘
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex-1 space-y-4">
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.02 60)", fontWeight: 300 }}>
+                  私は元々、デザインを作るのが大好きな普通の美容師でした。お客様を可愛く、かっこよくする。それが私の天職だと思っていました。
                 </p>
-                <div className="grid grid-cols-2 gap-1 text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.03 60)" }}>
-                  <span>住所</span><span>兵庫県加東市下久米880-3</span>
-                  <span>電話</span><span>0795-44-1099</span>
-                  <span>営業時間</span><span>火〜土 10:00〜19:00</span>
-                  <span>定休日</span><span>日・月曜日</span>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.02 60)", fontWeight: 300 }}>
+                  しかし、ある時、無力感に打ちのめされました。長年通ってくださっている常連様たちの髪が、年齢とともに細くなり、元気がなくなっていく。「最近、ここが薄くなってきて…」「どう隠せばいいかしら？」そんな切実な相談に対し、私は「パーマでふんわりさせましょう」「分け目を変えてごまかしましょう」そんな「一時しのぎ」の提案しかできなかったのです。
+                </p>
+                <div
+                  className="p-4 rounded-lg"
+                  style={{ background: "oklch(0.38 0.10 148 / 0.08)", border: "1px solid oklch(0.38 0.10 148 / 0.2)", borderLeft: "3px solid oklch(0.65 0.12 80)" }}
+                >
+                  <p className="text-sm leading-relaxed italic" style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.28 0.09 148)" }}>
+                    「私は髪のプロとして、本当にお客様を救えているのか？」<br />
+                    その悔しさが、私の原動力になりました。
+                  </p>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.02 60)", fontWeight: 300 }}>
+                  そこから私は、徹底的に育毛を学び直しました。毛髪科学、頭皮のメカニズム、栄養学、そして再生医療分野の最新技術。師匠につき、来る日も来る日も研究を重ねました。そしてたどり着いたのが、「医療レベルの科学的アプローチ」と「美容室の癒やし」を融合させた、独自のメソッドでした。
+                </p>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.02 60)", fontWeight: 300 }}>
+                  今では、この技術を全国の美容師に伝える「育毛の学校」を主宰し、<strong style={{ color: "oklch(0.28 0.09 148)" }}>200名以上の同志を輩出</strong>するまでになりました。でも、私の想いは変わりません。目の前のあなたの悩みを、解決したい。ただそれだけです。
+                </p>
+                <div
+                  className="p-4 rounded-lg"
+                  style={{ background: "linear-gradient(135deg, oklch(0.22 0.08 148) 0%, oklch(0.28 0.09 148) 100%)", border: "1px solid oklch(0.65 0.12 80 / 0.4)" }}
+                >
+                  <p className="text-sm font-medium text-white" style={{ fontFamily: "'Shippori Mincho', serif" }}>
+                    「隠すのはやめましょう。一緒に、髪を育てましょう」
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Features */}
-        <div ref={featuresRef} className="fade-up">
-          <div className="text-center mb-10">
-            <h3
-              className="text-2xl md:text-3xl font-semibold"
-              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
-            >
-              ヘアリズムの4つの特徴
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="card-natural p-6"
+      {/* ④ 競合比較 */}
+      <div className="py-20 px-4" style={{ background: "oklch(0.93 0.02 148)" }}>
+        <div className="container max-w-4xl mx-auto">
+          <div ref={compRef} className="fade-up">
+            <div className="text-center mb-10">
+              <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                ── WHY HAIRHYTHM ──
+              </p>
+              <h2
+                className="text-2xl md:text-3xl font-semibold mb-3"
+                style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
               >
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-xl"
-                    style={{ background: "oklch(0.38 0.09 148 / 0.10)", border: "1px solid oklch(0.72 0.12 80 / 0.4)" }}
-                  >
-                    {f.icon}
+                なぜ、大手サロンやクリニックではなく、<br />
+                地方の「小さな美容室」が選ばれるのか？
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {competitors.map((c) => (
+                <div
+                  key={c.label}
+                  className="p-5 rounded-lg"
+                  style={{
+                    background: c.isGood ? "oklch(0.38 0.10 148 / 0.10)" : "oklch(0.55 0.15 25 / 0.08)",
+                    border: c.isGood ? "1px solid oklch(0.65 0.12 80 / 0.5)" : "1px solid oklch(0.55 0.15 25 / 0.3)"
+                  }}
+                >
+                  <p className="text-sm font-bold mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: c.isGood ? "oklch(0.38 0.10 148)" : "oklch(0.55 0.15 25)" }}>
+                    {c.label}
+                  </p>
+                  <ul className="space-y-2">
+                    {c.points.map((pt) => (
+                      <li key={pt} className="flex items-start gap-2 text-xs leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.02 60)" }}>
+                        <span className="mt-0.5 flex-shrink-0">・</span>
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ⑤ 3層育毛メソッド */}
+      <div className="py-20 px-4" style={{ background: "oklch(0.14 0.06 148)" }}>
+        <div className="container max-w-4xl mx-auto">
+          <div ref={methodRef} className="fade-up">
+            <div className="text-center mb-10">
+              <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                ── METHOD ──
+              </p>
+              <h2
+                className="text-2xl md:text-3xl font-semibold mb-3 text-white"
+                style={{ fontFamily: "'Shippori Mincho', serif" }}
+              >
+                これが、96.8％が納得した<br />
+                <span style={{ color: "oklch(0.88 0.14 80)" }}>ヘアリズム独自【3層育毛メソッド】</span>
+              </h2>
+              <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)", fontWeight: 300 }}>
+                なぜ、結果が出るのか。それは「耕し」「種を蒔き」「育てる」すべてを行うからです。
+              </p>
+            </div>
+
+            <div className="space-y-5">
+              {methods.map((m) => (
+                <div
+                  key={m.num}
+                  className="p-6 rounded-lg flex gap-5"
+                  style={{
+                    background: "oklch(0.20 0.08 148 / 0.8)",
+                    border: "1px solid oklch(0.65 0.12 80 / 0.3)"
+                  }}
+                >
+                  <div className="flex-shrink-0 text-center">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center text-xl mb-1"
+                      style={{ background: "oklch(0.65 0.12 80 / 0.2)", border: "1px solid oklch(0.65 0.12 80 / 0.5)" }}
+                    >
+                      {m.icon}
+                    </div>
+                    <p className="text-[10px] tracking-wider" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                      {m.num}
+                    </p>
                   </div>
-                  <div>
-                    <h4
-                      className="text-base font-semibold mb-2"
-                      style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.28 0.09 148)" }}
-                    >
-                      {f.title}
-                    </h4>
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
-                    >
-                      {f.desc}
+                  <div className="flex-1">
+                    <h3 className="text-base font-semibold mb-1 text-white" style={{ fontFamily: "'Shippori Mincho', serif" }}>
+                      {m.title}
+                    </h3>
+                    <p className="text-xs mb-2" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)", fontStyle: "italic" }}>
+                      ～{m.sub}～
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+                      {m.desc}
                     </p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
 
-        {/* CTA */}
-        <div className="text-center mt-14">
-          <a
-            href={LINE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-            style={{
-              background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
-              border: "1px solid oklch(0.65 0.12 80)",
-              fontFamily: "'Noto Sans JP', sans-serif",
-              boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.3)"
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 48 48" fill="white">
-              <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
-            </svg>
-            LINEで無料相談する
-          </a>
+            <div className="text-center mt-10">
+              <a
+                href={LINE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                style={{
+                  background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+                  border: "1px solid oklch(0.65 0.12 80)",
+                  fontFamily: "'Noto Sans JP', sans-serif",
+                  boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.5)"
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 48 48" fill="white">
+                  <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
+                </svg>
+                LINEで無料相談する
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,100 +1,89 @@
 /*
- * FaqSection — 育毛専門美容室ヘアリズム LP
- * Design: Deep Forest Green x Gold — よくある質問
+ * FaqSection — LP最終確定版 FAQ
  */
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const LINE_URL = "https://lin.ee/oV9r3at";
 
-function getMonthEnd(): string {
-  const now = new Date();
-  const month = now.getMonth() + 1;
-  return `${month}月末`;
-}
-
 const faqs = [
   {
-    q: "初回体験の4,980円には何が含まれますか？",
-    a: `初回カウンセリング（通常10,780円）、潤うヘッドスパ（通常18,150円）、ホームケア頭皮用化粧水（通常4,180円）の3つがすべて含まれています。通常合計33,110円の内容が4,980円でご体験いただけます。この価格は${getMonthEnd()}までの期間限定です。`,
+    q: "本当に4,980円以外にお金はかかりませんか？",
+    a: "はい、一切かかりません。当日の診断料、施術料、プレゼントする化粧水代、すべて含まれております。高額なコースを無理やり契約させるようなことも絶対にありませんので、安心してお財布一つでお越しください。",
+  },
+  {
+    q: "他のお客さんに会いたくないのですが…",
+    a: "完全個室・完全予約制ですのでご安心ください。他のお客様と顔を合わせることがないよう、予約時間を調整しております。また、店舗看板や駐車場も配慮しており、外からは「美容室に行っている」ようにしか見えません。",
   },
   {
     q: "男性でも利用できますか？",
-    a: "ヘアリズムは女性専門のサロンです。40代以上の女性の薄毛・抜け毛に特化したサービスをご提供しています。",
+    a: "もちろん大歓迎です。現在は女性のお客様が多いですが、30代〜60代の男性のお客様も多数通われており、素晴らしい結果を出されています。「美容室は入りにくい」という男性も、個室ですので気兼ねなくお越しください。",
   },
   {
-    q: "どのくらいで効果が出ますか？",
-    a: "個人差がありますが、多くのお客様は2〜3ヶ月で変化を実感されています。頭皮の状態や薄毛の原因によって異なりますので、まずはカウンセリングでご自身の状態を把握することをお勧めします。",
+    q: "どのくらいで変化を実感できますか？",
+    a: "早い方で1ヶ月、平均して3ヶ月で変化を感じられます。まずは「抜け毛が減る」「髪にコシが出る」ことから始まり、3ヶ月目あたりで「ボリューム感」の変化に気づかれる方が多いです。マイクロスコープで見れば、頭皮の変化はその場ですぐに分かります。",
   },
   {
-    q: "予約はどうすればいいですか？",
-    a: "LINEまたはお電話（0795-44-1099）でご予約ください。完全予約制のため、ゆったりとした空間でご対応できます。",
+    q: "かつらや植毛とは何が違うのですか？",
+    a: "「自分の髪」を生やす点が最大の違いです。かつらや増毛は即効性がありますが、メンテナンス費用がかかり続け、根本的な解決にはなりません。ヘアリズムのメソッドは、あなたの眠っている細胞を呼び覚まし、自分の髪を取り戻すことを目的としています。",
   },
   {
-    q: "サロンはどこにありますか？",
-    a: "兵庫県加東市下久米880-3にございます。お車でお越しの方は駐車場もご利用いただけます。詳しいアクセス方法はLINEにてお問い合わせください。",
+    q: "敏感肌なのですが、施術を受けられますか？",
+    a: "はい、大丈夫です。当サロンで使用する薬剤は、薬ではなく「フルボ酸」や「ヒト幹細胞培養上清液」など、体に優しい成分が中心です。副作用のリスクもありません。カウンセリング時に肌の状態をしっかり確認してから施術を行います。",
   },
   {
-    q: "営業時間を教えてください。",
-    a: "火曜日〜土曜日の10:00〜19:00です。日曜日・月曜日は定休日となっております。",
+    q: "駐車場はありますか？",
+    a: "はい、店舗前に無料駐車場を完備しています。お車でも安心してお越しいただけます。（加東市外、小野市、三木市、西脇市からも多数ご来店いただいております）",
   },
   {
-    q: "初回体験後、無理に契約を勧められますか？",
-    a: "一切ありません。初回体験はあなたの髪と頭皮の状態を知っていただくためのものです。その後のケアプランはご提案しますが、ご契約はお客様のご意思に完全にお任せしています。",
-  },
-  {
-    q: "どんな薄毛に対応していますか？",
-    a: "女性の薄毛全般に対応しています。特に40代以降のホルモンバランスの変化による薄毛、産後の抜け毛、ストレスによる抜け毛、頭皮環境の悪化による薄毛などに実績があります。",
+    q: "本当に生えるの？と不安なのですが…",
+    a: "まずは、無料のLINE相談で、今の悩みをつぶやいてみてください。オーナーの橋本が直接、お返事させていただきます。「本当に生えるの？」と不安なままでも構いません。",
   },
 ];
 
-function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
+function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div
-      className="border-b last:border-b-0"
-      style={{ borderColor: "oklch(0.88 0.04 148)" }}
+      className="rounded-lg overflow-hidden"
+      style={{ background: "#fff", border: "1px solid oklch(0.88 0.03 148)" }}
     >
       <button
-        className="w-full flex items-start justify-between gap-4 py-5 text-left group"
         onClick={() => setOpen(!open)}
-        aria-expanded={open}
+        className="w-full flex items-start gap-3 p-5 text-left transition-colors hover:bg-gray-50"
       >
-        <div className="flex items-start gap-3">
-          <span
-            className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
-            style={{
-              background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
-              color: "oklch(0.88 0.12 80)",
-              fontFamily: "'Shippori Mincho', serif"
-            }}
-          >
-            Q
-          </span>
-          <span
-            className="text-sm font-medium leading-relaxed"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.28 0.09 148)" }}
-          >
-            {q}
-          </span>
-        </div>
+        <span
+          className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
+          style={{ background: "oklch(0.38 0.10 148 / 0.12)", color: "oklch(0.28 0.09 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
+        >
+          Q
+        </span>
+        <span className="flex-1 text-sm font-medium" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.22 0.02 60)" }}>
+          {q}
+        </span>
         <svg
           width="16"
           height="16"
           viewBox="0 0 16 16"
           fill="none"
-          className="flex-shrink-0 mt-1 transition-transform duration-300"
+          className="flex-shrink-0 mt-0.5 transition-transform"
           style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         >
-          <path d="M3 6l5 5 5-5" stroke="oklch(0.38 0.09 148)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 6l4 4 4-4" stroke="oklch(0.65 0.12 80)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
       {open && (
-        <div className="pb-5 pl-9">
-          <p
-            className="text-sm leading-[2]"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)", fontWeight: 300 }}
+        <div
+          className="px-5 pb-5 flex gap-3"
+          style={{ borderTop: "1px solid oklch(0.92 0.02 148)" }}
+        >
+          <span
+            className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-3"
+            style={{ background: "oklch(0.65 0.12 80 / 0.2)", color: "oklch(0.65 0.12 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
           >
+            A
+          </span>
+          <p className="text-sm leading-relaxed pt-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.45 0.02 60)", fontWeight: 300 }}>
             {a}
           </p>
         </div>
@@ -104,73 +93,57 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
 }
 
 export default function FaqSection() {
-  const { ref: headerRef } = useScrollAnimation();
-  const { ref: faqRef } = useScrollAnimation();
+  const { ref } = useScrollAnimation();
 
   return (
-    <section
-      id="faq"
-      className="py-20 md:py-28"
-      style={{ background: "oklch(0.99 0.005 90)" }}
-    >
-      <div className="container">
-        {/* Header */}
-        <div ref={headerRef} className="fade-up text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="sage-line" />
-            <span className="section-label">FAQ</span>
-            <div className="sage-line" />
+    <section id="faq" className="py-20 px-4" style={{ background: "oklch(0.97 0.01 148)" }}>
+      <div className="container max-w-3xl mx-auto">
+        <div ref={ref} className="fade-up">
+          <div className="text-center mb-10">
+            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+              ── FAQ ──
+            </p>
+            <h2
+              className="text-2xl md:text-3xl font-semibold mb-3"
+              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
+            >
+              迷われているあなたへ<br />
+              よくいただくご質問にお答えします
+            </h2>
           </div>
-          <h2
-            className="text-3xl md:text-4xl font-semibold mb-4"
-            style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.22 0.02 60)" }}
-          >
-            よくあるご質問
-          </h2>
-        </div>
-
-        {/* FAQ list */}
-        <div ref={faqRef} className="fade-up max-w-2xl mx-auto mb-14">
-          <div
-            className="p-6 md:p-8"
-            style={{
-              background: "white",
-              border: "1px solid oklch(0.88 0.04 148)",
-              borderRadius: "4px",
-              boxShadow: "0 4px 20px oklch(0.38 0.09 148 / 0.06)"
-            }}
-          >
-            {faqs.map((faq, i) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} />
+          <div className="space-y-3 mb-10">
+            {faqs.map((f) => (
+              <FaqItem key={f.q} q={f.q} a={f.a} />
             ))}
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center">
-          <p
-            className="text-sm mb-5"
-            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.48 0.03 60)" }}
+          <div
+            className="p-6 rounded-lg text-center"
+            style={{ background: "linear-gradient(135deg, oklch(0.22 0.08 148) 0%, oklch(0.28 0.09 148) 100%)", border: "1px solid oklch(0.65 0.12 80 / 0.4)" }}
           >
-            その他のご質問はLINEからお気軽にどうぞ
-          </p>
-          <a
-            href={LINE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-            style={{
-              background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
-              border: "1px solid oklch(0.65 0.12 80)",
-              fontFamily: "'Noto Sans JP', sans-serif",
-              boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.3)"
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 48 48" fill="white">
-              <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
-            </svg>
-            LINEで質問する
-          </a>
+            <p className="text-base font-medium text-white mb-2" style={{ fontFamily: "'Shippori Mincho', serif" }}>
+              「本当に生えるの？」と不安なままでも構いません。
+            </p>
+            <p className="text-sm mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+              まずは、無料のLINE相談で、今の悩みをつぶやいてみてください。<br />
+              私が直接、お返事させていただきます。
+            </p>
+            <a
+              href={LINE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3 text-sm font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90"
+              style={{
+                background: "oklch(0.38 0.10 148 / 0.8)",
+                border: "1px solid oklch(0.65 0.12 80)",
+                fontFamily: "'Noto Sans JP', sans-serif"
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 48 48" fill="white">
+                <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
+              </svg>
+              LINE相談ボタン
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -1,151 +1,129 @@
 /*
- * ContactSection — 育毛専門美容室ヘアリズム LP
- * Design: Deep Forest Green x Gold — お問い合わせ・予約
+ * ContactSection — LP最終確定版
+ * クロージングCTA + サロン情報
  */
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const LINE_URL = "https://lin.ee/oV9r3at";
-
-function getMonthEnd(): string {
-  const now = new Date();
-  const month = now.getMonth() + 1;
-  return `${month}月末`;
-}
+const TEL = "0795-44-1099";
 
 export default function ContactSection() {
   const { ref } = useScrollAnimation();
 
   return (
-    <section
-      id="contact"
-      className="py-20 md:py-28"
-      style={{
-        background: "linear-gradient(135deg, oklch(0.18 0.08 148) 0%, oklch(0.24 0.09 148) 100%)"
-      }}
-    >
-      <div className="container">
-        <div ref={ref} className="fade-up max-w-2xl mx-auto text-center">
-          {/* Label */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-px" style={{ background: "oklch(0.65 0.12 80 / 0.6)" }} />
-            <span
-              className="text-[11px] tracking-[0.3em] uppercase"
-              style={{ color: "oklch(0.72 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              Reservation
-            </span>
-            <div className="w-12 h-px" style={{ background: "oklch(0.65 0.12 80 / 0.6)" }} />
-          </div>
+    <section id="contact" style={{ background: "oklch(0.14 0.06 148)" }}>
+      <div className="py-20 px-4">
+        <div className="container max-w-3xl mx-auto">
+          <div ref={ref} className="fade-up">
 
-          <h2
-            className="text-3xl md:text-4xl font-semibold mb-4 text-white"
-            style={{ fontFamily: "'Shippori Mincho', serif" }}
-          >
-            まずは気軽に<br />ご相談ください
-          </h2>
-
-          <p
-            className="text-sm leading-relaxed mb-8"
-            style={{ color: "oklch(0.82 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
-          >
-            {getMonthEnd()}まで限定の初回体験4,980円をぜひご活用ください。<br />
-            LINEでのご予約・お問い合わせを受け付けています。
-          </p>
-
-          {/* Price reminder */}
-          <div
-            className="inline-block px-6 py-4 mb-8"
-            style={{
-              background: "oklch(0.28 0.09 148 / 0.6)",
-              border: "1px solid oklch(0.65 0.12 80 / 0.5)",
-              borderRadius: "2px",
-              backdropFilter: "blur(8px)"
-            }}
-          >
-            <p
-              className="text-xs mb-1"
-              style={{ color: "oklch(0.72 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              初回体験コース（{getMonthEnd()}まで）
-            </p>
-            <p
-              className="text-2xl font-bold"
-              style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.88 0.12 80)" }}
-            >
-              4,980円（税込）
-            </p>
-            <p
-              className="text-xs mt-1"
-              style={{ color: "oklch(0.70 0.06 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
-            >
-              カウンセリング＋ヘッドスパ＋化粧水 すべて込み
-            </p>
-          </div>
-
-          {/* LINE CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={LINE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{
-                background: "white",
-                color: "oklch(0.28 0.09 148)",
-                border: "1px solid oklch(0.65 0.12 80)",
-                fontFamily: "'Noto Sans JP', sans-serif",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.3)"
-              }}
-            >
-              <svg width="22" height="22" viewBox="0 0 48 48" fill="oklch(0.28 0.09 148)">
-                <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
-              </svg>
-              <span style={{ color: "oklch(0.28 0.09 148)" }}>LINEで予約する（無料）</span>
-            </a>
-            <a
-              href="tel:0795441099"
-              className="flex items-center justify-center gap-3 px-8 py-4 text-base font-medium rounded-sm transition-all duration-200 hover:opacity-90"
-              style={{
-                background: "oklch(0.28 0.09 148 / 0.5)",
-                color: "white",
-                border: "1px solid oklch(0.65 0.12 80 / 0.5)",
-                fontFamily: "'Noto Sans JP', sans-serif",
-                backdropFilter: "blur(4px)"
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/>
-              </svg>
-              0795-44-1099
-            </a>
-          </div>
-
-          {/* Business info */}
-          <div
-            className="mt-10 pt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
-            style={{ borderTop: "1px solid oklch(0.65 0.12 80 / 0.2)" }}
-          >
-            {[
-              { label: "住所", value: "兵庫県加東市下久米880-3" },
-              { label: "電話", value: "0795-44-1099" },
-              { label: "営業時間", value: "火〜土 10:00〜19:00" },
-              { label: "定休日", value: "日・月曜日" },
-            ].map((info) => (
-              <div key={info.label}>
-                <p
-                  className="text-[10px] tracking-widest mb-1"
-                  style={{ color: "oklch(0.65 0.10 80)", fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  {info.label}
+            <div className="text-center mb-10">
+              <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                ── CONTACT ──
+              </p>
+              <h2
+                className="text-2xl md:text-3xl font-semibold mb-4 text-white"
+                style={{ fontFamily: "'Shippori Mincho', serif" }}
+              >
+                「あの時、勇気を出してよかった」<br />
+                <span style={{ color: "oklch(0.88 0.14 80)" }}>3ヶ月後、鏡の前でそう笑う未来を選びませんか？</span>
+              </h2>
+              <div
+                className="max-w-xl mx-auto p-5 rounded-lg mb-6"
+                style={{ background: "oklch(0.20 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
+              >
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+                  何もしなければ、髪は今のまま、あるいは少しずつ減っていきます。<br />
+                  悩んでいる時間は、髪にとってもマイナスでしかありません。<br /><br />
+                  リスクはありません。<br />
+                  <strong style={{ color: "oklch(0.88 0.14 80)" }}>4,980円、ランチ2回分の投資で、「人生を変えるきっかけ」が掴めます。</strong><br /><br />
+                  あなたが本来持っている「髪の力」を、私と一緒に取り戻しましょう。
                 </p>
-                <p
-                  className="text-xs"
-                  style={{ color: "oklch(0.82 0.05 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  {info.value}
+                <p className="text-right text-sm mt-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "oklch(0.88 0.14 80)" }}>
+                  育毛専門美容室ヘアリズム<br />
+                  オーナー　橋本 光弘
                 </p>
               </div>
-            ))}
+            </div>
+
+            <div className="flex flex-col gap-4 max-w-md mx-auto mb-10">
+              <a
+                href={LINE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 py-5 px-6 text-base font-medium text-white rounded-sm transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                style={{
+                  background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+                  border: "2px solid oklch(0.65 0.12 80)",
+                  fontFamily: "'Noto Sans JP', sans-serif",
+                  boxShadow: "0 6px 30px oklch(0.28 0.08 148 / 0.6)"
+                }}
+              >
+                <svg width="22" height="22" viewBox="0 0 48 48" fill="white">
+                  <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
+                </svg>
+                まずはLINEで「無料相談・予約」をする
+              </a>
+              <p className="text-center text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.03 148)" }}>
+                （空き状況もこちらから確認できます）
+              </p>
+              <a
+                href={"tel:" + TEL}
+                className="flex items-center justify-center gap-3 py-4 px-6 text-sm font-medium rounded-sm transition-all duration-200 hover:opacity-90"
+                style={{
+                  background: "transparent",
+                  border: "1px solid oklch(0.65 0.12 80 / 0.6)",
+                  color: "oklch(0.88 0.14 80)",
+                  fontFamily: "'Noto Sans JP', sans-serif"
+                }}
+              >
+                📞 電話で相談・予約する：{TEL}
+              </a>
+              <p className="text-center text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 148)" }}>
+                10:00〜19:00／月・日定休
+              </p>
+            </div>
+
+            <div
+              className="max-w-md mx-auto p-4 rounded-lg text-center mb-10"
+              style={{ background: "oklch(0.65 0.12 80 / 0.15)", border: "1px solid oklch(0.65 0.12 80 / 0.5)" }}
+            >
+              <p className="text-sm font-bold" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.88 0.14 80)" }}>
+                ⚠️ 今月の残り枠：あと5名様
+              </p>
+              <p className="text-xs mt-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.70 0.03 148)" }}>
+                丁寧な診断を行うため、枠数には限りがございます
+              </p>
+            </div>
+
+            <div
+              className="p-6 rounded-lg"
+              style={{ background: "oklch(0.20 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
+            >
+              <p className="text-xs font-semibold mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)", letterSpacing: "0.2em" }}>
+                SALON INFO
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  { label: "サロン名", value: "育毛専門美容室ヘアリズム（hairhythm）" },
+                  { label: "住所", value: "兵庫県加東市下久米880-3" },
+                  { label: "アクセス", value: "JR滝野駅より車で10分／駐車場完備" },
+                  { label: "電話", value: TEL },
+                  { label: "営業時間", value: "10:00〜19:00" },
+                  { label: "定休日", value: "月・日曜日" },
+                  { label: "予約方法", value: "完全予約制（LINE・電話）" },
+                  { label: "プライバシー", value: "完全個室・看板には「美容室」とのみ表記" },
+                ].map((row) => (
+                  <div key={row.label} className="flex gap-3">
+                    <span className="flex-shrink-0 text-xs font-medium w-20" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
+                      {row.label}
+                    </span>
+                    <span className="text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+                      {row.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
