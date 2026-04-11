@@ -46,8 +46,9 @@ function ReservationForm() {
     if (date) lines.push(`ご希望日時：${date}`);
     if (concern) lines.push(`現在のお悩み：${concern}`);
     const message = encodeURIComponent(lines.join("\n"));
-    // LINE公式アカウントID: hrc7378e（%40hrc7378eは@hrc7378eのエンコード）
-    window.open(`https://line.me/R/oaMessage/%40hrc7378e/?${message}`, "_blank");
+    // line.me/ti/p/ 方式（広く対応されている方式）
+    // メッセージはテキストパラメータで渡す
+    window.open(`https://line.me/ti/p/%40hrc7378e?text=${message}`, "_blank");
     setSubmitted(true);
   };
 
