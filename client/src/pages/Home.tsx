@@ -10,7 +10,9 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
 import AboutSection from "@/components/AboutSection";
+import VideoSection from "@/components/VideoSection";
 import CurriculumSection from "@/components/CurriculumSection";
+import DiagnosisSection from "@/components/DiagnosisSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
@@ -24,7 +26,9 @@ export default function Home() {
       <HeroSection />
       <StatsSection />
       <AboutSection />
+      <VideoSection />
       <CurriculumSection />
+      <DiagnosisSection />
       <TestimonialsSection />
       <FaqSection />
       <ContactSection />

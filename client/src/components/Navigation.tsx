@@ -8,7 +8,9 @@ const LINE_URL = "https://lin.ee/oV9r3at";
 
 const navLinks = [
   { label: "当店について", href: "#about" },
+  { label: "施術動画", href: "#video" },
   { label: "初めての方へ", href: "#curriculum" },
+  { label: "薄毛診断", href: "#diagnosis" },
   { label: "お客様の声", href: "#testimonials" },
   { label: "料金・FAQ", href: "#faq" },
 ];
