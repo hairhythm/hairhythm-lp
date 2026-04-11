@@ -1,14 +1,27 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Router as WouterRouter, Route, Switch } from "wouter";
+import { useBrowserLocation } from "wouter/use-browser-location";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import LegalPage from "./pages/LegalPage";
 import PrivacyPage from "./pages/PrivacyPage";
 
-function Router() {
+// GitHub Pages のbaseパス対応
+const BASE_PATH = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
+
+function useBasedLocation() {
+  const [location, setLocation] = useBrowserLocation();
+  const basedLocation = location.startsWith(BASE_PATH)
+    ? location.slice(BASE_PATH.length) || '/'
+    : location;
+  const navigate = (to: string) => setLocation(BASE_PATH + to);
+  return [basedLocation, navigate] as const;
+}
+
+function Routes() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -31,7 +44,9 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <WouterRouter hook={useBasedLocation}>
+            <Routes />
+          </WouterRouter>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
