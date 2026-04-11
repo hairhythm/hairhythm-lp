@@ -64,6 +64,34 @@ export default function VideoSection() {
           </p>
         </div>
 
+        {/* 後半動画 */}
+        <div className="mb-10">
+          <div
+            className="relative w-full rounded-xl overflow-hidden"
+            style={{
+              paddingBottom: "56.25%", /* 16:9 */
+              border: "2px solid oklch(0.65 0.12 80 / 0.5)",
+              boxShadow: "0 8px 40px oklch(0 0 0 / 0.4)",
+            }}
+          >
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/TW__3CAhybA"
+              title="潤うヘッドスパ行程 後半"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+          <p
+            className="text-center text-xs mt-3"
+            style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.03 148)", fontWeight: 300 }}
+          >
+            潤うヘッドスパ 行程（後半）
+          </p>
+        </div>
+
         {/* 動画の補足ポイント */}
         <div className="grid md:grid-cols-3 gap-4 mb-10">
           {[
