@@ -37,7 +37,7 @@ function ReservationForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // 入力内容をLINEメッセージに包めて送信
+    
     const lines = [
       "【初回カウンセリング予約】",
       `お名前：${name}`,
@@ -47,16 +47,30 @@ function ReservationForm() {
     if (concern) lines.push(`現在のお悩み：${concern}`);
     const messageText = lines.join("\n");
 
-    // クリップボードにコピーを試みる
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(messageText).catch(err => {
-        console.error("Failed to copy: ", err);
-      });
-    }
+    // クリップボードにコピーを試みる（古いブラウザ向けのフォールバック付き）
+    const copyToClipboard = (text: string) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.error('Fallback copy failed', err);
+        }
+        document.body.removeChild(textArea);
+        return Promise.resolve();
+      }
+    };
 
-    // LINE公式アカウントを開く（最も安定した短縮URLを使用）
-    window.open(LINE_URL, "_blank");
-    setSubmitted(true);
+    copyToClipboard(messageText).then(() => {
+      setSubmitted(true);
+    }).catch(() => {
+      setSubmitted(true); // エラーでも次へ進む
+    });
   };
 
   if (submitted) {
@@ -66,17 +80,32 @@ function ReservationForm() {
         style={{ background: "oklch(0.22 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.5)" }}
       >
         <p className="text-2xl mb-3">✅</p>
-        <p className="text-white font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif" }}>
+        <p className="text-white font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif" }}>
           予約内容をコピーしました
         </p>
-        <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
-          LINEが開きましたら、<br />
-          <strong style={{ color: "oklch(0.88 0.14 80)" }}>「貼り付け（ペースト）」して送信</strong>してください。<br />
-          担当者より折り返しご連絡いたします。
+        <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+          下のボタンを押してLINEを開き、<br />
+          メッセージ欄に<strong style={{ color: "oklch(0.88 0.14 80)" }}>「貼り付け」して送信</strong>してください。
         </p>
+        
+        <a
+          href={LINE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block w-full py-4 px-6 text-sm font-medium text-white rounded transition-all duration-200 hover:opacity-90"
+          style={{
+            background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
+            border: "2px solid oklch(0.65 0.12 80)",
+            fontFamily: "'Noto Sans JP', sans-serif",
+            boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.5)",
+          }}
+        >
+          LINEを開いて予約を完了する →
+        </a>
+
         <button 
           onClick={() => setSubmitted(false)}
-          className="mt-4 text-xs underline opacity-60 hover:opacity-100"
+          className="mt-6 text-xs underline opacity-60 hover:opacity-100 block w-full"
           style={{ color: "white" }}
         >
           入力画面に戻る
