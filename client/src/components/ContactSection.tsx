@@ -45,10 +45,17 @@ function ReservationForm() {
     ];
     if (date) lines.push(`ご希望日時：${date}`);
     if (concern) lines.push(`現在のお悩み：${concern}`);
-    const message = encodeURIComponent(lines.join("\n"));
-    // line.me/ti/p/ 方式（広く対応されている方式）
-    // メッセージはテキストパラメータで渡す
-    window.open(`https://line.me/ti/p/%40hrc7378e?text=${message}`, "_blank");
+    const messageText = lines.join("\n");
+
+    // クリップボードにコピーを試みる
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(messageText).catch(err => {
+        console.error("Failed to copy: ", err);
+      });
+    }
+
+    // LINE公式アカウントを開く（最も安定した短縮URLを使用）
+    window.open(LINE_URL, "_blank");
     setSubmitted(true);
   };
 
@@ -60,12 +67,20 @@ function ReservationForm() {
       >
         <p className="text-2xl mb-3">✅</p>
         <p className="text-white font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif" }}>
-          ありがとうございます
+          予約内容をコピーしました
         </p>
-        <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
-          LINEにてご予約の詳細をご確認ください。<br />
+        <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+          LINEが開きましたら、<br />
+          <strong style={{ color: "oklch(0.88 0.14 80)" }}>「貼り付け（ペースト）」して送信</strong>してください。<br />
           担当者より折り返しご連絡いたします。
         </p>
+        <button 
+          onClick={() => setSubmitted(false)}
+          className="mt-4 text-xs underline opacity-60 hover:opacity-100"
+          style={{ color: "white" }}
+        >
+          入力画面に戻る
+        </button>
       </div>
     );
   }
