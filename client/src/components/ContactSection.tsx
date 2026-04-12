@@ -1,11 +1,9 @@
 /*
- * ContactSection — 改訂版
- * - Googleマップ埋め込み追加
- * - 予約フォームCTA（LP内完結型）追加
- * - クロージングCTA + サロン情報
+ * ContactSection — 改訂版（予約フォーム削除）
+ * - Googleマップ埋め込み
+ * - LINE・電話ボタンのみのシンプルな構成
  */
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState } from "react";
 
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
@@ -22,204 +20,10 @@ function calcRemainingSlots(): number {
   return 1;
 }
 
-function getDeadlineMonth(): string {
-  const now = new Date();
-  const month = now.getMonth() + 1;
-  return `${month}月末`;
-}
-
-function ReservationForm() {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [concern, setConcern] = useState("");
-  const [date, setDate] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const lines = [
-      "【初回カウンセリング予約】",
-      `お名前：${name}`,
-      `お電話番号：${phone}`,
-    ];
-    if (date) lines.push(`ご希望日時：${date}`);
-    if (concern) lines.push(`現在のお悩み：${concern}`);
-    const messageText = lines.join("\n");
-
-    // クリップボードにコピーを試みる（古いブラウザ向けのフォールバック付き）
-    const copyToClipboard = (text: string) => {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        return navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-          console.error('Fallback copy failed', err);
-        }
-        document.body.removeChild(textArea);
-        return Promise.resolve();
-      }
-    };
-
-    copyToClipboard(messageText).then(() => {
-      setSubmitted(true);
-    }).catch(() => {
-      setSubmitted(true); // エラーでも次へ進む
-    });
-  };
-
-  if (submitted) {
-    return (
-      <div
-        className="p-8 rounded-lg text-center"
-        style={{ background: "oklch(0.22 0.08 148 / 0.8)", border: "1px solid oklch(0.65 0.12 80 / 0.5)" }}
-      >
-        <p className="text-2xl mb-3">✅</p>
-        <p className="text-white font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif" }}>
-          予約内容をコピーしました
-        </p>
-        <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
-          下のボタンを押してLINEを開き、<br />
-          メッセージ欄に<strong style={{ color: "oklch(0.88 0.14 80)" }}>「貼り付け」して送信</strong>してください。
-        </p>
-        
-        <a
-          href={LINE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block w-full py-4 px-6 text-sm font-medium text-white rounded transition-all duration-200 hover:opacity-90"
-          style={{
-            background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
-            border: "2px solid oklch(0.65 0.12 80)",
-            fontFamily: "'Noto Sans JP', sans-serif",
-            boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.5)",
-          }}
-        >
-          LINEを開いて予約を完了する →
-        </a>
-
-        <button 
-          onClick={() => setSubmitted(false)}
-          className="mt-6 text-xs underline opacity-60 hover:opacity-100 block w-full"
-          style={{ color: "white" }}
-        >
-          入力画面に戻る
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="block text-xs mb-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
-          お名前 <span style={{ color: "oklch(0.65 0.12 80)" }}>*</span>
-        </label>
-        <input
-          type="text"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="例：山田 花子"
-          className="w-full px-4 py-3 rounded text-sm outline-none"
-          style={{
-            background: "oklch(0.22 0.06 148 / 0.6)",
-            border: "1px solid oklch(0.55 0.06 148 / 0.5)",
-            color: "white",
-            fontFamily: "'Noto Sans JP', sans-serif",
-          }}
-        />
-      </div>
-      <div>
-        <label className="block text-xs mb-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
-          お電話番号 <span style={{ color: "oklch(0.65 0.12 80)" }}>*</span>
-        </label>
-        <input
-          type="tel"
-          required
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="例：090-0000-0000"
-          className="w-full px-4 py-3 rounded text-sm outline-none"
-          style={{
-            background: "oklch(0.22 0.06 148 / 0.6)",
-            border: "1px solid oklch(0.55 0.06 148 / 0.5)",
-            color: "white",
-            fontFamily: "'Noto Sans JP', sans-serif",
-          }}
-        />
-      </div>
-      <div>
-        <label className="block text-xs mb-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
-          ご希望日時（第1・第2希望）
-        </label>
-        <input
-          type="text"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          placeholder="例：4/20(土)午後、4/22(火)午前"
-          className="w-full px-4 py-3 rounded text-sm outline-none"
-          style={{
-            background: "oklch(0.22 0.06 148 / 0.6)",
-            border: "1px solid oklch(0.55 0.06 148 / 0.5)",
-            color: "white",
-            fontFamily: "'Noto Sans JP', sans-serif",
-          }}
-        />
-      </div>
-      <div>
-        <label className="block text-xs mb-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
-          現在のお悩み（任意）
-        </label>
-        <select
-          value={concern}
-          onChange={(e) => setConcern(e.target.value)}
-          className="w-full px-4 py-3 rounded text-sm outline-none"
-          style={{
-            background: "oklch(0.22 0.06 148)",
-            border: "1px solid oklch(0.55 0.06 148 / 0.5)",
-            color: concern ? "white" : "oklch(0.60 0.03 148)",
-            fontFamily: "'Noto Sans JP', sans-serif",
-          }}
-        >
-          <option value="">選択してください（任意）</option>
-          <option value="頭頂部の薄毛">頭頂部の薄毛・透け感</option>
-          <option value="全体的なボリューム不足">全体的なボリューム不足</option>
-          <option value="産後の抜け毛">産後の抜け毛・薄毛</option>
-          <option value="生え際の後退">生え際の後退</option>
-          <option value="頭皮のかゆみ・フケ">頭皮のかゆみ・フケ</option>
-          <option value="その他">その他</option>
-        </select>
-      </div>
-      <button
-        type="submit"
-        className="w-full py-4 px-6 text-sm font-medium text-white rounded transition-all duration-200 hover:opacity-90 hover:scale-[1.01]"
-        style={{
-          background: "linear-gradient(135deg, oklch(0.38 0.10 148) 0%, oklch(0.28 0.08 148) 100%)",
-          border: "2px solid oklch(0.65 0.12 80)",
-          fontFamily: "'Noto Sans JP', sans-serif",
-          boxShadow: "0 4px 20px oklch(0.28 0.08 148 / 0.5)",
-        }}
-      >
-        この内容でLINEに送って予約する →
-      </button>
-      <p className="text-center text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.55 0.03 148)" }}>
-        ※ LINEが開きます。メッセージを送信して予約完了です。
-      </p>
-    </form>
-  );
-}
-
 export default function ContactSection() {
   const { ref } = useScrollAnimation();
   const { ref: mapRef } = useScrollAnimation();
   const remainingSlots = calcRemainingSlots();
-  const deadline = getDeadlineMonth();
 
   return (
     <section id="contact" style={{ background: "oklch(0.28 0.07 148)" }}>
@@ -255,27 +59,6 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* ===== 予約フォームCTA ===== */}
-            <div className="mb-10">
-              <div
-                className="p-6 rounded-xl"
-                style={{ background: "oklch(0.22 0.07 148 / 0.9)", border: "2px solid oklch(0.65 0.12 80 / 0.5)", boxShadow: "0 8px 40px oklch(0.15 0.05 148 / 0.5)" }}
-              >
-                <div className="text-center mb-6">
-                  <p className="text-xs tracking-[0.2em] uppercase mb-2" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
-                    ── RESERVATION ──
-                  </p>
-                  <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "'Shippori Mincho', serif" }}>
-                    初回カウンセリング予約フォーム
-                  </h3>
-                  <p className="text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
-                    入力後、LINEに自動転送されます。1分で完了。
-                  </p>
-                </div>
-                <ReservationForm />
-              </div>
-            </div>
-
             {/* LINE・電話ボタン */}
             <div className="flex flex-col gap-4 max-w-md mx-auto mb-10">
               <a
@@ -293,7 +76,7 @@ export default function ContactSection() {
                 <svg width="22" height="22" viewBox="0 0 48 48" fill="white">
                   <path d="M24 4C12.95 4 4 11.82 4 21.5c0 5.84 3.17 11.02 8.12 14.38L10 38l4.8-2.4c2.88.88 5.96 1.4 9.2 1.4 11.05 0 20-7.82 20-17.5S35.05 4 24 4z"/>
                 </svg>
-                まずはLINEで「無料相談・予約」をする
+                LINEで「無料相談・予約」をする
               </a>
               <p className="text-center text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.60 0.03 148)" }}>
                 （空き状況もこちらから確認できます）
@@ -329,88 +112,47 @@ export default function ContactSection() {
             </div>
 
             {/* サロン情報 */}
-            <div
-              className="p-6 rounded-lg mb-8"
-              style={{ background: "oklch(0.28 0.08 148 / 0.9)", border: "1px solid oklch(0.65 0.12 80 / 0.3)" }}
-            >
-              <p className="text-xs font-semibold mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)", letterSpacing: "0.2em" }}>
-                SALON INFO
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {[
-                  { label: "サロン名", value: "育毛専門美容室ヘアリズム（hairhythm）" },
-                  { label: "住所", value: "兵庫県加東市下久米880-3" },
-                  { label: "アクセス", value: "JR社町駅より車で１５分／駐車場完備" },
-                  { label: "電話", value: TEL },
-                  { label: "営業時間", value: "10:00〜19:00" },
-                  { label: "定休日", value: "月・日曜日" },
-                  { label: "予約方法", value: "完全予約制（LINE・電話）" },
-                  { label: "プライバシー", value: "完全個室・看板には「美容室」とのみ表記" },
-                ].map((row) => (
-                  <div key={row.label} className="flex gap-3">
-                    <span className="flex-shrink-0 text-xs font-medium w-20" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.65 0.12 80)" }}>
-                      {row.label}
-                    </span>
-                    <span className="text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
-                      {row.value}
-                    </span>
+            <div ref={mapRef} className="fade-up mt-16">
+              <div className="grid md:grid-cols-2 gap-8 items-start">
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-white font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif" }}>育毛専門美容室ヘアリズム</h4>
+                    <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+                      〒673-1402<br />
+                      兵庫県加東市下久米880-3<br />
+                      （社町駅から車で約10分／駐車場完備）
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ===== Googleマップ ===== */}
-            <div ref={mapRef} className="fade-up">
-              <div
-                className="rounded-xl overflow-hidden"
-                style={{ border: "1px solid oklch(0.65 0.12 80 / 0.3)", boxShadow: "0 4px 20px oklch(0.15 0.05 148 / 0.4)" }}
-              >
-                <div
-                  className="px-4 py-3 flex items-center justify-between"
-                  style={{ background: "oklch(0.22 0.07 148 / 0.9)" }}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">📍</span>
-                    <span className="text-sm font-medium text-white" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>
-                      育毛専門美容室ヘアリズム
-                    </span>
+                  <div>
+                    <h4 className="text-white font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif" }}>営業時間</h4>
+                    <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.82 0.03 148)", fontWeight: 300 }}>
+                      10:00 〜 19:00<br />
+                      定休日：毎週月曜日・日曜日
+                    </p>
                   </div>
                   <a
                     href={MAP_SEARCH_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs px-3 py-1 rounded transition-opacity hover:opacity-80"
-                    style={{
-                      background: "oklch(0.65 0.12 80 / 0.25)",
-                      color: "oklch(0.88 0.14 80)",
-                      border: "1px solid oklch(0.65 0.12 80 / 0.4)",
-                      fontFamily: "'Noto Sans JP', sans-serif",
-                    }}
+                    className="inline-block text-xs underline"
+                    style={{ color: "oklch(0.65 0.12 80)" }}
                   >
-                    Googleマップで開く →
+                    Googleマップでルートを確認する →
                   </a>
                 </div>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.5!2d134.9856!3d34.9423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e5a0b5e9b5c5%3A0x0!2z5YW25bqX55yM5Yqg5p2x5biC5LiL5LmX57-U77yY77yY77yQ4oiS77yT!5e0!3m2!1sja!2sjp!4v1234567890"
-                  width="100%"
-                  height="300"
-                  style={{ border: 0, display: "block" }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="育毛専門美容室ヘアリズム 地図"
-                />
-                <div
-                  className="px-4 py-3 text-center"
-                  style={{ background: "oklch(0.22 0.07 148 / 0.9)" }}
-                >
-                  <p className="text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.75 0.03 148)" }}>
-                    兵庫県加東市下久米880-3 ／ JR社町駅より車で15分 ／ 駐車場完備
-                  </p>
+                <div className="rounded-lg overflow-hidden border border-white/10 h-64 md:h-full min-h-[250px]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.213264356454!2d134.9658586763433!3d34.90111107284851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3555376993685555%3A0x7864478797777777!2z6IKy5q-b5bCC6ZaA576O5a655a6k44OY44Ki44Oq44K644Og!5e0!3m2!1sja!2sjp!4v1712810000000!5m2!1sja!2sjp"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
