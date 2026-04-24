@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 // 背景画像（GitHub Pagesのbaseパスに対応）
 const BASE = import.meta.env.BASE_URL || '/';
-const HERO_IMAGE_URL = `${BASE}hero-top-new.png`;
+const HERO_IMAGE_URL = `${BASE}hero-top-v3.png`;
 const LINE_URL = "https://lin.ee/oV9r3at";
 const TEL = "0795-44-1099";
 
