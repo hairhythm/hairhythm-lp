@@ -50,7 +50,7 @@ export default function HeroSection() {
         <img
           src={HERO_IMAGE_URL}
           alt="育毛専門美容室ヘアリズム"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-[75%_center] md:object-center"
           style={{ opacity: 0.90 }}
         />
         <div
@@ -93,7 +93,7 @@ export default function HeroSection() {
       </div>
 
       {/* メインコンテンツ */}
-      <div className="container relative z-10 pt-36 pb-20">
+      <div className="container relative z-10 pt-40 md:pt-36 pb-20">
         <div className="max-w-2xl">
 
           {/* ラベル */}
@@ -125,13 +125,13 @@ export default function HeroSection() {
           >
             <span
               className="block text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white"
-              style={{ fontFamily: "'Shippori Mincho', serif", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
+              style={{ fontFamily: "'Shippori Mincho', serif", textShadow: "0 2px 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.4)" }}
             >
               もう、鏡の前で
             </span>
             <span
               className="block text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-white mt-1"
-              style={{ fontFamily: "'Shippori Mincho', serif", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
+              style={{ fontFamily: "'Shippori Mincho', serif", textShadow: "0 2px 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.4)" }}
             >
               ため息をつくのは
             </span>
@@ -139,7 +139,7 @@ export default function HeroSection() {
               className="block text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mt-1"
               style={{
                 fontFamily: "'Shippori Mincho', serif",
-                textShadow: "0 2px 20px rgba(0,0,0,0.4)",
+                textShadow: "0 2px 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.4)",
                 color: "oklch(0.88 0.14 80)"
               }}
             >
@@ -158,13 +158,13 @@ export default function HeroSection() {
           >
             <p
               className="text-sm md:text-base leading-relaxed mb-2"
-              style={{ color: "oklch(0.92 0.04 80)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400 }}
+              style={{ color: "oklch(0.92 0.04 80)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 500, textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
             >
               その悩み、<strong style={{ color: "oklch(0.88 0.14 80)" }}>3ヶ月</strong>あれば「希望」に変えられます。
             </p>
             <p
               className="text-xs md:text-sm leading-relaxed"
-              style={{ color: "oklch(0.82 0.03 148)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 300 }}
+              style={{ color: "oklch(0.82 0.03 148)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 400, textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
             >
               【再生医療分野の技術 × 専任美容師の寄り添い】<br />
               兵庫県加東市で<strong style={{ color: "oklch(0.88 0.12 80)" }}>96.8％が変化を実感した</strong>、<br />
