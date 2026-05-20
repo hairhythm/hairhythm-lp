@@ -20,9 +20,9 @@ const SALONS = [
   // 群馬
   { name: "mizuma", prefecture: "群馬県", address: "群馬県前橋市城東町1-10-14", url: "" },
   { name: "headspasalon Lindo", prefecture: "群馬県", address: "群馬県高崎市上豊岡町934-1 グランノーブルA棟", url: "https://lit.link/headspasalonlindo?fbclid=PAAabjxFSOZIrqQcc_D3gpJITalkrJ47sOTZ77rgwws8zcG-3DxaYnbmj9rnw" },
-  { name: "美容室BRIOCHE", prefecture: "群馬県", address: "群馬県高崎市貝沢町424-2 ラ・メール101", url: "" },
+  { name: "美容室BRIOCHE", prefecture: "群馬県", address: "群馬県高崎市貝沢町424-2 ラ・メール101", url: "https://www.brioche-hair.com/" },
   // 埼玉
-  { name: "CREATE SALON forYou", prefecture: "埼玉県", address: "埼玉県志木市柏町6-29-65 クリエイトビル1F", url: "" },
+  { name: "CREATE SALON forYou", prefecture: "埼玉県", address: "埼玉県志木市柏町6-29-65 クリエイトビル1F", url: "https://for-you1999.com/" },
   { name: "eluma", prefecture: "埼玉県", address: "埼玉県川口市並木2-13-8 カーサー並木1F", url: "" },
   { name: "ヘアサロンNico", prefecture: "埼玉県", address: "埼玉県羽生市南羽生3-6-1", url: "" },
   { name: "ビーハーツ", prefecture: "埼玉県", address: "埼玉県さいたま市南区南浦和2丁目32-5 アルファ南浦和102", url: "" },
