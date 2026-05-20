@@ -13,6 +13,7 @@ const navLinks = [
   { label: "薄毛診断", href: "#diagnosis" },
   { label: "お客様の声", href: "#testimonials" },
   { label: "料金・FAQ", href: "#faq" },
+  { label: "お近くのサロン", href: "/salons", isPage: true },
 ];
 
 export default function Navigation() {
@@ -25,7 +26,11 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isPage?: boolean) => {
+    if (isPage) {
+      setMenuOpen(false);
+      return; // 通常のページ遷移に任せる
+    }
     e.preventDefault();
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
@@ -74,9 +79,13 @@ export default function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={(e) => handleNavClick(e, link.href, link.isPage)}
                 className="text-xs tracking-wider relative group transition-colors duration-200"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.03 60)", fontWeight: 400 }}
+                style={{
+                  fontFamily: "'Noto Sans JP', sans-serif",
+                  color: link.isPage ? "oklch(0.45 0.10 80)" : "oklch(0.40 0.03 60)",
+                  fontWeight: link.isPage ? 500 : 400
+                }}
               >
                 {link.label}
                 <span
@@ -124,9 +133,13 @@ export default function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.href, link.isPage)}
                   className="py-3 px-2 text-sm transition-colors duration-200"
-                  style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "oklch(0.40 0.03 60)" }}
+                  style={{
+                    fontFamily: "'Noto Sans JP', sans-serif",
+                    color: link.isPage ? "oklch(0.45 0.10 80)" : "oklch(0.40 0.03 60)",
+                    fontWeight: link.isPage ? 500 : 400
+                  }}
                 >
                   {link.label}
                 </a>

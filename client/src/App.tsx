@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import LegalPage from "./pages/LegalPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import SalonsPage from "./pages/SalonsPage";
 
 // GitHub Pages のbaseパス対応
 // Viteのimport.meta.env.BASE_URLは本番では'/hairhythm-lp/'、開発では'/'
@@ -18,6 +19,7 @@ function Routes() {
       <Route path={"/"} component={Home} />
       <Route path={"/legal"} component={LegalPage} />
       <Route path={"/privacy"} component={PrivacyPage} />
+      <Route path={"/salons"} component={SalonsPage} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
