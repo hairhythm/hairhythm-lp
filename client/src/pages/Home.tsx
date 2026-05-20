@@ -16,6 +16,7 @@ import DiagnosisSection from "@/components/DiagnosisSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
+import SalonsSection from "@/components/SalonsSection";
 import Footer from "@/components/Footer";
 import FloatingLineButton from "@/components/FloatingLineButton";
 
@@ -31,6 +32,7 @@ export default function Home() {
       <DiagnosisSection />
       <TestimonialsSection />
       <FaqSection />
+      <SalonsSection />
       <ContactSection />
       <Footer />
       <FloatingLineButton />
