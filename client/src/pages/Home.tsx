@@ -32,8 +32,8 @@ export default function Home() {
       <DiagnosisSection />
       <TestimonialsSection />
       <FaqSection />
-      <SalonsSection />
       <ContactSection />
+      <SalonsSection />
       <Footer />
       <FloatingLineButton />
     </div>
