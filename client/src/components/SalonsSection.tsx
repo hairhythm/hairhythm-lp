@@ -15,17 +15,17 @@ const SALONS = [
   { name: "hairsalon K-mix", prefecture: "宮城県", address: "宮城県仙台市青葉区愛子東6丁目2-30", url: "https://www.hairsalonk-mix.com/" },
   // 山形
   { name: "頭皮ケア育毛専門リオーシャン", prefecture: "山形県", address: "山形県鶴岡市大宝寺日本国378-45", url: "https://reocean.hp.peraichi.com/?_ga=2.68124369.1576207279.1646645486-1022600226.1590457447" },
-  { name: "HAIR LABO RADITE", prefecture: "山形県", address: "山形県米沢市中田町568-6", url: "https://hair-labo-radite.jp/" },
+  { name: "HAIR LABO RADITE", prefecture: "山形県", address: "山形県米沢市中田町568-6", url: "http://hair-labo-radite.jp/" },
   { name: "RADITE２SHIOI", prefecture: "山形県", address: "山形県米沢市塩井町塩野1492-17", url: "" },
   // 群馬
-  { name: "mizuma", prefecture: "群馬県", address: "群馬県前橋市城東町1-10-14", url: "" },
+  { name: "mizuma", prefecture: "群馬県", address: "群馬県前橋市城東町1-10-14", url: "https://beauty.hotpepper.jp/slnH000341785/" },
   { name: "headspasalon Lindo", prefecture: "群馬県", address: "群馬県高崎市上豊岡町934-1 グランノーブルA棟", url: "https://lit.link/headspasalonlindo?fbclid=PAAabjxFSOZIrqQcc_D3gpJITalkrJ47sOTZ77rgwws8zcG-3DxaYnbmj9rnw" },
   { name: "美容室BRIOCHE", prefecture: "群馬県", address: "群馬県高崎市貝沢町424-2 ラ・メール101", url: "https://www.brioche-hair.com/" },
   // 埼玉
   { name: "CREATE SALON forYou", prefecture: "埼玉県", address: "埼玉県志木市柏町6-29-65 クリエイトビル1F", url: "https://for-you1999.com/" },
-  { name: "eluma", prefecture: "埼玉県", address: "埼玉県川口市並木2-13-8 カーサー並木1F", url: "" },
-  { name: "ヘアサロンNico", prefecture: "埼玉県", address: "埼玉県羽生市南羽生3-6-1", url: "" },
-  { name: "ビーハーツ", prefecture: "埼玉県", address: "埼玉県さいたま市南区南浦和2丁目32-5 アルファ南浦和102", url: "" },
+  { name: "eluma", prefecture: "埼玉県", address: "埼玉県川口市並木2-13-8 カーサー並木1F", url: "https://beauty.hotpepper.jp/slnH000438139/" },
+  { name: "ヘアサロンNico", prefecture: "埼玉県", address: "埼玉県羽生市南羽生3-6-1", url: "https://yoyaku-beauty.jp/reserve/top?CODE=eb5a097b1ffc709e5581bf86a47b2b40c930a2447107bc4829b789fe652dd868" },
+  { name: "ビーハーツ", prefecture: "埼玉県", address: "埼玉県さいたま市南区南浦和2丁目32-5 アルファ南浦和102", url: "https://behearts.net/" },
   { name: "DOLL美容室", prefecture: "埼玉県", address: "埼玉県川越市月吉町19-27 2F", url: "" },
   // 千葉
   { name: "NEXUS-Garden船橋日大", prefecture: "千葉県", address: "千葉県船橋市坪井東3-7-1 メゾングレイス1F", url: "" },
@@ -33,67 +33,67 @@ const SALONS = [
   { name: "NEXUS-lot八千代台", prefecture: "千葉県", address: "千葉県八千代市八千代台南2丁目1-3", url: "" },
   { name: "Luna Ease", prefecture: "千葉県", address: "千葉県野田市野田", url: "" },
   // 東京
-  { name: "SALON MARL", prefecture: "東京都", address: "東京都文京区小石川5-1-4", url: "" },
-  { name: "Hair Salon OGATA", prefecture: "東京都", address: "東京都杉並区桃井1-3-1", url: "" },
-  { name: "Hacchi hair 仙川", prefecture: "東京都", address: "東京都調布市仙川町3丁目2-4 ウィステリア2F-B", url: "" },
-  { name: "しゅくるイスナーニ", prefecture: "東京都", address: "東京都江戸川区南篠崎町2丁目7-7", url: "" },
-  { name: "SHINA for hair", prefecture: "東京都", address: "東京都江東区大島4-6-24", url: "" },
+  { name: "SALON MARL", prefecture: "東京都", address: "東京都文京区小石川5-1-4", url: "https://peraichiapp.com/landing_pages/edit/東京都文京区小石川５－１－４" },
+  { name: "Hair Salon OGATA", prefecture: "東京都", address: "東京都杉並区桃井1-3-1", url: "https://beauty.hotpepper.jp/slnH000362449/" },
+  { name: "Hacchi hair 仙川", prefecture: "東京都", address: "東京都調布市仙川町3丁目2-4 ウィステリア2F-B", url: "https://sengawa-hacchihair.net/" },
+  { name: "しゅくるイスナーニ", prefecture: "東京都", address: "東京都江戸川区南篠崎町2丁目7-7", url: "https://syukuru.com/" },
+  { name: "SHINA for hair", prefecture: "東京都", address: "東京都江東区大島4-6-24", url: "https://shina-for-hair.com/" },
   // 新潟
-  { name: "HairLife KONIKONI", prefecture: "新潟県", address: "新潟県新発田市緑町1丁目5番9号", url: "" },
+  { name: "HairLife KONIKONI", prefecture: "新潟県", address: "新潟県新発田市緑町1丁目5番9号", url: "https://www.hairlife-konikoni.com/home" },
   // 山梨
-  { name: "SALON DE MIYASHITA", prefecture: "山梨県", address: "山梨県富士吉田市上吉田東2-1-30 鈴木ビル102号室", url: "" },
+  { name: "SALON DE MIYASHITA", prefecture: "山梨県", address: "山梨県富士吉田市上吉田東2-1-30 鈴木ビル102号室", url: "https://salonde-miyashita.com/sp/" },
   { name: "Galanterie", prefecture: "山梨県", address: "山梨県富士吉田市上吉田東2-1-30 鈴木ビル202A", url: "" },
   // 長野
-  { name: "しゅくるithnani伊那店", prefecture: "長野県", address: "長野県伊那市荒井3472-1F", url: "" },
+  { name: "しゅくるithnani伊那店", prefecture: "長野県", address: "長野県伊那市荒井3472-1F", url: "https://syukuru-ina.com/" },
   // 岐阜
-  { name: "オンリエドヘアデザイン", prefecture: "岐阜県", address: "岐阜県本巣郡北方町高屋伊勢田2-36", url: "" },
+  { name: "オンリエドヘアデザイン", prefecture: "岐阜県", address: "岐阜県本巣郡北方町高屋伊勢田2-36", url: "https://beauty.hotpepper.jp/slnH000448037/" },
   // 静岡
   { name: "a-rt hairSUGAO美容室", prefecture: "静岡県", address: "静岡県富士市松本87-10", url: "" },
   { name: "ピアチューレ", prefecture: "静岡県", address: "静岡県浜松市東区西ケ崎町158-2", url: "" },
   // 愛知
   { name: "ルアナヘアープラス", prefecture: "愛知県", address: "愛知県名古屋市中村区名駅3-22-4 名駅前みどりビル8F", url: "" },
-  { name: "corvivid", prefecture: "愛知県", address: "愛知県名古屋市東区泉1-13-33 ユトリロ栄ビル3C", url: "" },
+  { name: "corvivid", prefecture: "愛知県", address: "愛知県名古屋市東区泉1-13-33 ユトリロ栄ビル3C", url: "https://cor-vivid.com/" },
   { name: "KOBAYASHI", prefecture: "愛知県", address: "愛知県豊橋市小向町北小向30-8", url: "" },
-  { name: "QUNON", prefecture: "愛知県", address: "愛知県豊橋市南牛川1丁目22-11", url: "" },
+  { name: "QUNON", prefecture: "愛知県", address: "愛知県豊橋市南牛川1丁目22-11", url: "https://www.qunon.jp/" },
   // 三重
-  { name: "BeautyAir YUKI", prefecture: "三重県", address: "三重県鈴鹿市南江島町23-10", url: "" },
-  { name: "Carame", prefecture: "三重県", address: "三重県鈴鹿市稲生3丁目8-30", url: "" },
+  { name: "BeautyAir YUKI", prefecture: "三重県", address: "三重県鈴鹿市南江島町23-10", url: "http://www.beauty-air-yuki.com/" },
+  { name: "Carame", prefecture: "三重県", address: "三重県鈴鹿市稲生3丁目8-30", url: "https://beauty.hotpepper.jp/kr/slnH000297042/" },
   // 滋賀
-  { name: "a:r", prefecture: "滋賀県", address: "滋賀県栗東市綣6丁目9-10", url: "" },
+  { name: "a:r", prefecture: "滋賀県", address: "滋賀県栗東市綣6丁目9-10", url: "https://www.lespace-confortable-ar.com/" },
   { name: "BEAUING", prefecture: "滋賀県", address: "滋賀県大津市京町3丁目3-16 イクスコート大津駅前1階", url: "" },
   // 京都
   { name: "太郎＆花子", prefecture: "京都府", address: "京都府綾部市岡町西角3-5", url: "" },
   // 大阪
-  { name: "美容室ヨリソウ", prefecture: "大阪府", address: "大阪府富田林市藤沢台5-4-14-102", url: "" },
-  { name: "hitotema‐salon", prefecture: "大阪府", address: "大阪府大阪市鶴見区鶴見4丁目12-40", url: "" },
+  { name: "美容室ヨリソウ", prefecture: "大阪府", address: "大阪府富田林市藤沢台5-4-14-102", url: "http://yorisou-kami.com/" },
+  { name: "hitotema‐salon", prefecture: "大阪府", address: "大阪府大阪市鶴見区鶴見4丁目12-40", url: "https://hitotema-salon.com/" },
   // 兵庫
-  { name: "アクアレラ", prefecture: "兵庫県", address: "兵庫県神戸市須磨区須磨浦通4丁目6-18", url: "" },
-  { name: "髪心", prefecture: "兵庫県", address: "兵庫県神戸市須磨区月見山本町1丁目8-24", url: "" },
-  { name: "(m)arble", prefecture: "兵庫県", address: "兵庫県神戸市東灘区岡本2-10-15", url: "" },
+  { name: "アクアレラ", prefecture: "兵庫県", address: "兵庫県神戸市須磨区須磨浦通4丁目6-18", url: "https://beauty.hotpepper.jp/slnH000170647/" },
+  { name: "髪心", prefecture: "兵庫県", address: "兵庫県神戸市須磨区月見山本町1丁目8-24", url: "https://kamigokoro.jimdofree.com/" },
+  { name: "(m)arble", prefecture: "兵庫県", address: "兵庫県神戸市東灘区岡本2-10-15", url: "http://marble-a-hair-salon.com/" },
   // 奈良
   { name: "beauty.studio.efumi", prefecture: "奈良県", address: "奈良県天理市柳本町72-1", url: "" },
   // 岡山
   { name: "QUEUEMOU", prefecture: "岡山県", address: "岡山県倉敷市鶴形1丁目2-15 鶴形ビル209", url: "" },
   // 広島
-  { name: "美容室ごゆるりと", prefecture: "広島県", address: "広島県福山市柳津町2丁目7-5 田頭ビル102", url: "" },
-  { name: "Creativebase age", prefecture: "広島県", address: "広島県竹原市新庄町1396-2", url: "" },
-  { name: "LIBRE.", prefecture: "広島県", address: "広島県福山市西新涯町2丁目", url: "" },
+  { name: "美容室ごゆるりと", prefecture: "広島県", address: "広島県福山市柳津町2丁目7-5 田頭ビル102", url: "https://koti-ikumou.com/" },
+  { name: "Creativebase age", prefecture: "広島県", address: "広島県竹原市新庄町1396-2", url: "http://age-group.net/" },
+  { name: "LIBRE.", prefecture: "広島県", address: "広島県福山市西新涯町2丁目", url: "https://stylelog.tokyo/r/detail/H000600600" },
   // 愛媛
-  { name: "bobhair恵美須店", prefecture: "愛媛県", address: "愛媛県宇和島市恵美須町2丁目3-28", url: "" },
+  { name: "bobhair恵美須店", prefecture: "愛媛県", address: "愛媛県宇和島市恵美須町2丁目3-28", url: "https://nico-amo.jp/" },
   // 高知
   { name: "賦活化サロンbeaute", prefecture: "高知県", address: "高知県高知市北本町4丁目5-33-703", url: "" },
   // 長崎
-  { name: "キーライム", prefecture: "長崎県", address: "長崎県長崎市竹の久保町5-1 佐々野ビル", url: "" },
+  { name: "キーライム", prefecture: "長崎県", address: "長崎県長崎市竹の久保町5-1 佐々野ビル", url: "https://key-rhyme.com/" },
   { name: "moe", prefecture: "長崎県", address: "長崎県長崎市平間町", url: "" },
   // 宮崎
-  { name: "ヘアメイクナチュラル", prefecture: "宮崎県", address: "宮崎県延岡市土々呂町4丁目4152", url: "" },
-  { name: "トータス", prefecture: "宮崎県", address: "宮崎県延岡市土々呂町4丁目4152", url: "" },
+  { name: "ヘアメイクナチュラル", prefecture: "宮崎県", address: "宮崎県延岡市土々呂町4丁目4152", url: "https://hairmake-natural.net/" },
+  { name: "トータス", prefecture: "宮崎県", address: "宮崎県延岡市土々呂町4丁目4152", url: "http://hatumou-kaizen.com/" },
   // 鹿児島
-  { name: "Lampsi hair", prefecture: "鹿児島県", address: "鹿児島県薩摩川内市東向田町2-29", url: "" },
+  { name: "Lampsi hair", prefecture: "鹿児島県", address: "鹿児島県薩摩川内市東向田町2-29", url: "https://beauty.hotpepper.jp/slnH000419997/" },
   // 沖縄
-  { name: "hair＆spa glue.", prefecture: "沖縄県", address: "沖縄県那覇市松川402-6", url: "" },
-  { name: "circus", prefecture: "沖縄県", address: "沖縄県島尻郡南風原町兼城298-1", url: "" },
-  { name: "circus銘苅店", prefecture: "沖縄県", address: "沖縄県那覇市銘苅1-10-45 チェリスH 102", url: "" },
+  { name: "hair＆spa glue.", prefecture: "沖縄県", address: "沖縄県那覇市松川402-6", url: "https://beauty.hotpepper.jp/slnH000645058/" },
+  { name: "circus", prefecture: "沖縄県", address: "沖縄県島尻郡南風原町兼城298-1", url: "https://circushair2015.com/" },
+  { name: "circus銘苅店", prefecture: "沖縄県", address: "沖縄県那覇市銘苅1-10-45 チェリスH 102", url: "https://beauty.hotpepper.jp/slnH000681787/" },
 ];
 
 // 地方区分
