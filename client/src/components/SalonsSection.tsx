@@ -8,18 +8,18 @@ import { useState } from "react";
 // ─── サロンデータ ───────────────────────────────────────────────────────────
 const SALONS = [
   // 北海道
-  { name: "elm.hair", prefecture: "北海道", address: "北海道旭川市4条通9丁目 アポロニアビル 1階", url: "" },
+  { name: "elm.hair", prefecture: "北海道", address: "北海道旭川市4条通9丁目 アポロニアビル 1階", url: "https://beauty.hotpepper.jp/slnH000287222/" },
   // 青森
   { name: "THE ADDORESS hachinohe", prefecture: "青森県", address: "青森県八戸市六日町31 ホテルイルヴィアーレ八戸アネックス1F", url: "" },
   // 宮城
-  { name: "hairsalon K-mix", prefecture: "宮城県", address: "宮城県仙台市青葉区愛子東6丁目2-30", url: "" },
+  { name: "hairsalon K-mix", prefecture: "宮城県", address: "宮城県仙台市青葉区愛子東6丁目2-30", url: "https://www.hairsalonk-mix.com/" },
   // 山形
-  { name: "頭皮ケア育毛専門リオーシャン", prefecture: "山形県", address: "山形県鶴岡市大宝寺日本国378-45", url: "" },
-  { name: "HAIR LABO RADITE", prefecture: "山形県", address: "山形県米沢市中田町568-6", url: "" },
+  { name: "頭皮ケア育毛専門リオーシャン", prefecture: "山形県", address: "山形県鶴岡市大宝寺日本国378-45", url: "https://reocean.hp.peraichi.com/?_ga=2.68124369.1576207279.1646645486-1022600226.1590457447" },
+  { name: "HAIR LABO RADITE", prefecture: "山形県", address: "山形県米沢市中田町568-6", url: "https://hair-labo-radite.jp/" },
   { name: "RADITE２SHIOI", prefecture: "山形県", address: "山形県米沢市塩井町塩野1492-17", url: "" },
   // 群馬
   { name: "mizuma", prefecture: "群馬県", address: "群馬県前橋市城東町1-10-14", url: "" },
-  { name: "headspasalon Lindo", prefecture: "群馬県", address: "群馬県高崎市上豊岡町934-1 グランノーブルA棟", url: "" },
+  { name: "headspasalon Lindo", prefecture: "群馬県", address: "群馬県高崎市上豊岡町934-1 グランノーブルA棟", url: "https://lit.link/headspasalonlindo?fbclid=PAAabjxFSOZIrqQcc_D3gpJITalkrJ47sOTZ77rgwws8zcG-3DxaYnbmj9rnw" },
   { name: "美容室BRIOCHE", prefecture: "群馬県", address: "群馬県高崎市貝沢町424-2 ラ・メール101", url: "" },
   // 埼玉
   { name: "CREATE SALON forYou", prefecture: "埼玉県", address: "埼玉県志木市柏町6-29-65 クリエイトビル1F", url: "" },
