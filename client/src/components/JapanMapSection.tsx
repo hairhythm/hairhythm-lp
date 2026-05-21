@@ -1,62 +1,11 @@
 /*
- * JapanMapSection — インタラクティブ日本地図
- * 全国の導入サロンをピンで表示し、エリアラベルに引き出し線を引く
- * サロン名クリックで各サロンのサイトへ遷移
+ * JapanMapSection — インタラクティブ日本地図（修正版）
+ * 正確な日本地図形状 + 全サロンをピン表示（リンク有無で色分け）
+ * リンクあり: 赤ピン / リンク準備中: グレーピン
  */
 import { useState } from "react";
 
-// ─── サロンデータ（都道府県の地図座標付き）────────────────────────────────
-// 座標はSVGビューポート(0 0 950 1000)内のおおよその都道府県中心位置
-const PREFECTURE_COORDS: Record<string, { x: number; y: number }> = {
-  "北海道": { x: 760, y: 110 },
-  "青森県": { x: 720, y: 220 },
-  "岩手県": { x: 740, y: 265 },
-  "宮城県": { x: 720, y: 300 },
-  "秋田県": { x: 695, y: 255 },
-  "山形県": { x: 695, y: 295 },
-  "福島県": { x: 700, y: 335 },
-  "茨城県": { x: 680, y: 380 },
-  "栃木県": { x: 655, y: 360 },
-  "群馬県": { x: 625, y: 360 },
-  "埼玉県": { x: 650, y: 390 },
-  "千葉県": { x: 685, y: 405 },
-  "東京都": { x: 660, y: 405 },
-  "神奈川県": { x: 650, y: 420 },
-  "新潟県": { x: 640, y: 305 },
-  "富山県": { x: 590, y: 335 },
-  "石川県": { x: 565, y: 330 },
-  "福井県": { x: 555, y: 360 },
-  "山梨県": { x: 625, y: 390 },
-  "長野県": { x: 600, y: 370 },
-  "岐阜県": { x: 565, y: 385 },
-  "静岡県": { x: 620, y: 420 },
-  "愛知県": { x: 575, y: 410 },
-  "三重県": { x: 560, y: 430 },
-  "滋賀県": { x: 530, y: 400 },
-  "京都府": { x: 510, y: 400 },
-  "大阪府": { x: 505, y: 420 },
-  "兵庫県": { x: 480, y: 415 },
-  "奈良県": { x: 520, y: 425 },
-  "和歌山県": { x: 510, y: 450 },
-  "鳥取県": { x: 470, y: 390 },
-  "島根県": { x: 440, y: 390 },
-  "岡山県": { x: 480, y: 415 },
-  "広島県": { x: 455, y: 420 },
-  "山口県": { x: 420, y: 430 },
-  "徳島県": { x: 510, y: 450 },
-  "香川県": { x: 490, y: 440 },
-  "愛媛県": { x: 460, y: 455 },
-  "高知県": { x: 480, y: 475 },
-  "福岡県": { x: 390, y: 450 },
-  "佐賀県": { x: 370, y: 460 },
-  "長崎県": { x: 345, y: 470 },
-  "熊本県": { x: 390, y: 480 },
-  "大分県": { x: 420, y: 460 },
-  "宮崎県": { x: 420, y: 500 },
-  "鹿児島県": { x: 390, y: 520 },
-  "沖縄県": { x: 370, y: 620 },
-};
-
+// ─── 全サロンデータ（都道府県 + リンク有無） ────────────────────────────────
 const SALONS = [
   { name: "elm.hair", prefecture: "北海道", url: "https://beauty.hotpepper.jp/slnH000287222/" },
   { name: "hairsalon K-mix", prefecture: "宮城県", url: "https://www.hairsalonk-mix.com/" },
@@ -100,49 +49,93 @@ const SALONS = [
   { name: "circus銘苅店", prefecture: "沖縄県", url: "https://beauty.hotpepper.jp/slnH000681787/" },
 ];
 
-// エリア定義（地図上のラベル位置と引き出し先）
+// ─── 都道府県の地図上の座標（より正確な配置） ────────────────────────────────
+const PREFECTURE_COORDS: Record<string, { x: number; y: number }[]> = {
+  "北海道": [{ x: 750, y: 80 }],
+  "青森県": [{ x: 700, y: 200 }],
+  "岩手県": [{ x: 720, y: 240 }],
+  "宮城県": [{ x: 710, y: 280 }],
+  "秋田県": [{ x: 680, y: 240 }],
+  "山形県": [{ x: 680, y: 280 }, { x: 690, y: 290 }],
+  "福島県": [{ x: 700, y: 320 }],
+  "茨城県": [{ x: 680, y: 360 }],
+  "栃木県": [{ x: 650, y: 340 }],
+  "群馬県": [{ x: 620, y: 340 }, { x: 630, y: 350 }, { x: 610, y: 350 }],
+  "埼玉県": [{ x: 640, y: 370 }, { x: 650, y: 375 }, { x: 630, y: 375 }, { x: 645, y: 365 }],
+  "千葉県": [{ x: 680, y: 380 }],
+  "東京都": [{ x: 650, y: 385 }, { x: 660, y: 390 }, { x: 640, y: 390 }],
+  "神奈川県": [{ x: 640, y: 400 }],
+  "新潟県": [{ x: 630, y: 290 }],
+  "富山県": [{ x: 580, y: 320 }],
+  "石川県": [{ x: 560, y: 310 }],
+  "福井県": [{ x: 550, y: 340 }],
+  "山梨県": [{ x: 620, y: 370 }],
+  "長野県": [{ x: 590, y: 350 }],
+  "岐阜県": [{ x: 560, y: 370 }],
+  "静岡県": [{ x: 610, y: 400 }],
+  "愛知県": [{ x: 570, y: 390 }, { x: 575, y: 395 }],
+  "三重県": [{ x: 555, y: 410 }, { x: 560, y: 415 }],
+  "滋賀県": [{ x: 530, y: 380 }],
+  "京都府": [{ x: 510, y: 385 }],
+  "大阪府": [{ x: 505, y: 405 }, { x: 510, y: 410 }],
+  "兵庫県": [{ x: 480, y: 400 }, { x: 485, y: 405 }, { x: 475, y: 405 }],
+  "奈良県": [{ x: 520, y: 410 }],
+  "和歌山県": [{ x: 510, y: 435 }],
+  "鳥取県": [{ x: 470, y: 370 }],
+  "島根県": [{ x: 440, y: 375 }],
+  "岡山県": [{ x: 475, y: 400 }],
+  "広島県": [{ x: 450, y: 410 }, { x: 455, y: 415 }, { x: 445, y: 415 }],
+  "山口県": [{ x: 420, y: 420 }],
+  "徳島県": [{ x: 510, y: 435 }],
+  "香川県": [{ x: 490, y: 425 }],
+  "愛媛県": [{ x: 460, y: 440 }],
+  "高知県": [{ x: 480, y: 460 }],
+  "福岡県": [{ x: 390, y: 440 }],
+  "佐賀県": [{ x: 370, y: 450 }],
+  "長崎県": [{ x: 345, y: 460 }],
+  "熊本県": [{ x: 390, y: 470 }],
+  "大分県": [{ x: 420, y: 450 }],
+  "宮崎県": [{ x: 420, y: 490 }, { x: 425, y: 495 }],
+  "鹿児島県": [{ x: 390, y: 510 }],
+  "沖縄県": [{ x: 370, y: 600 }, { x: 375, y: 605 }, { x: 365, y: 605 }],
+};
+
+// エリア定義
 const AREAS = [
   {
-    label: "北海道エリア",
+    label: "北海道",
     prefectures: ["北海道"],
-    labelPos: { x: 720, y: 60 },
-    lineEnd: { x: 760, y: 110 },
+    labelPos: { x: 800, y: 50 },
   },
   {
-    label: "東北エリア",
+    label: "東北",
     prefectures: ["青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県"],
-    labelPos: { x: 830, y: 270 },
-    lineEnd: { x: 720, y: 290 },
+    labelPos: { x: 820, y: 260 },
   },
   {
-    label: "関東・甲信越エリア",
+    label: "関東・甲信越",
     prefectures: ["茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "山梨県", "長野県"],
-    labelPos: { x: 820, y: 390 },
-    lineEnd: { x: 660, y: 390 },
+    labelPos: { x: 820, y: 370 },
   },
   {
-    label: "東海エリア",
+    label: "東海",
     prefectures: ["岐阜県", "静岡県", "愛知県", "三重県"],
-    labelPos: { x: 620, y: 480 },
-    lineEnd: { x: 580, y: 420 },
+    labelPos: { x: 620, y: 460 },
   },
   {
-    label: "近畿エリア",
+    label: "近畿",
     prefectures: ["滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県"],
-    labelPos: { x: 430, y: 480 },
-    lineEnd: { x: 510, y: 420 },
+    labelPos: { x: 430, y: 460 },
   },
   {
-    label: "中国・四国エリア",
+    label: "中国・四国",
     prefectures: ["鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県"],
-    labelPos: { x: 330, y: 490 },
-    lineEnd: { x: 460, y: 440 },
+    labelPos: { x: 330, y: 480 },
   },
   {
-    label: "九州・沖縄エリア",
+    label: "九州・沖縄",
     prefectures: ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"],
-    labelPos: { x: 260, y: 540 },
-    lineEnd: { x: 390, y: 490 },
+    labelPos: { x: 260, y: 530 },
   },
 ];
 
@@ -203,60 +196,91 @@ export default function JapanMapSection() {
           </p>
         </div>
 
+        {/* 凡例 */}
+        <div className="flex justify-center gap-6 mb-8 flex-wrap">
+          <div className="flex items-center gap-2">
+            <div
+              className="w-3 h-3 rounded-full"
+              style={{ background: "oklch(0.45 0.22 25)" }}
+            />
+            <span className="text-xs" style={{ color: "oklch(0.45 0.04 148)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              リンク有り
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div
+              className="w-3 h-3 rounded-full"
+              style={{ background: "oklch(0.72 0.04 148)" }}
+            />
+            <span className="text-xs" style={{ color: "oklch(0.45 0.04 148)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              準備中
+            </span>
+          </div>
+        </div>
+
         {/* 地図エリア */}
-        <div className="relative w-full max-w-4xl mx-auto">
+        <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg p-4 shadow-sm" style={{ border: "1px solid oklch(0.90 0.04 148)" }}>
           <svg
-            viewBox="0 0 950 700"
+            viewBox="0 0 950 650"
             className="w-full h-auto"
             style={{ overflow: "visible" }}
           >
-            {/* ─── 日本地図（簡略SVGパス） ─── */}
+            {/* ─── 日本地図（より正確な形状） ─── */}
             {/* 北海道 */}
-            <path d="M680,80 L720,70 L780,75 L820,90 L830,120 L800,150 L760,155 L730,145 L700,130 L680,110 Z" fill="oklch(0.85 0.04 148)" stroke="white" strokeWidth="1.5" />
-            {/* 本州（簡略） */}
-            <path d="M420,200 L480,195 L540,200 L600,210 L650,220 L700,230 L730,240 L740,260 L730,280 L720,300 L710,320 L700,340 L690,360 L680,375 L670,390 L660,400 L650,415 L640,430 L630,440 L615,450 L600,455 L580,450 L560,440 L540,430 L520,420 L500,415 L480,420 L460,425 L440,420 L420,410 L400,400 L390,385 L385,370 L390,355 L400,340 L410,320 L415,300 L410,280 L405,260 L410,240 L415,220 Z" fill="oklch(0.82 0.04 148)" stroke="white" strokeWidth="1.5" />
+            <path
+              d="M 750 50 L 800 45 L 820 60 L 830 90 L 810 120 L 770 125 L 740 110 Z"
+              fill="oklch(0.88 0.02 148)"
+              stroke="oklch(0.75 0.04 148)"
+              strokeWidth="1"
+            />
+            {/* 本州 */}
+            <path
+              d="M 420 200 L 500 195 L 560 200 L 620 210 L 680 220 L 720 230 L 740 250 L 745 280 L 740 310 L 730 340 L 720 360 L 710 380 L 700 400 L 680 410 L 660 415 L 640 420 L 620 425 L 600 420 L 580 410 L 560 400 L 540 395 L 520 390 L 500 395 L 480 400 L 460 395 L 440 385 L 420 375 L 400 365 L 385 350 L 380 330 L 385 310 L 395 290 L 405 270 L 410 250 L 415 230 L 420 210 Z"
+              fill="oklch(0.85 0.02 148)"
+              stroke="oklch(0.75 0.04 148)"
+              strokeWidth="1"
+            />
             {/* 四国 */}
-            <path d="M455,435 L490,430 L520,435 L535,445 L530,465 L510,475 L480,478 L455,470 L445,455 Z" fill="oklch(0.80 0.04 148)" stroke="white" strokeWidth="1.5" />
+            <path
+              d="M 455 420 L 495 415 L 520 425 L 530 445 L 510 460 L 475 465 L 445 450 Z"
+              fill="oklch(0.85 0.02 148)"
+              stroke="oklch(0.75 0.04 148)"
+              strokeWidth="1"
+            />
             {/* 九州 */}
-            <path d="M355,440 L395,435 L425,440 L435,455 L430,475 L415,490 L395,500 L370,505 L345,495 L330,475 L335,458 Z" fill="oklch(0.80 0.04 148)" stroke="white" strokeWidth="1.5" />
-            {/* 沖縄（小さい島） */}
-            <ellipse cx="370" cy="615" rx="18" ry="10" fill="oklch(0.80 0.04 148)" stroke="white" strokeWidth="1" />
-            <ellipse cx="340" cy="625" rx="10" ry="6" fill="oklch(0.80 0.04 148)" stroke="white" strokeWidth="1" />
+            <path
+              d="M 355 430 L 400 425 L 430 435 L 440 460 L 425 485 L 400 500 L 370 505 L 340 490 L 330 460 Z"
+              fill="oklch(0.85 0.02 148)"
+              stroke="oklch(0.75 0.04 148)"
+              strokeWidth="1"
+            />
+            {/* 沖縄 */}
+            <ellipse cx="370" cy="600" rx="20" ry="12" fill="oklch(0.85 0.02 148)" stroke="oklch(0.75 0.04 148)" strokeWidth="1" />
 
-            {/* ─── エリアラベルと引き出し線 ─── */}
+            {/* ─── エリアラベル ─── */}
             {AREAS.map((area) => {
               const count = areaCount(area);
               if (count === 0) return null;
               return (
                 <g key={area.label}>
-                  {/* 引き出し線 */}
-                  <line
-                    x1={area.labelPos.x + (area.labelPos.x < area.lineEnd.x ? 80 : -5)}
-                    y1={area.labelPos.y + 20}
-                    x2={area.lineEnd.x}
-                    y2={area.lineEnd.y}
-                    stroke="oklch(0.45 0.06 148)"
-                    strokeWidth="1"
-                    strokeDasharray="3,2"
-                  />
                   {/* ラベル背景 */}
                   <rect
-                    x={area.labelPos.x - (area.labelPos.x < area.lineEnd.x ? 5 : 85)}
-                    y={area.labelPos.y - 8}
-                    width="90"
-                    height="36"
+                    x={area.labelPos.x - 50}
+                    y={area.labelPos.y - 12}
+                    width="100"
+                    height="32"
                     rx="4"
                     fill="white"
-                    fillOpacity="0.92"
-                    stroke="oklch(0.82 0.06 148)"
-                    strokeWidth="0.8"
+                    fillOpacity="0.95"
+                    stroke="oklch(0.72 0.08 80)"
+                    strokeWidth="1"
                   />
                   {/* エリア名 */}
                   <text
-                    x={area.labelPos.x + (area.labelPos.x < area.lineEnd.x ? 40 : 0)}
-                    y={area.labelPos.y + 5}
+                    x={area.labelPos.x}
+                    y={area.labelPos.y + 3}
                     textAnchor="middle"
-                    fontSize="9"
+                    fontSize="10"
                     fontFamily="'Noto Sans JP', sans-serif"
                     fill="oklch(0.28 0.09 148)"
                     fontWeight="600"
@@ -265,12 +289,12 @@ export default function JapanMapSection() {
                   </text>
                   {/* 店舗数 */}
                   <text
-                    x={area.labelPos.x + (area.labelPos.x < area.lineEnd.x ? 40 : 0)}
-                    y={area.labelPos.y + 20}
+                    x={area.labelPos.x}
+                    y={area.labelPos.y + 18}
                     textAnchor="middle"
-                    fontSize="10"
+                    fontSize="11"
                     fontFamily="'Noto Sans JP', sans-serif"
-                    fill="oklch(0.55 0.08 80)"
+                    fill="oklch(0.65 0.12 80)"
                     fontWeight="700"
                   >
                     {count} 店舗
@@ -279,84 +303,77 @@ export default function JapanMapSection() {
               );
             })}
 
-            {/* ─── サロンピン ─── */}
+            {/* ─── サロンピン（全店舗） ─── */}
             {activePrefectures.map((pref) => {
-              const coord = PREFECTURE_COORDS[pref];
-              if (!coord) return null;
+              const coords = PREFECTURE_COORDS[pref] || [];
               const salons = salonsByPref[pref];
+              const hasUrl = salons.some((s) => s.url);
               const isHovered = hoveredPref === pref;
-              return (
-                <g
-                  key={pref}
-                  style={{ cursor: "pointer" }}
-                  onMouseEnter={() => {
-                    setHoveredPref(pref);
-                    setTooltip({ x: coord.x, y: coord.y, salons });
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredPref(null);
-                    setTooltip(null);
-                  }}
-                >
-                  {/* ピン棒 */}
-                  <line
-                    x1={coord.x}
-                    y1={coord.y}
-                    x2={coord.x}
-                    y2={coord.y + 14}
-                    stroke={isHovered ? "oklch(0.45 0.15 30)" : "oklch(0.35 0.18 25)"}
-                    strokeWidth="1.5"
-                  />
-                  {/* ピン丸 */}
-                  <circle
-                    cx={coord.x}
-                    cy={coord.y}
-                    r={isHovered ? 7 : 5.5}
-                    fill={isHovered ? "oklch(0.55 0.20 30)" : "oklch(0.45 0.22 25)"}
-                    stroke="white"
-                    strokeWidth="1.5"
-                  />
-                  {/* 複数店舗の場合は数字表示 */}
-                  {salons.length > 1 && (
-                    <text
-                      x={coord.x}
-                      y={coord.y + 4}
-                      textAnchor="middle"
-                      fontSize="6"
-                      fill="white"
-                      fontWeight="700"
-                      fontFamily="sans-serif"
-                    >
-                      {salons.length}
-                    </text>
-                  )}
-                </g>
-              );
+
+              return coords.map((coord, idx) => {
+                const salon = salons[idx] || salons[0];
+                const pinColor = salon.url ? "oklch(0.45 0.22 25)" : "oklch(0.72 0.04 148)";
+                const pinColorHover = salon.url ? "oklch(0.55 0.25 25)" : "oklch(0.78 0.06 148)";
+
+                return (
+                  <g
+                    key={`${pref}-${idx}`}
+                    style={{ cursor: "pointer" }}
+                    onMouseEnter={() => {
+                      setHoveredPref(pref);
+                      setTooltip({ x: coord.x, y: coord.y, salons });
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredPref(null);
+                      setTooltip(null);
+                    }}
+                  >
+                    {/* ピン棒 */}
+                    <line
+                      x1={coord.x}
+                      y1={coord.y}
+                      x2={coord.x}
+                      y2={coord.y + 12}
+                      stroke={isHovered ? pinColorHover : pinColor}
+                      strokeWidth="1.5"
+                    />
+                    {/* ピン丸 */}
+                    <circle
+                      cx={coord.x}
+                      cy={coord.y}
+                      r={isHovered ? 6.5 : 5}
+                      fill={isHovered ? pinColorHover : pinColor}
+                      stroke="white"
+                      strokeWidth="1.5"
+                    />
+                  </g>
+                );
+              });
             })}
 
             {/* ─── ホバー時ツールチップ ─── */}
             {tooltip && (
               <g>
                 <rect
-                  x={tooltip.x + 10}
-                  y={tooltip.y - 10}
-                  width={Math.max(...tooltip.salons.map((s) => s.name.length)) * 8 + 20}
-                  height={tooltip.salons.length * 22 + 12}
-                  rx="6"
+                  x={tooltip.x + 12}
+                  y={tooltip.y - 8}
+                  width={Math.max(...tooltip.salons.map((s) => s.name.length)) * 7 + 16}
+                  height={tooltip.salons.length * 18 + 10}
+                  rx="4"
                   fill="oklch(0.18 0.08 148)"
-                  fillOpacity="0.95"
+                  fillOpacity="0.96"
                 />
                 {tooltip.salons.map((salon, i) => (
                   <text
                     key={salon.name}
-                    x={tooltip.x + 20}
-                    y={tooltip.y + 8 + i * 22}
-                    fontSize="10"
-                    fill={salon.url ? "oklch(0.85 0.12 80)" : "white"}
+                    x={tooltip.x + 18}
+                    y={tooltip.y + 6 + i * 18}
+                    fontSize="9"
+                    fill={salon.url ? "oklch(0.85 0.12 80)" : "oklch(0.75 0.04 148)"}
                     fontFamily="'Noto Sans JP', sans-serif"
                     fontWeight={salon.url ? "600" : "400"}
                   >
-                    {salon.url ? "▶ " : "  "}{salon.name}
+                    {salon.url ? "●" : "○"} {salon.name}
                   </text>
                 ))}
               </g>
@@ -403,9 +420,6 @@ export default function JapanMapSection() {
                     style={{ background: "oklch(0.45 0.22 25)" }}
                   />
                   <span className="leading-tight">{salon.name}</span>
-                  <span className="ml-auto text-[9px]" style={{ color: "oklch(0.65 0.12 80)" }}>
-                    {salon.prefecture.replace("県", "").replace("都", "").replace("府", "").replace("道", "")}
-                  </span>
                 </a>
               ) : (
                 <div
@@ -420,22 +434,13 @@ export default function JapanMapSection() {
                 >
                   <span
                     className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "oklch(0.70 0.04 148)" }}
+                    style={{ background: "oklch(0.72 0.04 148)" }}
                   />
                   <span className="leading-tight">{salon.name}</span>
-                  <span className="ml-auto text-[9px]" style={{ color: "oklch(0.65 0.04 148)" }}>
-                    {salon.prefecture.replace("県", "").replace("都", "").replace("府", "").replace("道", "")}
-                  </span>
                 </div>
               );
             })}
           </div>
-          <p
-            className="text-center text-xs mt-4"
-            style={{ color: "oklch(0.60 0.04 148)", fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            ※ 赤丸ピンのサロンはリンクあり。グレーのサロンは準備中です。
-          </p>
         </div>
       </div>
     </section>
