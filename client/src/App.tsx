@@ -10,8 +10,9 @@ import PrivacyPage from "./pages/PrivacyPage";
 import SalonsPage from "./pages/SalonsPage";
 
 // GitHub Pages のbaseパス対応
-// Viteのimport.meta.env.BASE_URLは本番では'/hairhythm-lp/'、開発では'/'
-const BASE_PATH = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
+// Viteのimport.meta.env.BASE_URLは本番では'./'、開発では'/'
+// wouterのRouter baseには絶対パスが必要なため、相対パスの場合は空文字にする
+const BASE_PATH = import.meta.env.BASE_URL === './' ? '' : (import.meta.env.BASE_URL?.replace(/\/$/, '') || '');
 
 function Routes() {
   return (
