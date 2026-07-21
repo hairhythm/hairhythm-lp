@@ -163,7 +163,7 @@ function vitePluginManusDebugCollector(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
-  base: '/hairhythm-lp/',
+  base: './',
   plugins,
   resolve: {
     alias: {
